@@ -92,3 +92,5 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias adog="git log --all --decorate --oneline --graph"
+source ~/.zshrc_local
