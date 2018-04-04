@@ -15,6 +15,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-syntastic/syntastic'
 Bundle 'geoffharcourt/vim-matchit'
+Bundle 'Glench/Vim-Jinja2-Syntax'
 " The following are examples of different formats supported.
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
