@@ -52,6 +52,7 @@ syntax enable "enable syntax processing
 
 set tabstop=4
 set softtabstop=4
+set shiftwidth=4
 set expandtab "tabs are spaces
 
 set number
