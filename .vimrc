@@ -10,10 +10,12 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
-Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-syntastic/syntastic'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'davidhalter/jedi-vim'
 Bundle 'geoffharcourt/vim-matchit'
 Bundle 'Glench/Vim-Jinja2-Syntax'
 " The following are examples of different formats supported.
@@ -77,10 +79,21 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
+let g:airline_power_line_fonts = 1
+let g:airline_theme='luna'
+set t_Co=256
+" Enable airline buffer list
+let g:airline#extensions#tabline#enabled = 1
+" Show only the file name
+let g:airline#extensions#tabline#fnamemode = ':t'
+
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
 
 
 " Matchit configuration for system verilog
