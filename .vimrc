@@ -61,6 +61,7 @@ set expandtab "tabs are spaces
 set number
 set showcmd
 set cursorline
+set colorcolumn=120
 
 filetype indent on
 
@@ -82,6 +83,20 @@ set statusline+=%*
 let g:airline_power_line_fonts = 1
 let g:airline_theme='luna'
 set t_Co=256
+
+" Buffer management
+set hidden
+" Open a new buffer
+nmap <leader>T :enew<CR>
+" Next buffer
+nmap <leader>l :bnext<CR>
+" Previous buffer
+nmap <leader>p :bprevious<CR>
+"Close current buffer and got to previous one
+nmap <leader>bq :bp <BAR> bd #<CR>
+" List of all buffers
+nmap <leader>bl :ls<CR>
+
 " Enable airline buffer list
 let g:airline#extensions#tabline#enabled = 1
 " Show only the file name
