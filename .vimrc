@@ -60,8 +60,9 @@ set expandtab "tabs are spaces
 
 set number
 set showcmd
-set cursorline
-set colorcolumn=120
+let ftToIgnore = ['systemverilog']
+autocmd BufNewFile,BufRead * if index(ftToIgnore, &ft) < 0 | set cursorline
+autocmd BufNewFile,BufRead * if index(ftToIgnore, &ft) < 0 | set colorcolumn=120
 
 filetype indent on
 
