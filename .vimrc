@@ -9,6 +9,7 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
+Plugin 'vhda/verilog_systemverilog.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-fugitive'
 Plugin 'vim-airline/vim-airline'
@@ -16,6 +17,7 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'davidhalter/jedi-vim'
+Plugin 'christoomey/vim-tmux-navigator'
 Bundle 'geoffharcourt/vim-matchit'
 Bundle 'Glench/Vim-Jinja2-Syntax'
 " The following are examples of different formats supported.
@@ -137,4 +139,11 @@ if exists('loaded_matchit')
           \ '\<fork\>:\<join\>\|\<join_any\>\|\<join_none\>,' .
           \ '`ifdef\>:`else\>:`endif\>,'
 endif
+
+let g:tmux_navigator_no_mappings = 1
+nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
 
