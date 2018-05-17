@@ -147,3 +147,6 @@ nnoremap <silent> <c-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <c-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
 
+"Making make_* be seen as a makefile
+autocmd BufRead,BufNewFile make_* set filetype=make
+
