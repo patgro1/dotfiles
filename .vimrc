@@ -89,6 +89,8 @@ set t_Co=256
 
 " Buffer management
 set hidden
+" Change the leader key to space
+let mapleader = " "
 " Open a new buffer
 nmap <leader>T :enew<CR>
 " Next buffer
@@ -99,6 +101,8 @@ nmap <leader>p :bprevious<CR>
 nmap <leader>bq :bp <BAR> bd #<CR>
 " List of all buffers
 nmap <leader>bl :ls<CR>
+
+nnoremap <leader>, :noh<CR>
 
 " Enable airline buffer list
 let g:airline#extensions#tabline#enabled = 1

@@ -64,6 +64,20 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+# -- This function is fixing the ssh forwarding
+# If not in tmux, update the DISPLAY cache
+# If in TMUX, read the display cache
+function update_x11_forwarding {
+    if [ -z "$TMUX" ]; then
+        echo $DISPLAY > ~/.display.txt
+    else
+        export DISLAY=`cat ~/.display.txt`
+    fi
+}
+preexec() {
+    update_x11_forwarding
+}
+
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
