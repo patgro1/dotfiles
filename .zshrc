@@ -108,4 +108,7 @@ preexec() {
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias adog="git log --all --decorate --oneline --graph"
 alias ll="ls -al"
-source ~/.zshrc_local
+
+if [[ -r ~/.zshrc_localsource ]]; then
+    ~/.zshrc_local
+fi
