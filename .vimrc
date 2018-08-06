@@ -11,38 +11,23 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'vhda/verilog_systemverilog.vim'
 Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-fugitive'
 Plugin 'morhetz/gruvbox'
 Plugin 'vim-airline/vim-airline'
+Plugin 'tpope/vim-fugitive'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-syntastic/syntastic'
-Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'junegunn/fzf'
 Plugin 'davidhalter/jedi-vim'
 Plugin 'christoomey/vim-tmux-navigator'
 Bundle 'geoffharcourt/vim-matchit'
 Bundle 'Glench/Vim-Jinja2-Syntax'
-" The following are examples of different formats supported.
-" Keep Plugin commands between vundle#begin/end.
-" plugin on GitHub repo
-" Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-" Plugin 'L9'
-" Git plugin not hosted on GitHub
-" Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (i.e. when working on your own plugin)
-" Plugin 'file:///home/gmarik/path/to/plugin'
-" The sparkup vim script is in a subdirectory of this repo called vim.
-" Pass the path to set the runtimepath properly.
-" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Install L9 and avoid a Naming conflict if you've already installed a
-" different version somewhere else.
-" Plugin 'ascenator/L9', {'name': 'newL9'}
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
 filetype plugin on
 colorscheme gruvbox
+set background=dark
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 "
@@ -106,6 +91,7 @@ nmap <leader>bq :bp <BAR> bd #<CR>
 nmap <leader>bl :ls<CR>
 
 nnoremap <leader>, :noh<CR>
+nnoremap <F6> :NERDTreeToggle<CR>
 
 " Enable airline buffer list
 let g:airline#extensions#tabline#enabled = 1
@@ -120,9 +106,7 @@ let g:syntastic_check_on_wq = 0
 nmap <F7> :SyntasticCheck<CR>
 nmap <F8> :SyntasticReset<CR>
 
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-
+nmap <c-p> = :FZF<cr>
 
 " Matchit configuration for system verilog
 source ~/.vim/bundle/vim-matchit/plugin/matchit.vim
