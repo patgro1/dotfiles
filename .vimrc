@@ -26,8 +26,10 @@ Bundle 'Glench/Vim-Jinja2-Syntax'
 call vundle#end()            " required
 filetype plugin indent on    " required
 filetype plugin on
-colorscheme gruvbox
+set guicursor=
 set background=dark
+colorscheme gruvbox
+let g:gruvbox_termcolors=256
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 "
