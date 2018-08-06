@@ -12,6 +12,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'vhda/verilog_systemverilog.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'tpope/vim-fugitive'
+Plugin 'morhetz/gruvbox'
 Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-syntastic/syntastic'
@@ -41,6 +42,7 @@ Bundle 'Glench/Vim-Jinja2-Syntax'
 call vundle#end()            " required
 filetype plugin indent on    " required
 filetype plugin on
+colorscheme gruvbox
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 "
@@ -79,12 +81,13 @@ set foldenable
 set foldlevelstart=10
 
 " Syntastic configuration
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
 
 let g:airline_power_line_fonts = 1
-let g:airline_theme='luna'
+let g:airline#extensions#syntastic#enabled = 1
+" let g:airline_theme='luna'
 set t_Co=256
 
 " Buffer management
