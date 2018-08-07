@@ -109,7 +109,7 @@ preexec() {
 alias adog="git log --all --decorate --oneline --graph"
 alias ll="ls -al"
 alias tmux="tmux -2"
-if [[ -r ~/.zshrc_localsource ]]; then
-    ~/.zshrc_local
+if [[ -r ~/.zshrc_local ]]; then
+    source ~/.zshrc_local
 fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
