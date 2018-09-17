@@ -17,6 +17,8 @@ Plug 'davidhalter/jedi-vim'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'geoffharcourt/vim-matchit'
 Plug 'Glench/Vim-Jinja2-Syntax'
+Plug 'ludovicchabant/vim-gutentags'
+
 call plug#end()
 
 filetype plugin indent on    " required
