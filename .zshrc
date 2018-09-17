@@ -91,6 +91,7 @@ preexec() {
 # else
 #   export EDITOR='mvim'
 # fi
+export EDITOR='vim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -113,3 +114,4 @@ if [[ -r ~/.zshrc_local ]]; then
     source ~/.zshrc_local
 fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source ~/.tmuxinator.zsh

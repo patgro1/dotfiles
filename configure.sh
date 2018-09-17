@@ -6,3 +6,4 @@ ln -s -f $PWD/.tmux/.tmux.conf ~
 ln -s -f $PWD/.flake8 ~
 ln -s -f $PWD/.pylintrc ~
 nvim +PlugInstall +qall
+ln -s -f $PWD/tmuxinator.zsh ~/.tmuxinator.zsh
