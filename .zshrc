@@ -91,6 +91,7 @@ preexec() {
 # else
 #   export EDITOR='mvim'
 # fi
+export VIM_CONFIG=~/.config/nvim/init.vim
 alias vim='nvim'
 alias vi='nvim'
 export EDITOR='nvim'
