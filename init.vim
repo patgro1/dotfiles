@@ -9,7 +9,6 @@ Plug 'vhda/verilog_systemverilog.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'morhetz/gruvbox'
 Plug 'vim-airline/vim-airline'
-Plug 'tpope/vim-fugitive' 
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vim-syntastic/syntastic'
 Plug 'junegunn/fzf'
@@ -18,6 +17,8 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'geoffharcourt/vim-matchit'
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter' 
 
 call plug#end()
 
@@ -68,10 +69,11 @@ nmap <leader>bl :ls<CR>
 
 " Clear all search highlights
 nnoremap <leader>, :noh<CR>
-nnoremap <F6> :NERDTreeToggle<CR>
+nnoremap <leader>nt :NERDTreeToggle<CR>
 
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#fnamemode=':t'
+let g:airline_theme='simple'
 
 " Syntastic configuration
 let g:syntastic_mode_map = {'mode': 'passive'}
@@ -79,8 +81,8 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
-nmap <F7> :SyntasticCheck<CR>
-nmap <F8> :SyntasticReset<CR>
+nmap <F10> :SyntasticCheck<CR>
+nmap <F11> :SyntasticReset<CR>
 
 "FZF to control-p
 nmap <c-p> :FZF<cr>
@@ -111,6 +113,9 @@ if exists('loaded_matchit')
           \ '`ifdef\>:`else\>:`endif\>,'
 endif
 
+" Terminal mode mapping
+:tnoremap <Esc> <C-\><C-n>
+
 let g:tmux_navigator_no_mappings = 1
 nnoremap <silent> <c-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <c-l> :TmuxNavigateRight<cr>
@@ -120,3 +125,6 @@ nnoremap <silent> <c-\> :TmuxNavigatePrevious<cr>
 
 "Making make_* be seen as a makefile
 autocmd BufRead,BufNewFile make_* set filetype=make
+
+" Git gutter
+nmap <leader>gh :GitGutterLineHighlightsToggle<cr>
