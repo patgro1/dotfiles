@@ -8,3 +8,4 @@ ln -s -f $PWD/.pylintrc ~
 ln -s -f $PWD/.ctags ~
 nvim +PlugInstall +qall
 ln -s -f $PWD/tmuxinator.zsh ~/.tmuxinator.zsh
+ln -s -f $PWD/tabular_extra.vim ~/.local/share/nvim/plugged/tabular/after/plugin/tabular_extra.vim

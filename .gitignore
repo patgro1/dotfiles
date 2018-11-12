@@ -1,2 +1,5 @@
 .vim/bundle/
 tags
+tags
+tags.lock
+tags.temp
