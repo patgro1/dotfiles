@@ -70,7 +70,7 @@ nmap <leader>bl :ls<CR>
 
 " Clear all search highlights
 nnoremap <leader>, :noh<CR>
-nnoremap <leader>nt :NERDTreeToggle<CR>
+nnoremap <F6> :NERDTreeToggle<CR>
 
 let g:airline#extensions#tabline#enabled=1
 let g:airline#extensions#tabline#fnamemode=':t'
@@ -87,6 +87,8 @@ nmap <F11> :SyntasticReset<CR>
 
 "FZF to control-p
 nmap <c-p> :FZF<cr>
+" When FZF is open, esc force it to close
+autocmd! FileType fzf tnoremap <buffer> <esc> <c-c>
 
 " Matchit config for systemverilog
 " TODO: Make sure that works now
