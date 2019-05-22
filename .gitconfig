@@ -10,6 +10,8 @@
     cmd = nvim -n -d $LOCAL $MERGED $REMOTE
 [push]
 	default = simple
+[pull]
+	default = simple
 [core]
 	editor = nvim
 [difftool]
