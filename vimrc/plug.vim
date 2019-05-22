@@ -86,10 +86,15 @@ endif
 
 " Fugitive mapping
 let g:github_enterprise_urls = ['https://git.drwholdings.com']
+nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>gb :Gblame<CR>
 nnoremap <Leader>gbb :.Gbrowse<CR>
 vnoremap <Leader>gbb :Gbrowse<CR>
 nnoremap <Leader>gaf :Gw<CR>
+nnoremap <Leader>gpl :Git! pull --rebase<CR>
+nnoremap <Leader>gst :Git! stash
+nnoremap <Leader>gsa :Git! stash apply
+nnoremap <Leader>gc :Gcommit<CR>
 set diffopt+=vertical
 
 
