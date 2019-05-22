@@ -90,6 +90,7 @@ nnoremap <Leader>gb :Gblame<CR>
 nnoremap <Leader>gbb :.Gbrowse<CR>
 vnoremap <Leader>gbb :Gbrowse<CR>
 nnoremap <Leader>gaf :Gw<CR>
+set diffopt+=vertical
 
 
 " Tmux nav

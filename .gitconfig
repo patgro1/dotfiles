@@ -1,0 +1,18 @@
+[diff]
+    tool = nfugitive
+[difftool "nfugitive"]
+    cmd = nvim -f -c "Gdiff"
+[merge]
+    tool = nmergefugitive
+[mergetool "nmergefugitive"]
+    cmd = nvim -f -c \"Gdiff\" \"$MERGED\"
+[push]
+	default = simple
+[core]
+	editor = nvim
+[difftool]
+	prompt = false
+[color]
+	ui = auto
+[include]
+    path = ~/.local_git_config
