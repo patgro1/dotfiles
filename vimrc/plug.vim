@@ -91,10 +91,11 @@ nnoremap <Leader>gb :Gblame<CR>
 nnoremap <Leader>gbb :.Gbrowse<CR>
 vnoremap <Leader>gbb :Gbrowse<CR>
 nnoremap <Leader>gaf :Gw<CR>
-nnoremap <Leader>gpl :Git! pull --rebase<CR>
 nnoremap <Leader>gst :Git! stash
 nnoremap <Leader>gsa :Git! stash apply
 nnoremap <Leader>gc :Gcommit<CR>
+nnoremap <Leader>gl :0Glog<CR>
+nnoremap <Leader>gd :Gdiff<CR>
 set diffopt+=vertical
 
 
