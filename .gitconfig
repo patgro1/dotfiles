@@ -1,11 +1,13 @@
 [diff]
-    tool = nfugitive
+    tool = vimdiff
 [difftool "nfugitive"]
     cmd = nvim -f -c "Gdiff"
+[difftool "vimdiff"]
+    cmd = nvim -n -d $LOCAL $REMOTE
 [merge]
-    tool = nmergefugitive
-[mergetool "nmergefugitive"]
-    cmd = nvim -f -c \"Gdiff\" \"$MERGED\"
+    tool = vimdiffmerge
+[mergetool "vimdiffmerge"]
+    cmd = nvim -n -d $LOCAL $MERGED $REMOTE
 [push]
 	default = simple
 [core]
