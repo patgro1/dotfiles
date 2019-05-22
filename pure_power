@@ -168,7 +168,7 @@ fi
       dir_writable dir vcs)
 
   typeset -ga POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
-      status command_execution_time root_indicator background_jobs custom_rprompt time)
+      time virtualenv) 
 
   if (( ${PURE_POWER_USE_P10K_EXTENSIONS:-1} )); then
     local p="\${\${\${KEYMAP:-0}:#vicmd}:+${${vi_insert//\\/\\\\}//\}/\\\}}}"
@@ -189,6 +189,9 @@ fi
   typeset -g POWERLEVEL9K_DIR_WRITABLE_FORBIDDEN_BACKGROUND=none
   typeset -g POWERLEVEL9K_DIR_WRITABLE_FORBIDDEN_VISUAL_IDENTIFIER_COLOR=003
   typeset -g POWERLEVEL9K_LOCK_ICON=$lock
+
+  typeset -g POWERLEVEL9K_VIRTUALENV_BACKGROUND=none
+  typeset -g POWERLEVEL9K_VIRTUALENV_FOREGROUND=231
 
   typeset -g POWERLEVEL9K_DIR_{ETC,HOME,HOME_SUBFOLDER,DEFAULT}_BACKGROUND=none
   typeset -g POWERLEVEL9K_DIR_{ETC,DEFAULT}_FOREGROUND=209

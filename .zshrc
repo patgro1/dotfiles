@@ -10,15 +10,17 @@ export ZSH=$HOME/.oh-my-zsh
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 
 #Powerline configuration
-POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(virtualenv host dir vcs)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(load date time)
+# POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+# POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
+# POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(virtualenv host dir vcs)
+# POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(load date time)
 source ~/.pure_power
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
 plugins=(
   git
+  virtualenv
+  virtualenvwrapper
 )
 
 source $ZSH/oh-my-zsh.sh
