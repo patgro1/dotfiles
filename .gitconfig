@@ -9,9 +9,10 @@
 [mergetool "vimdiffmerge"]
     cmd = nvim -n -d $LOCAL $MERGED $REMOTE
 [push]
-	default = simple
+	default = current
 [pull]
-	default = simple
+	default = current
+    rebase = true
 [core]
 	editor = nvim
 [difftool]
