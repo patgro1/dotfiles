@@ -1,5 +1,6 @@
 source $HOME/.config/nvim/vimrc/plug.vim
 syntax enable "enable syntax processing
+let mapleader = " "
 
 source $HOME/.config/nvim/vimrc/display.vim
 source $HOME/.config/nvim/vimrc/alias.vim
