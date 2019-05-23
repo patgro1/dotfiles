@@ -165,7 +165,7 @@ fi
   esac
 
   typeset -ga POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(
-      dir_writable dir vcs)
+      host dir_writable dir vcs)
 
   typeset -ga POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(
       time virtualenv) 
