@@ -41,11 +41,13 @@ let g:airline_theme='simple'
 nnoremap <F6> :NERDTreeToggle<CR>
 
 " Syntastic configuration
-let g:syntastic_mode_map = {'mode': 'passive'}
+" "let g:syntastic_mode_map = {'mode': 'passive'}
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
+let g:syntastic_filetype_map = { "verilog_systemverilog": "verilog" }
+let g:syntyastic_verilog_checkers = ['verilator']
 nmap <F10> :SyntasticCheck<CR>
 nmap <F11> :SyntasticReset<CR>
 
