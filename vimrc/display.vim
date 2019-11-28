@@ -1,6 +1,6 @@
 set guicursor=
-set background=dark
 colorscheme gruvbox
+set background=dark
 let g:gruvbox_termcolors=256
 
 set number

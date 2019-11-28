@@ -23,3 +23,13 @@ set hlsearch
 set foldenable
 set foldlevelstart=10
 set noswapfile
+
+set number
+set relativenumber
+
+" This set on and off the relative number if the window has focus or not
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
