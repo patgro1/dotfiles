@@ -1,6 +1,11 @@
 # Configurating the shell and themes
 ln -s -f $PWD/.zshrc ~
 ln -s -f $PWD/.oh-my-zsh ~
+# zsh syntax highlighting
+if [ ! -d zsh-syntax-highlighting ];then
+    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git
+fi
+ln -s -f $PWD/zsh-syntax-highlighting $PWD/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting
 if [ ! -d ./dracula ]; then
     mkdir -p dracula
 fi

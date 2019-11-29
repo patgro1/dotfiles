@@ -20,6 +20,7 @@ plugins=(
   git
   virtualenv
   virtualenvwrapper
+  zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
