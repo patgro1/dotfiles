@@ -1,9 +1,18 @@
+# Configurating the shell and themes
+ln -s -f $PWD/.zshrc ~
+ln -s -f $PWD/.oh-my-zsh ~
+if [ ! -d ./dracula ]; then
+    mkdir -p dracula
+fi
+cd dracula
+if [ ! -d zsh ]; then
+    git clone https://github.com/dracula/zsh.git
+fi
+ln -s -f $PWD/zsh/dracula.zsh-theme ~/.oh-my-zsh/themes/dracula.zsh-theme
+cd ../
 mkdir -p ~/.config/nvim/
 ln -s -f $PWD/init.vim ~/.config/nvim
 ln -s -f $PWD/vimrc/ ~/.config/nvim/vimrc
-ln -s -f $PWD/.zshrc ~
-ln -s -f $PWD/.oh-my-zsh ~
-ln -s -f $PWD/pure_power ~/.pure_power
 ln -s -f $PWD/.tmux/.tmux.conf ~
 ln -s -f $PWD/.gitconfig ~
 ln -s -f $PWD/.flake8 ~

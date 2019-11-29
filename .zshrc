@@ -14,8 +14,7 @@ export ZSH=$HOME/.oh-my-zsh
 # POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 # POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(virtualenv host dir vcs)
 # POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(load date time)
-source ~/.pure_power
-ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_THEME="dracula"
 
 plugins=(
   git
@@ -80,3 +79,6 @@ if [[ -r ~/.zshrc_local ]]; then
 fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 source ~/.tmuxinator.zsh
+
+export PIPENV_PYTHON="$PYENV_ROOT/shims/python"
+export PIPENV_PYTHON="~.pyenv/versions/"

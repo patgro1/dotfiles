@@ -1,5 +1,5 @@
 set guicursor=
-colorscheme gruvbox
+colorscheme dracula
 set background=dark
 let g:gruvbox_termcolors=256
 

@@ -7,7 +7,7 @@ endif
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'vhda/verilog_systemverilog.vim'
 Plug 'scrooloose/nerdtree'
-Plug 'morhetz/gruvbox'
+Plug 'dracula/vim',{'as':'dracula'}
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'junegunn/fzf'
