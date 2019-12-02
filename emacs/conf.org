@@ -1,0 +1,101 @@
+#+TITLE: pgrogan Emacs Configuration
+
+* Emacs Configuration
+
+** Base configuration
+
+*** Remove unuseful menus and splash
+#+BEGIN_SRC emacs-lisp
+    (setq inhibit-splash-screen t) ; disable splash screenemacs
+    (tool-bar-mode -1) ; No toolbar
+    (menu-bar-mode -1) ; No menu bar
+#+END_SRC
+
+*** Remove weird backup files created
+#+BEGIN_SRC emacs-lisp
+    (setq backup-directory-alist '(("." . "~/.emacs.d/backup"))
+        backup-by-copying t   ; Don't delink hardlinks
+	version-control t     ; Use version number on backups
+	delete-old-versions t ; Automatically delete excess backups
+	kept-new-versions 20  ; Keep up to 20 new versions of a file
+	kept-old-versions 5   ; Keep 5 version of the old
+    )
+#+END_SRC
+
+*** Tabs and whitespace settings
+We want to make sure that all tabs are spaces and that the tab width is set to
+4 spaces. Also, let's make sure that one save, we trim excess white space from the line.
+#+BEGIN_SRC emacs-lisp
+    (setq-default indent-tabs-mode nil)
+    (setq-default tab-width 4)
+    (setq-default standard-indent 4)
+    (setq-default tab-stop-list (number-sequence 4 120 4))
+
+    ; Remove excess space on save
+    (add-hook 'before-save-hook 'delete-trailing-whitespace)
+#+END_SRC
+*** Font and size
+#+BEGIN_SRC emacs-lisp
+    (set-face-attribute 'default nil :font "Inconsolata-16")
+#+END_SRC
+** Evil Mode
+Since VIM probably got the best bindings for editing text, lets use
+evil mode.
+#+BEGIN_SRC emacs-lisp
+(use-package evil
+    :ensure t
+    :config
+    (evil-mode 1)
+    (use-package evil-leader
+        :ensure t
+        :config
+        (global-evil-leader-mode)
+        (evil-leader/set-leader "SPC")
+        (evil-leader/set-key
+            "e" 'find-file
+            "b" 'switch-to-buffer
+            "q" 'kill-buffer
+            "n" 'next-buffer
+            "p" 'previous-buffer)
+    )
+    (use-package evil-lion
+        :ensure t
+        :config
+        (evil-lion-mode)
+    )
+)
+#+END_SRC
+** Packages
+*** Colorscheme
+#+BEGIN_SRC emacs-lisp
+    (use-package dracula-theme
+        :ensure t
+        :config
+        (load-theme 'dracula t)
+        (set-face-foreground 'font-lock-comment-face "grey68")
+    )
+#+END_SRC
+*** Linum
+#+BEGIN_SRC emacs-lisp
+    (use-package linum-relative
+        :ensure t
+        :config
+        (linum-relative-global-mode)
+        (setq linum-relative-current-symbol "")
+        (set-face-foreground 'linum "grey68")
+        (set-face-attribute 'linum nil :height 150)
+    )
+#+END_SRC
+
+*** Magit
+#+BEGIN_SRC emacs-lisp
+    (use-package magit
+        :ensure t
+    )
+#+END_SRC
+*** Verilog/SystemVerilog
+#+BEGIN_SRC emacs-lisp
+    (use-package verilog-mode
+        :ensure t
+    )
+#+END_SRC

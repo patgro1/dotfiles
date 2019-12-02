@@ -21,3 +21,6 @@
 	ui = auto
 [include]
     path = ~/.local_git_config
+[user]
+	email = pgrogan@drw.com
+	name = Patrick Grogan
