@@ -75,6 +75,11 @@ evil mode.
         (set-face-foreground 'font-lock-comment-face "grey68")
     )
 #+END_SRC
+*** Emap
+(use-package emaps
+    :config
+    (emaps-define-key my-global-mode-map
+      (kbd "C-h K") 'emaps-describe-keymap-bindings))
 *** Linum
 #+BEGIN_SRC emacs-lisp
     (use-package linum-relative
@@ -91,7 +96,9 @@ evil mode.
 #+BEGIN_SRC emacs-lisp
     (use-package magit
         :ensure t
-    )
+        :config
+        (evil-leader/set-key
+            "gs" 'magit-status))
 #+END_SRC
 *** Verilog/SystemVerilog
 #+BEGIN_SRC emacs-lisp
