@@ -55,8 +55,8 @@ preexec() {
 export VIM_CONFIG=~/.config/nvim/init.vim
 alias vim='nvim'
 alias vi='nvim'
-export EDITOR='nvim'
-export GIT_EDITOR=nvim
+export EDITOR='emacs'
+export GIT_EDITOR=emacs
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
