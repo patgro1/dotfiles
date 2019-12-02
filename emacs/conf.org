@@ -38,6 +38,11 @@ We want to make sure that all tabs are spaces and that the tab width is set to
 #+BEGIN_SRC emacs-lisp
     (set-face-attribute 'default nil :font "Inconsolata-16")
 #+END_SRC
+*** Add column numbers and highlight current line
+#+BEGIN_SRC emacs-lisp
+    (column-number-mode 1)
+    (global-hl-line-mode)
+#+END_SRC
 ** Evil Mode
 Since VIM probably got the best bindings for editing text, lets use
 evil mode.
@@ -66,6 +71,11 @@ evil mode.
 )
 #+END_SRC
 ** Packages
+*** General
+#+BEGIN_SRC emacs-lisp
+    (use-package view :ensure t)
+    (use-package popwin :ensure t)
+#+END_SRC
 *** Colorscheme
 #+BEGIN_SRC emacs-lisp
     (use-package dracula-theme
@@ -75,11 +85,6 @@ evil mode.
         (set-face-foreground 'font-lock-comment-face "grey68")
     )
 #+END_SRC
-*** Emap
-(use-package emaps
-    :config
-    (emaps-define-key my-global-mode-map
-      (kbd "C-h K") 'emaps-describe-keymap-bindings))
 *** Linum
 #+BEGIN_SRC emacs-lisp
     (use-package linum-relative
@@ -100,6 +105,56 @@ evil mode.
         (evil-leader/set-key
             "gs" 'magit-status))
 #+END_SRC
+*** Projectile
+#+BEGIN_SRC emacs-lisp
+    (use-package projectile
+        :ensure t
+        :config
+	(projectile-mode +1)
+        (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
+        (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+        (setq-default projectile-indexing-mode 'alien)
+        (projectile-global-mode))
+#+END_SRC
+*** Company
+#+BEGIN_SRC emacs-lisp
+    (use-package company
+        :ensure t
+        :config
+        (global-company-mode t))
+#+END_SRC
+*** Flycheck
+#+BEGIN_SRC emacs-lisp
+    (use-package flycheck
+        :ensure t
+        :init (global-flycheck-mode)
+        :config
+            (use-package flycheck-pos-tip
+                :ensure t
+                :init (flycheck-pos-tip-mode)))
+#+END_SRC
+*** LSP
+#+BEGIN_SRC emacs-lisp
+    (use-package lsp-mode
+        :ensure t
+        :config
+        (add-hook 'python-mode-hook #'lsp)
+        (use-package lsp-ui :ensure t :commands lsp-ui-mode)
+        (use-package company-lsp :ensure t :commands company-lsp)
+        (setq lsp-enable-snippet nil))
+#+END_SRC
+*** Python
+#+BEGIN_SRC emacs-lisp
+    (use-package company-jedi
+        :ensure t
+        :config
+        (add-to-list 'company-backends 'company-jedi)
+        (setq jedi:complete-on-dot t)
+        :hook
+            (inferior-python-mode . jedi:setup)
+            (python-mode . jedi:setup))
+#+END_SRC
+
 *** Verilog/SystemVerilog
 #+BEGIN_SRC emacs-lisp
     (use-package verilog-mode

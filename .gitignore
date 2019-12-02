@@ -6,3 +6,12 @@ tags.temp
 dracula/
 zsh/zsh-syntax-highlightingh/
 vim/autoload/
+emacs/.lsp-session-v1
+emacs/.python-environments/
+emacs/auto-save-list/
+emacs/backup/
+emacs/conf.el
+emcas/elpa/
+*.eld
+emacs/elpa
+emacs/transient

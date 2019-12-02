@@ -5,15 +5,10 @@ ln -s -f $PWD/zsh/.oh-my-zsh ~
 if [ ! -d zsh/.oh-my-zsh/plugins/zsh-syntax-highlighting ];then
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ./zsh/.oh-my-zsh/plugins/zsh-syntax-highlighting
 fi
-if [ ! -d ./dracula ]; then
-    mkdir -p dracula
+if [ ! -d zsh/dracula ]; then
+    git clone https://github.com/dracula/zsh.git ./zsh/dracula
 fi
-cd dracula
-if [ ! -d zsh ]; then
-    git clone https://github.com/dracula/zsh.git
-fi
-ln -s -f $PWD/zsh/dracula.zsh-theme ~/.oh-my-zsh/themes/dracula.zsh-theme
-cd ../
+ln -s -f $PWD/zsh/dracula/dracula.zsh-theme ~/.oh-my-zsh/themes/dracula.zsh-theme
 if [ ! -d ~/.config/nvim ]; then
     ln -s -f $PWD/vim ~/.config/nvim
 fi
@@ -26,8 +21,4 @@ ln -s -f $PWD/.ctags ~
 ln -s -f $PWD/tmux/tmuxinator.zsh ~/.tmuxinator.zsh
 
 # Emacs config
-if [ ! -d ~/.emacs.d ]; then
-    mkdir ~/.emacs.d
-fi
-ln -sf $PWD/emacs/init.el ~/.emacs.d
-ln -sf $PWD/emacs/conf.org ~/.emacs.d
+ln -sf $PWD/emacs ~/.emacs.d
