@@ -75,15 +75,21 @@ evil mode.
 #+BEGIN_SRC emacs-lisp
     (use-package view :ensure t)
     (use-package popwin :ensure t)
+    (use-package multi-term :ensure t)
 #+END_SRC
 *** Colorscheme
 #+BEGIN_SRC emacs-lisp
     (use-package dracula-theme
         :ensure t
         :config
-        (load-theme 'dracula t)
         (set-face-foreground 'font-lock-comment-face "grey68")
     )
+    (use-package kaolin-themes
+        :ensure t
+        :config
+        (load-theme 'kaolin-bubblegum t)
+        (set-face-foreground 'font-lock-comment-face "grey48")
+        (set-face-foreground 'font-lock-comment-delimiter-face "grey34"))
 #+END_SRC
 *** Linum
 #+BEGIN_SRC emacs-lisp
@@ -143,6 +149,11 @@ evil mode.
         (use-package company-lsp :ensure t :commands company-lsp)
         (setq lsp-enable-snippet nil))
 #+END_SRC
+*** Markdown
+#+BEGIN_SRC emacs-lisp
+    (use-package markdown-preview-mode
+        :ensure t)
+#+END_SRC
 *** Python
 #+BEGIN_SRC emacs-lisp
     (use-package company-jedi
@@ -159,5 +170,30 @@ evil mode.
 #+BEGIN_SRC emacs-lisp
     (use-package verilog-mode
         :ensure t
+        :config
+            (setq verilog-auto-newline nil)
+            (setq verilog-case-indent 4)
+            (setq verilog-cexp-indent 4)
+            (setq verilog-highlight-grouping-keywords t)
+            (setq verilog-highlight-modules nil)
+            (setq verilog-indent-level 4)
+            (setq verilog-indent-level-behavioral 4)
+            (setq verilog-indent-level-declaration 4)
+            (setq verilog-indent-level-directive 4)
+            (setq verilog-indent-level-module 4)
+            (setq verilog-auto-lineup 'assignment)
+            ;; Load verilog mode only when needed
+            (autoload 'verilog-mode "verilog-mode" "Verilog mode" t )
+            ;; Any files that end in .v, .dv or .sv should be in verilog mode
+            (add-to-list 'auto-mode-alist '("\\.[ds]?vh?\\'" . verilog-mode))
+            ;; Any files in verilog mode should have their keywords colorized
+            (add-hook 'verilog-mode-hook '(lambda () (font-lock-mode 1)))
     )
 #+END_SRC
+*** YAML
+#+BEGIN_SRC emacs-lisp
+    (use-package yaml-mode
+        :ensure t
+        :mode ("\\.yml$" . yaml-mode))
+#+END_SRC
+:

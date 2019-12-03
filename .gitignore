@@ -15,3 +15,4 @@ emcas/elpa/
 *.eld
 emacs/elpa
 emacs/transient
+/emacs/projectile.cache
