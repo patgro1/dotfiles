@@ -11,3 +11,20 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Customize to your needs...
+alias vim='nvim'
+alias vi='nvim'
+export EDITOR='emacs'
+export GIT_EDITOR=emacs
+
+alias adog="git log --all --decorate --oneline --graph"
+alias gst="git status"
+alias ll="ls -al"
+alias tmux="tmux -2"
+
+if [[ -r ~/.zshrc_local ]]; then
+    source ~/.zshrc_local
+fi
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export PIPENV_PYTHON="$PYENV_ROOT/shims/python"
+export PIPENV_PYTHON="~.pyenv/versions/"
