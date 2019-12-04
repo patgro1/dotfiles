@@ -1,14 +1,19 @@
 # Configurating the shell and themes
 if [ ! -d zsh/prezto ]; then
     git clone --recursive https://github.com/sorin-ionescu/prezto.git zsh/prezto
+    ln -sf $PWD/zsh/prezto ~/.zprezto
+    ln -sf $PWD/zsh/zshlogin ~/.zlogin
+    ln -sf $PWD/zsh/zshlogout ~/.zlogout
+    ln -sf $PWD/zsh/zpreztorc ~/.zpreztorc
+    ln -sf $PWD/zsh/zprofile ~/.zprofile
+    ln -sf $PWD/zsh/zshenc ~/.zshenv
+    ln -sf $PWD/zsh/zshrc ~/.zshrc
 fi
-ln -sf $PWD/zsh/prezto ~/.zprezto
-ln -sf $PWD/zsh/zshlogin ~/.zlogin
-ln -sf $PWD/zsh/zshlogout ~/.zlogout
-ln -sf $PWD/zsh/zpreztorc ~/.zpreztorc
-ln -sf $PWD/zsh/zprofile ~/.zprofile
-ln -sf $PWD/zsh/zshenc ~/.zshenv
-ln -sf $PWD/zsh/zshrc ~/.zshrc
+# Add the prexzto contrib repo
+if [ ! -d zsh/prezto/contrib ]; then
+    git clone --recurse-submodules https://github.com/belak/prezto-contrib zsh/prezto/contrib
+fi
+
 # zsh syntax highlighting
 # if [ ! -d zsh/.oh-my-zsh/plugins/zsh-syntax-highlighting ];then
 #     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ./zsh/.oh-my-zsh/plugins/zsh-syntax-highlighting
@@ -25,4 +30,6 @@ ln -s -f $PWD/.ctags ~
 ln -s -f $PWD/tmux/tmuxinator.zsh ~/.tmuxinator.zsh
 
 # Emacs config
-ln -sf $PWD/emacs ~/.emacs.d
+if [ ! -L ~/.emacs.d ]; then
+    ln -sf $PWD/emacs ~/.emacs.d
+fi
