@@ -14,7 +14,7 @@ export ZSH=$HOME/.oh-my-zsh
 # POWERLEVEL9K_PROMPT_ADD_NEWLINE=true
 # POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(virtualenv host dir vcs)
 # POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(load date time)
-ZSH_THEME="dracula"
+ZSH_THEME=""
 
 plugins=(
   git

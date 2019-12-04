@@ -1,14 +1,18 @@
 # Configurating the shell and themes
-ln -s -f $PWD/zsh/.zshrc ~
-ln -s -f $PWD/zsh/.oh-my-zsh ~
+if [ ! -d zsh/prezto ]; then
+    git clone --recursive https://github.com/sorin-ionescu/prezto.git zsh/prezto
+fi
+ln -sf $PWD/zsh/prezto ~/.zprezto
+ln -sf $PWD/zsh/zshlogin ~/.zlogin
+ln -sf $PWD/zsh/zshlogout ~/.zlogout
+ln -sf $PWD/zsh/zpreztorc ~/.zpreztorc
+ln -sf $PWD/zsh/zprofile ~/.zprofile
+ln -sf $PWD/zsh/zshenc ~/.zshenv
+ln -sf $PWD/zsh/zshrc ~/.zshrc
 # zsh syntax highlighting
-if [ ! -d zsh/.oh-my-zsh/plugins/zsh-syntax-highlighting ];then
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ./zsh/.oh-my-zsh/plugins/zsh-syntax-highlighting
-fi
-if [ ! -d zsh/dracula ]; then
-    git clone https://github.com/dracula/zsh.git ./zsh/dracula
-fi
-ln -s -f $PWD/zsh/dracula/dracula.zsh-theme ~/.oh-my-zsh/themes/dracula.zsh-theme
+# if [ ! -d zsh/.oh-my-zsh/plugins/zsh-syntax-highlighting ];then
+#     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ./zsh/.oh-my-zsh/plugins/zsh-syntax-highlighting
+# fi
 if [ ! -d ~/.config/nvim ]; then
     ln -s -f $PWD/vim ~/.config/nvim
 fi
