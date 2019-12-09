@@ -21,6 +21,9 @@ alias gst="git status"
 alias ll="ls -al"
 alias tmux="tmux -2"
 
+bindkey "^[[A" history-beginning-search-backward
+bindkey "^[[B" history-beginning-search-forward
+
 if [[ -r ~/.zshrc_local ]]; then
     source ~/.zshrc_local
 fi
