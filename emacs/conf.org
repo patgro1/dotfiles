@@ -103,6 +103,17 @@ evil mode.
     )
 #+END_SRC
 
+*** Highlight indentation
+#+BEGIN_SRC emacs-lisp
+    (use-package highlight-indent-guides
+        :ensure t
+        :config
+            (setq highlight-indent-guides-method 'character
+                  highlight-indent-guides-auto-odd-face-perc 30
+                  highlight-indent-guides-auto-even-face-perc 35
+                  highlight-indent-guides-auto-character-face-perc 25)
+            (add-hook 'prog-mode-hook 'highlight-indent-guides-mode))
+#+END_SRC
 *** Magit
 #+BEGIN_SRC emacs-lisp
     (use-package magit
@@ -139,16 +150,32 @@ evil mode.
                 :ensure t
                 :init (flycheck-pos-tip-mode)))
 #+END_SRC
+*** Jinja2
+This major mode is used to edit all sort of templates including jinja2
+#+BEGIN_SRC emacs-lisp
+    (use-package jinja2-mode
+        :ensure t)
+#+END_SRC
 *** LSP
 #+BEGIN_SRC emacs-lisp
+;    (add-to-list 'load-path "/Users/pgrogan/workspace/lsp-mode")
+    (use-package lsp-python-ms
+        :ensure t
+        :hook (python-mode . (lambda ()
+                                  (require 'lsp-python-ms)
+                                  (lsp))))
     (use-package lsp-mode
         :ensure t
+        ;:load-path "/Users/pgrogan/workspace/lsp-mode"
         :config
-        (add-hook 'python-mode-hook #'lsp)
+        (setq lsp-verilog-server-path "/usr/local/bin/")
+        (add-hook 'latex-mode-hook #'lsp)
+        (add-hook 'vhdl-mode-hook #'lsp)
+        (add-hook 'verilog-mode-hook #'lsp)
+        ;(add-hook 'prog-mode-hook #'lsp)
         (use-package lsp-ui :ensure t :commands lsp-ui-mode)
         (use-package company-lsp :ensure t :commands company-lsp)
         (setq lsp-enable-snippet nil))
-#+END_SRC
 *** Markdown
 #+BEGIN_SRC emacs-lisp
     (use-package markdown-preview-mode
@@ -189,6 +216,7 @@ evil mode.
             ;; Any files in verilog mode should have their keywords colorized
             (add-hook 'verilog-mode-hook '(lambda () (font-lock-mode 1)))
     )
+#+END_SRC
 #+END_SRC
 *** YAML
 #+BEGIN_SRC emacs-lisp
