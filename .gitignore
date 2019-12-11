@@ -17,3 +17,4 @@ emacs/elpa
 emacs/transient
 /emacs/projectile.cache
 zsh/prezto
+emacs/mspyls/
