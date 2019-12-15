@@ -57,7 +57,7 @@ evil mode.
         (global-evil-leader-mode)
         (evil-leader/set-leader "SPC")
         (evil-leader/set-key
-            "e" 'find-file
+            "e" 'counsel-file-jump
             "b" 'switch-to-buffer
             "q" 'kill-buffer
             "n" 'next-buffer
@@ -93,6 +93,31 @@ evil mode.
         :ensure t
         :config
         (load-theme 'material t))
+#+END_SRC
+*** Ivy mode and things that goes with it
+#+BEGIN_SRC emacs-lisp
+    (use-package ivy
+        :ensure t
+        :config
+            (ivy-mode 1)
+            (setq ivy_use-virutal-buffers t)
+            (setq ivy-count-format "(%d/%d) ")
+            (setq ivy-re-builders-alist '(
+                (t . ivy--regex-fuzzy)))
+            (use-package counsel
+                :ensure t
+                :config
+                    (counsel-mode)
+                    (setq counsel-find-file-ignore-regexp
+                            (concat
+                            ;; File names beginning with # or .
+                            "\\(?:\\`[#.]\\)"
+                            ;; File names ending with # or ~
+                            "\\|\\(?:\\`.+?[#~]\\'\\)"
+                            "\\|\\.git"
+                            "\\|virtualenv"
+                            "\\|pycache"))))
+
 #+END_SRC
 *** Linum
 #+BEGIN_SRC emacs-lisp
