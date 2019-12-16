@@ -10,16 +10,17 @@
 (org-babel-load-file
  (expand-file-name "conf.org"
                    user-emacs-directory))
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(counsel ivy multi-term use-package linum-relative evil dracula-theme)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (rainbow-delimiters counsel ivy material-theme yaml-mode virtualenvwrapper use-package projectile popwin night-owl-theme multi-term markdown-preview-mode magit lsp-ui lsp-python-ms linum-relative kaolin-themes jinja2-mode highlight-indent-guides gruvbox-theme flycheck-pos-tip evil-lion evil-leader dracula-theme doom-themes company-lsp company-jedi))))

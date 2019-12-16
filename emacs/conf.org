@@ -150,16 +150,51 @@ evil mode.
         (evil-leader/set-key
             "gs" 'magit-status))
 #+END_SRC
+*** Virtualenvwrapper
+#+BEGIN_SRC emacs-lisp
+    (use-package virtualenvwrapper
+        :ensure t)
+#+END_SRC
+
 *** Projectile
 #+BEGIN_SRC emacs-lisp
     (use-package projectile
         :ensure t
         :config
-	(projectile-mode +1)
         (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
         (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
-        (setq-default projectile-indexing-mode 'alien)
-        (projectile-global-mode))
+        (setq projectile-globally-ignored-directories
+            (quote
+                (".idea" ".ensime_cache" ".eunit" ".git" ".hg" ".fslckout" "_FOSSIL_"
+                ".bzr" "_darcs" ".tox" ".svn" ".stack-work" "./testplans/*/covhtmlreport" ".hdl_checker")))
+        (setq projectile-globally-ignored-files
+            (quote
+                ("TAGS" "tags" "transcript" "*.log" "*.qtl" "*.qpg" "_info" "*.wlf" "*.qdb")))
+        (setq projectile-globally-unignored-directories nil)
+        (setq projectile-indexing-mode 'alien)
+        (setq frame-title-format
+            '(""
+              "%b"
+              (:eval
+               (let ((project-name (projectile-project-name)))
+                 (unless (string= "-" project-name)
+                   (format " in [%s]" project-name))))))
+        (projectile-mode)
+        (projectile-global-mode)
+        (defun setup_env ()
+            (interactive)
+            (venv-deactivate)
+            (message projectile-project-root)
+            (setenv "TOOLS_PATH" (concat (projectile-project-root) "/tools"))
+            (setenv "PYTHONPATH" (concat (projectile-project-root) ":" (getenv "TOOLS_PATH") "/cocotb:" (getenv "TOOLS_PATH") "/themis_fw:"))
+            (message (concat "working on" (projectile-project-root) "/virtualenvs"))
+            (venv-set-location (concat (projectile-project-root) "/virtualenvs"))
+            (venv-workon "msim")
+            (lsp-restart-workspace)
+            (setq projectile-tags-command (concat (projectile-project-root)"scripts/etags/verilog_etags " (projectile-project-root) "rtl"))
+            (setq projectile-tags-file-name (concat (projectile-project-root) "rtl/TAGS"))
+        )
+        (setq projectile-switch-project-action #'setup_env))
 #+END_SRC
 *** Company
 #+BEGIN_SRC emacs-lisp
