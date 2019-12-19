@@ -57,7 +57,6 @@ evil mode.
         (global-evil-leader-mode)
         (evil-leader/set-leader "SPC")
         (evil-leader/set-key
-            "e" 'counsel-file-jump
             "b" 'switch-to-buffer
             "q" 'kill-buffer
             "n" 'next-buffer
@@ -116,7 +115,10 @@ evil mode.
                             "\\|\\(?:\\`.+?[#~]\\'\\)"
                             "\\|\\.git"
                             "\\|virtualenv"
-                            "\\|pycache"))))
+                            "\\|pycache"))
+                    (evil-leader/set-key
+                        "e" 'counsel-find-file
+                        "f" 'counsel-file-jump)))
 
 #+END_SRC
 *** Linum
@@ -163,6 +165,8 @@ evil mode.
         :config
         (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
         (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+        (evil-leader/set-key
+            "gf" 'projectile--find-file)
         (setq projectile-globally-ignored-directories
             (quote
                 (".idea" ".ensime_cache" ".eunit" ".git" ".hg" ".fslckout" "_FOSSIL_"
