@@ -47,6 +47,7 @@ We want to make sure that all tabs are spaces and that the tab width is set to
 Since VIM probably got the best bindings for editing text, lets use
 evil mode.
 #+BEGIN_SRC emacs-lisp
+(eval-when-compile (require 'cl)) ;; lexical-let
 (use-package evil
     :ensure t
     :config
@@ -62,6 +63,17 @@ evil mode.
             "n" 'next-buffer
             "p" 'previous-buffer)
     )
+    (lexical-let ((default-color (cons (face-background 'mode-line)
+                                    (face-foreground 'mode-line))))
+                (add-hook 'post-command-hook (lambda ()
+                    (let ((color (cond ((minibufferp) default-color)
+                                    ((evil-insert-state-p) '("#e80000" . "#ffffff"))
+                                    ((evil-visual-state-p) '("#008800" . "#ffffff"))
+                                    ((evil-emacs-state-p)  '("#444488" . "#ffffff"))
+                                    ((buffer-modified-p)   '("#006fa0" . "#ffffff"))
+                                    (t default-color))))
+                        (set-face-background 'mode-line (car color))
+                        (set-face-foreground 'mode-line (cdr color))))))
     (use-package evil-lion
         :ensure t
         :config
