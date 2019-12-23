@@ -79,6 +79,8 @@ evil mode.
         :config
         (evil-lion-mode)
     )
+    (define-key evil-normal-state-map (kbd "H") 'beginning-of-line-text)
+    (define-key evil-normal-state-map (kbd "L") 'end-of-line)
 )
 #+END_SRC
 ** Packages
