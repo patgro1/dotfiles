@@ -245,7 +245,11 @@ This major mode is used to edit all sort of templates including jinja2
         (add-hook 'vhdl-mode-hook #'lsp)
         (add-hook 'verilog-mode-hook #'lsp)
         ;(add-hook 'prog-mode-hook #'lsp)
-        (use-package lsp-ui :ensure t :commands lsp-ui-mode)
+        (use-package lsp-ui
+            :ensure t
+            :config
+                (setq lsp-ui-flycheck-enable t)
+            :commands lsp-ui-mode)
         (use-package company-lsp :ensure t :commands company-lsp)
         (use-package lsp-python-ms
             :ensure t
