@@ -43,6 +43,14 @@ We want to make sure that all tabs are spaces and that the tab width is set to
     (column-number-mode 1)
     (global-hl-line-mode)
 #+END_SRC
+*** Function to open this file
+I like to have an easy way to open my config file.
+#+BEGIN_SRC emacs-lisp
+(defun open-config-file ()
+    (interactive)
+    (find-file (concat user-emacs-directory "conf.org")))
+(global-set-key (kbd "C-c c") 'open-config-file)
+#+END_SRC
 ** Evil Mode
 Since VIM probably got the best bindings for editing text, lets use
 evil mode.
