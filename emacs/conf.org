@@ -105,15 +105,21 @@ evil mode.
         :config
         (set-face-foreground 'font-lock-comment-face "grey68")
     )
+    (use-package doom-themes
+        :ensure t
+        :config
+        (setq doom-themes-enable-bold t
+              doom-themes-enable-italic t)
+        (doom-themes-org-config))
+
     (use-package kaolin-themes
         :ensure t
         :config
         (set-face-foreground 'font-lock-comment-face "grey48")
         (set-face-foreground 'font-lock-comment-delimiter-face "grey34"))
     (use-package material-theme
-        :ensure t
-        :config
-        (load-theme 'material t))
+        :ensure t)
+    (load-theme 'doom-one t)
 #+END_SRC
 *** Ivy mode and things that goes with it
 #+BEGIN_SRC emacs-lisp
