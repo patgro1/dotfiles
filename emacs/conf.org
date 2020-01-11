@@ -322,6 +322,14 @@ This major mode is used to edit all sort of templates including jinja2
     )
 #+END_SRC
 #+END_SRC
+*** Vue mode
+#+BEGIN_SRC emacs-lisp
+    (use-package vue-mode
+        :ensure t
+        :mode "\\.vue\\'"
+        :config
+            (add-hook 'vue-mode-hook #'lsp))
+#+END_SRC
 *** YAML
 #+BEGIN_SRC emacs-lisp
     (use-package yaml-mode
