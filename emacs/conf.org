@@ -259,6 +259,11 @@ This major mode is used to edit all sort of templates including jinja2
         (add-hook 'vhdl-mode-hook #'lsp)
         (add-hook 'verilog-mode-hook #'lsp)
         ;(add-hook 'prog-mode-hook #'lsp)
+        (use-package lsp-clients
+            :config
+                (when (equal system-type 'darwin)
+                    (setq lsp-clients-clangd-executable "/usr/local/opt/llvm/bin/clangd"))
+                (setq lsp-clients-clangd-args '("-j=4" "-background-index" "-log=info" "-pretty")))
         (use-package lsp-ui
             :ensure t
             :config
@@ -267,6 +272,8 @@ This major mode is used to edit all sort of templates including jinja2
                 (define-key lsp-ui-mode-map [remap xref-find-references] #'lsp-ui-peek-find-references)
             :commands lsp-ui-mode)
         (use-package company-lsp :ensure t :commands company-lsp)
+        ; C++ LSP registration and activation
+        (add-hook 'c++-mode-hook 'lsp)
         (use-package lsp-python-ms
             :ensure t
             :hook (python-mode . (lambda ()
