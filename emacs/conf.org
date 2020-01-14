@@ -194,7 +194,9 @@ evil mode.
         (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
         (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
         (evil-leader/set-key
-            "gf" 'projectile--find-file)
+            "gf" 'projectile--find-file
+            "sp" 'projectile-switch-project
+            "so" 'projectile-switch-open-project)
         (setq projectile-globally-ignored-directories
             (quote
                 (".idea" ".ensime_cache" ".eunit" ".git" ".hg" ".fslckout" "_FOSSIL_"
