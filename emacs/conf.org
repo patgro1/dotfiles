@@ -51,6 +51,13 @@ I like to have an easy way to open my config file.
     (find-file (concat user-emacs-directory "conf.org")))
 (global-set-key (kbd "C-c c") 'open-config-file)
 #+END_SRC
+*** Highlight todo and such
+#+BEGIN_SRC emacs-lisp
+(defface fix-me-comment '((t (:foreground "#ff0000"))) "Red")
+(font-lock-add-keywords
+    'prog-mode '(("// FIXME" 0 'fix-me-comment t)))
+
+#+END_SRC
 ** Evil Mode
 Since VIM probably got the best bindings for editing text, lets use
 evil mode.
@@ -172,6 +179,12 @@ evil mode.
                   highlight-indent-guides-auto-character-face-perc 25)
             (add-hook 'prog-mode-hook 'highlight-indent-guides-mode))
 #+END_SRC
+*** Graphviz Dot Mode
+#+BEGIN_SRC emacs_lisp
+    (use-package graphviz-dot-mode
+        :ensure t
+    )
+#-END_SRC
 *** Magit
 #+BEGIN_SRC emacs-lisp
     (use-package magit
@@ -216,13 +229,14 @@ evil mode.
         (projectile-mode)
         (projectile-global-mode)
         (defun setup_env ()
-            (interactive)
+            (interactive )
             (venv-deactivate)
             (setenv "TOOLS_PATH" (concat (projectile-project-root) "/tools"))
             (setenv "PYTHONPATH" (concat (projectile-project-root) ":" (getenv "TOOLS_PATH") "/cocotb:" (getenv "TOOLS_PATH") "/themis_fw:"))
             (message (concat "working on" (projectile-project-root) "/virtualenvs"))
-            (venv-set-location (concat (projectile-project-root) "/virtualenvs"))
-            (venv-workon "msim")
+            (setq pat_virtualenv_location (concat (projectile-project-root) "virtualenvs"))
+            (venv-set-location pat_virtualenv_location)
+            (venv-workon (file-name-nondirectory (directory-file-name (read-directory-name "Enter venv name:" pat_virtualenv_location))))
             (lsp-restart-workspace)
         ;    (setq projectile-tags-command (concat (projectile-project-root)"scripts/etags/verilog_etags " (projectile-project-root) "rtl"))
         ;    (setq projectile-tags-file-name (concat (projectile-project-root) "rtl/TAGS"))
