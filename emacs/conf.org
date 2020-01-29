@@ -82,10 +82,10 @@ evil mode.
                                     (face-foreground 'mode-line))))
                 (add-hook 'post-command-hook (lambda ()
                     (let ((color (cond ((minibufferp) default-color)
-                                    ((evil-insert-state-p) '("#e80000" . "#ffffff"))
+                                    ((evil-insert-state-p) '("#006fa0" . "#ffffff"))
                                     ((evil-visual-state-p) '("#008800" . "#ffffff"))
                                     ((evil-emacs-state-p)  '("#444488" . "#ffffff"))
-                                    ((buffer-modified-p)   '("#006fa0" . "#ffffff"))
+                                    ((buffer-modified-p)   '("#e80000" . "#ffffff"))
                                     (t default-color))))
                         (set-face-background 'mode-line (car color))
                         (set-face-foreground 'mode-line (cdr color))))))
@@ -184,7 +184,7 @@ evil mode.
     (use-package graphviz-dot-mode
         :ensure t
     )
-#-END_SRC
+#+END_SRC
 *** Magit
 #+BEGIN_SRC emacs-lisp
     (use-package magit
@@ -234,12 +234,11 @@ evil mode.
             (setenv "TOOLS_PATH" (concat (projectile-project-root) "/tools"))
             (setenv "PYTHONPATH" (concat (projectile-project-root) ":" (getenv "TOOLS_PATH") "/cocotb:" (getenv "TOOLS_PATH") "/themis_fw:"))
             (message (concat "working on" (projectile-project-root) "/virtualenvs"))
-            (setq pat_virtualenv_location (concat (projectile-project-root) "virtualenvs"))
-            (venv-set-location pat_virtualenv_location)
-            (venv-workon (file-name-nondirectory (directory-file-name (read-directory-name "Enter venv name:" pat_virtualenv_location))))
+            (venv-set-location (concat (projectile-project-root) "virtualenvs"))
+            (venv-workon )
             (lsp-restart-workspace)
-        ;    (setq projectile-tags-command (concat (projectile-project-root)"scripts/etags/verilog_etags " (projectile-project-root) "rtl"))
-        ;    (setq projectile-tags-file-name (concat (projectile-project-root) "rtl/TAGS"))
+            (setq projectile-tags-command (concat (projectile-project-root)"scripts/etags/verilog_etags " (projectile-project-root) "rtl"))
+            (setq projectile-tags-file-name (concat (projectile-project-root) "rtl/TAGS"))
         )
         (setq projectile-after-switch-project-hook #'setup_env))
 #+END_SRC
@@ -272,8 +271,8 @@ This major mode is used to edit all sort of templates including jinja2
         :ensure t
         :config
         (add-hook 'latex-mode-hook #'lsp)
-        (add-hook 'vhdl-mode-hook #'lsp)
-        (add-hook 'verilog-mode-hook #'lsp)
+        ; (add-hook 'vhdl-mode-hook #'lsp)
+        ; (add-hook 'verilog-mode-hook #'lsp)
         ;(add-hook 'prog-mode-hook #'lsp)
         (use-package lsp-clients
             :config
