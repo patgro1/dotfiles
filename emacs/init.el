@@ -22,5 +22,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   (quote
-    (rainbow-delimiters counsel ivy material-theme yaml-mode virtualenvwrapper use-package projectile popwin night-owl-theme multi-term markdown-preview-mode magit lsp-ui lsp-python-ms linum-relative kaolin-themes jinja2-mode highlight-indent-guides gruvbox-theme flycheck-pos-tip evil-lion evil-leader dracula-theme doom-themes company-lsp company-jedi))))
+   '(rainbow-delimiters counsel ivy material-theme yaml-mode virtualenvwrapper use-package projectile popwin night-owl-theme multi-term markdown-preview-mode magit lsp-ui lsp-python-ms linum-relative kaolin-themes jinja2-mode highlight-indent-guides gruvbox-theme flycheck-pos-tip evil-lion evil-leader dracula-theme doom-themes company-lsp company-jedi)))
