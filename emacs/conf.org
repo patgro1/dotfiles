@@ -49,7 +49,7 @@ I like to have an easy way to open my config file.
 (defun open-config-file ()
     (interactive)
     (find-file (concat user-emacs-directory "conf.org")))
-(global-set-key (kbd "C-c c") 'open-config-file)
+(global-set-key (kbd "C-c o") 'open-config-file)
 #+END_SRC
 *** Highlight todo and such
 #+BEGIN_SRC emacs-lisp
@@ -58,6 +58,16 @@ I like to have an easy way to open my config file.
     'prog-mode '(("// FIXME" 0 'fix-me-comment t)))
 
 #+END_SRC
+*** Ansi color function
+#+BEGIN_SRC emacs-lisp
+  (use-package ansi-color
+      :ensure t
+      :config
+          (defun display-ansi-colors ()
+            (interactive)
+            (ansi-color-apply-on-region (point-min) (point-max))))
+#+END_SRC
+
 ** Evil Mode
 Since VIM probably got the best bindings for editing text, lets use
 evil mode.
