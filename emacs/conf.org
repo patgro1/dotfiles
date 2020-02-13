@@ -5,27 +5,27 @@
 ** Base configuration
 
 *** Remove unuseful menus and splash
-#+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp
     (setq inhibit-splash-screen t) ; disable splash screenemacs
     (tool-bar-mode -1) ; No toolbar
     (menu-bar-mode -1) ; No menu bar
-#+END_SRC
+    #+END_SRC
 
 *** Remove weird backup files created
-#+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp
     (setq backup-directory-alist '(("." . "~/.emacs.d/backup"))
         backup-by-copying t   ; Don't delink hardlinks
-	version-control t     ; Use version number on backups
-	delete-old-versions t ; Automatically delete excess backups
-	kept-new-versions 20  ; Keep up to 20 new versions of a file
-	kept-old-versions 5   ; Keep 5 version of the old
+    version-control t     ; Use version number on backups
+    delete-old-versions t ; Automatically delete excess backups
+    kept-new-versions 20  ; Keep up to 20 new versions of a file
+    kept-old-versions 5   ; Keep 5 version of the old
     )
-#+END_SRC
+    #+END_SRC
 
 *** Tabs and whitespace settings
-We want to make sure that all tabs are spaces and that the tab width is set to
-4 spaces. Also, let's make sure that one save, we trim excess white space from the line.
-#+BEGIN_SRC emacs-lisp
+    We want to make sure that all tabs are spaces and that the tab width is set to
+    4 spaces. Also, let's make sure that one save, we trim excess white space from the line.
+    #+BEGIN_SRC emacs-lisp
     (setq-default indent-tabs-mode nil)
     (setq-default tab-width 4)
     (setq-default standard-indent 4)
@@ -33,45 +33,45 @@ We want to make sure that all tabs are spaces and that the tab width is set to
 
     ; Remove excess space on save
     (add-hook 'before-save-hook 'delete-trailing-whitespace)
-#+END_SRC
+    #+END_SRC
 *** Font and size
-#+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp
     (set-face-attribute 'default nil :font "Inconsolata-16")
-#+END_SRC
+    #+END_SRC
 *** Add column numbers and highlight current line
-#+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp
     (column-number-mode 1)
     (global-hl-line-mode)
-#+END_SRC
+    #+END_SRC
 *** Function to open this file
-I like to have an easy way to open my config file.
-#+BEGIN_SRC emacs-lisp
+    I like to have an easy way to open my config file.
+    #+BEGIN_SRC emacs-lisp
 (defun open-config-file ()
     (interactive)
     (find-file (concat user-emacs-directory "conf.org")))
 (global-set-key (kbd "C-c o") 'open-config-file)
-#+END_SRC
+    #+END_SRC
 *** Highlight todo and such
-#+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp
 (defface fix-me-comment '((t (:foreground "#ff0000"))) "Red")
 (font-lock-add-keywords
     'prog-mode '(("// FIXME" 0 'fix-me-comment t)))
 
-#+END_SRC
+    #+END_SRC
 *** Ansi color function
-#+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp
   (use-package ansi-color
       :ensure t
       :config
           (defun display-ansi-colors ()
             (interactive)
             (ansi-color-apply-on-region (point-min) (point-max))))
-#+END_SRC
+    #+END_SRC
 
 ** Evil Mode
-Since VIM probably got the best bindings for editing text, lets use
-evil mode.
-#+BEGIN_SRC emacs-lisp
+   Since VIM probably got the best bindings for editing text, lets use
+   evil mode.
+   #+BEGIN_SRC emacs-lisp
 (eval-when-compile (require 'cl)) ;; lexical-let
 (use-package evil
     :ensure t
@@ -121,16 +121,16 @@ evil mode.
     (define-key evil-normal-state-map (kbd "H") 'beginning-of-line-text)
     (define-key evil-normal-state-map (kbd "L") 'end-of-line)
 )
-#+END_SRC
+   #+END_SRC
 ** Packages
 *** General
-#+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp
     (use-package view :ensure t)
     (use-package popwin :ensure t)
     (use-package multi-term :ensure t)
-#+END_SRC
+    #+END_SRC
 *** Colorscheme
-#+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp
     (use-package dracula-theme
         :ensure t
         :config
@@ -151,9 +151,9 @@ evil mode.
     (use-package material-theme
         :ensure t)
     (load-theme 'doom-one t)
-#+END_SRC
+    #+END_SRC
 *** Ivy mode and things that goes with it
-#+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp
     (use-package ivy
         :ensure t
         :config
@@ -179,9 +179,9 @@ evil mode.
                         "e" 'counsel-find-file
                         "f" 'counsel-file-jump)))
 
-#+END_SRC
+    #+END_SRC
 *** Linum
-#+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp
     (use-package linum-relative
         :ensure t
         :config
@@ -190,10 +190,10 @@ evil mode.
         (set-face-foreground 'linum "grey68")
         (set-face-attribute 'linum nil :height 150)
     )
-#+END_SRC
+    #+END_SRC
 
 *** Highlight indentation
-#+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp
     (use-package highlight-indent-guides
         :ensure t
         :config
@@ -202,29 +202,29 @@ evil mode.
                   highlight-indent-guides-auto-even-face-perc 35
                   highlight-indent-guides-auto-character-face-perc 25)
             (add-hook 'prog-mode-hook 'highlight-indent-guides-mode))
-#+END_SRC
+    #+END_SRC
 *** Graphviz Dot Mode
-#+BEGIN_SRC emacs_lisp
+    #+BEGIN_SRC emacs_lisp
     (use-package graphviz-dot-mode
         :ensure t
     )
-#+END_SRC
+    #+END_SRC
 *** Magit
-#+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp
     (use-package magit
         :ensure t
         :config
         (evil-leader/set-key
             "gs" 'magit-status))
-#+END_SRC
+    #+END_SRC
 *** Virtualenvwrapper
-#+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp
     (use-package virtualenvwrapper
         :ensure t)
-#+END_SRC
+    #+END_SRC
 
 *** Projectile
-#+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp
     (use-package projectile
         :ensure t
         :config
@@ -265,16 +265,16 @@ evil mode.
             (setq projectile-tags-file-name (concat (projectile-project-root) "rtl/TAGS"))
         )
         (setq projectile-after-switch-project-hook #'setup_env))
-#+END_SRC
+    #+END_SRC
 *** Company
-#+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp
     (use-package company
         :ensure t
         :config
         (global-company-mode t))
-#+END_SRC
+    #+END_SRC
 *** Flycheck
-#+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp
     (use-package flycheck
         :ensure t
         :init (global-flycheck-mode)
@@ -282,15 +282,15 @@ evil mode.
             (use-package flycheck-pos-tip
                 :ensure t
                 :init (flycheck-pos-tip-mode)))
-#+END_SRC
+    #+END_SRC
 *** Jinja2
-This major mode is used to edit all sort of templates including jinja2
-#+BEGIN_SRC emacs-lisp
+    This major mode is used to edit all sort of templates including jinja2
+    #+BEGIN_SRC emacs-lisp
     (use-package jinja2-mode
         :ensure t)
-#+END_SRC
+    #+END_SRC
 *** LSP
-#+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp
     (use-package lsp-mode
         :ensure t
         :config
@@ -319,20 +319,20 @@ This major mode is used to edit all sort of templates including jinja2
                                  (require 'lsp-python-ms)
                                  (lsp))))
         (setq lsp-enable-snippet nil))
-#+END_SRC
+    #+END_SRC
 *** Markdown
-#+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp
     (use-package markdown-preview-mode
         :ensure t)
-#+END_SRC
+    #+END_SRC
 *** Rainbow delimiter
-#+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp
     (use-package rainbow-delimiters
         :ensure t
         :hook (prog-mode . rainbow-delimiters-mode))
-#+END_SRC
+    #+END_SRC
 *** Python
-#+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp
     (use-package company-jedi
         :ensure t
         :config
@@ -341,10 +341,10 @@ This major mode is used to edit all sort of templates including jinja2
         :hook
             (inferior-python-mode . jedi:setup)
             (python-mode . jedi:setup))
-#+END_SRC
+    #+END_SRC
 
 *** Verilog/SystemVerilog
-#+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp
     (use-package verilog-mode
         :ensure t
         :config
@@ -366,22 +366,38 @@ This major mode is used to edit all sort of templates including jinja2
             ;; Any files in verilog mode should have their keywords colorized
             (add-hook 'verilog-mode-hook '(lambda () (font-lock-mode 1)))
     )
-#+END_SRC
-#+END_SRC
+    #+END_SRC
+    #+END_SRC
 *** Vue mode
-#+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp
     (use-package vue-mode
         :ensure t
         :mode "\\.vue\\'"
         :config
             (add-hook 'vue-mode-hook #'lsp))
-#+END_SRC
+    #+END_SRC
 *** YAML
-#+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp
     (use-package yaml-mode
         :ensure t
         :mode ("\\.yml$" . yaml-mode)
         :config
             (setq yaml-indent-offset 4))
-#+END_SRC
-:
+    #+END_SRC
+    :
+** Hydra
+*** Hydra Package
+    #+BEGIN_SRC emacs-lisp
+    (use-package hydra
+        :ensure t
+    )
+    #+END_SRC
+*** Hydras
+**** Hydra zoom
+     This hydra enables to zoom in and out. This is taken from the Hydra wiki as an example...
+     #+BEGIN_SRC emacs-lisp
+        (defhydra hydra-zoom (global-map "<f9>")
+            "zoom"
+            ("g" text-scale-increase "in")
+            ("l" text-scale-decrease "out"))
+     #+END_SRC
