@@ -1,3 +1,4 @@
+#!/bin/zsh
 # Configurating the shell and themes
 if [ ! -d zsh/prezto ]; then
     git clone --recursive https://github.com/sorin-ionescu/prezto.git zsh/prezto
@@ -26,14 +27,17 @@ ln -s -f $PWD/.ctags ~
 ln -s -f $PWD/tmux/tmuxinator.zsh ~/.tmuxinator.zsh
 
 # Emacs config
-#if [ ! -L ~/.emacs.d ]; then
-#    ln -sf $PWD/emacs ~/.emacs.d
-#fi
-# Install Doom Emacs
-if [[ "$OSTYPE" == "darwin"* ]]; then
-    echo "Installing emacs-plus"
-    brew install emacs-plus --with-ctags 
-fi
+case "$OSTYPE" in
+    datwin*)
+        echo "Doing emacs installation for Mac OS"
+        brew install emacs-plus --with-ctags 
+    ;;
+    linux*)
+	echo "Doing emacs installation for Linux"
+        sudo apt-get install ripgrep tar clang
+        sudo apt-get install emacs26
+    ;;
+esac
 if [ ! -L ~/.emacs.d ]; then
     git clone https://github.com/hlissner/doom-emacs ~/.emacs.d
 fi
