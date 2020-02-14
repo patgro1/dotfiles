@@ -75,16 +75,16 @@ instead of only code. This function helps me with that.
 We configure the LSP mode here. Make sure we use Microsoft Language server for
 python.
 #+BEGIN_SRC emacs-lisp :tangle packages.el
-(package! lsp-python-ms)
-#+END_SRC
-#+BEGIN_SRC emacs-lisp :tangle config.el
-(def-package! lsp-python-ms
-  :hook (python-mode . (lambda ()
-                       (require 'lsp-python-ms)
-                       (lsp))))
+;FIXME: For some reason, I am unable to use lsp-python-ms
+;(package! lsp-python-ms)
+;#+END_SRC
+;#+BEGIN_SRC emacs-lisp :tangle config.el
+;(use-package! lsp-python-ms
+;  :hook (python-mode . (lambda ()
+;                       (require 'lsp-python-ms)
+;                       (lsp))))
 
 #+END_SRC
-
 
 * Magit Configuration
 * Additional packages

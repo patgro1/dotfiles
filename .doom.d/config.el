@@ -37,11 +37,6 @@
     (setq projectile-tags-file-name (concat (projectile-project-root) "rtl/TAGS")))
   (setq projectile-after-switch-project-hook #'setup_env))
 
-(def-package! lsp-python-ms
-  :hook (python-mode . (lambda ()
-                       (require 'lsp-python-ms)
-                       (lsp))))
-
 (after! verilog-mode
   (setq verilog-auto-newline nil
         verilog-case-indent 4
