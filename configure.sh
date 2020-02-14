@@ -14,10 +14,6 @@ if [ ! -d zsh/prezto/contrib ]; then
     git clone --recurse-submodules https://github.com/belak/prezto-contrib zsh/prezto/contrib
 fi
 
-# zsh syntax highlighting
-# if [ ! -d zsh/.oh-my-zsh/plugins/zsh-syntax-highlighting ];then
-#     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ./zsh/.oh-my-zsh/plugins/zsh-syntax-highlighting
-# fi
 if [ ! -d ~/.config/nvim ]; then
     ln -s -f $PWD/vim ~/.config/nvim
 fi
@@ -30,6 +26,17 @@ ln -s -f $PWD/.ctags ~
 ln -s -f $PWD/tmux/tmuxinator.zsh ~/.tmuxinator.zsh
 
 # Emacs config
-if [ ! -L ~/.emacs.d ]; then
-    ln -sf $PWD/emacs ~/.emacs.d
+#if [ ! -L ~/.emacs.d ]; then
+#    ln -sf $PWD/emacs ~/.emacs.d
+#fi
+# Install Doom Emacs
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    echo "Installing emacs-plus"
+    brew install emacs-plus --with-ctags 
 fi
+if [ ! -L ~/.emacs.d ]; then
+    git clone https://github.com/hlissner/doom-emacs ~/.emacs.d
+fi
+ln -s -f $PWD/.doom.d ~
+~/.emacs.d/bin/doom refresh
+

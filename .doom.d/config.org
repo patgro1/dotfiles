@@ -1,0 +1,11 @@
+#+TITLE: pgrogan Emacs Configuration
+* Base Configuration
+** Font and Size
+#+BEGIN_SRC emacs-lisp :tangle config.el
+(set-face-attribute 'default nil :font "Inconsolata-16")
+#+END_SRC
+** Line numbers
+I really like to have both absolute and relative line numbers.
+#+BEGIN_SRC emacs-lisp :tangle config.el
+(setq display-line-numbers-type 'relative)
+#+END_SRC
