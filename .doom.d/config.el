@@ -1,9 +1,7 @@
 (setq user-full-name "Patrick Grogan"
       user-mail-address "pgrogan@gmail.com")
 
-(setq doom-font (font-spec :family "Fira Code" :size 18))
-(unless (find-font doom-font)
-    (setq doom-font (font-spec :family "Inconsolata" :size 18)))
+(setq doom-font (font-spec :family "Fira Code" :size 16))
 
 (setq doom-unicode-font (font-spec :name "DejaVu Sans Mono" :size 20))
 
@@ -36,6 +34,14 @@
     (setq projectile-tags-command (concat (projectile-project-root)"scripts/etags/verilog_etags " (projectile-project-root) "rtl"))
     (setq projectile-tags-file-name (concat (projectile-project-root) "rtl/TAGS")))
   (setq projectile-after-switch-project-hook #'setup_env))
+
+(after! lsp-ui
+  (setq lsp-ui-doc-enable t))
+
+(use-package! lsp-python-ms
+  :hook (python-mode . (lambda ()
+                       (require 'lsp-python-ms)
+                       (lsp))))
 
 (after! verilog-mode
   (setq verilog-auto-newline nil
