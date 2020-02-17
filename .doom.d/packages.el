@@ -2,6 +2,8 @@
 
 (package! graphviz-dot-mode)
 
+(package! company-jedi)
+
 (package! virtualenvwrapper)
 
 (package! jinja2-mode)

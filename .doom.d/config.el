@@ -30,6 +30,7 @@
     (message (concat "working on" (projectile-project-root) "/virtualenvs"))
     (venv-set-location (concat (projectile-project-root) "virtualenvs"))
     (venv-workon )
+    (lsp-restart-workspace)
     (lsp)
     (setq projectile-tags-command (concat (projectile-project-root)"scripts/etags/verilog_etags " (projectile-project-root) "rtl"))
     (setq projectile-tags-file-name (concat (projectile-project-root) "rtl/TAGS")))
@@ -42,6 +43,14 @@
   :hook (python-mode . (lambda ()
                        (require 'lsp-python-ms)
                        (lsp))))
+
+(use-package! company-jedi
+  :config
+  (add-to-list 'company-backends 'company-jedi)
+  (setq jedi:complete-on-dot t)
+  :hook
+  (inferior-python-mode . jedi:setup)
+  (python-mode . jedi:setup))
 
 (after! verilog-mode
   (setq verilog-auto-newline nil
