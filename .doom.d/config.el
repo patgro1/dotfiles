@@ -30,7 +30,7 @@
     (message (concat "working on" (projectile-project-root) "/virtualenvs"))
     (venv-set-location (concat (projectile-project-root) "virtualenvs"))
     (venv-workon )
-    (lsp-restart-workspace)
+    ;(lsp-restart-workspace)
     (lsp)
     (setq projectile-tags-command (concat (projectile-project-root)"scripts/etags/verilog_etags " (projectile-project-root) "rtl"))
     (setq projectile-tags-file-name (concat (projectile-project-root) "rtl/TAGS")))
