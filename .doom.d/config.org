@@ -77,11 +77,12 @@ instead of only code. This function helps me with that.
 #+END_SRC
 We configure the LSP mode here. Make sure we use Microsoft Language server for
 python.
+Since Doom is trying to use lsp-python-ms first, we dont need to add it here.
 #+BEGIN_SRC emacs-lisp :tangle config.el
-(use-package! lsp-python-ms
-  :hook (python-mode . (lambda ()
-                       (require 'lsp-python-ms)
-                       (lsp))))
+;(after! lsp-python-ms
+;  :hook (python-mode . (lambda ()
+;                       (require 'lsp-python-ms)
+;                       (lsp))))
 
 #+END_SRC
 

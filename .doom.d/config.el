@@ -39,10 +39,10 @@
 (after! lsp-ui
   (setq lsp-ui-doc-enable t))
 
-(use-package! lsp-python-ms
-  :hook (python-mode . (lambda ()
-                       (require 'lsp-python-ms)
-                       (lsp))))
+;(after! lsp-python-ms
+;  :hook (python-mode . (lambda ()
+;                       (require 'lsp-python-ms)
+;                       (lsp))))
 
 (use-package! company-jedi
   :config
