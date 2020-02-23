@@ -24,20 +24,23 @@
         projectile-project-search-path '("~/workspace"))
   (defun setup_env ()
     (interactive )
+    (message "In setup env"))
     (venv-deactivate)
     (setenv "TOOLS_PATH" (concat (projectile-project-root) "/tools"))
     (setenv "PYTHONPATH" (concat (projectile-project-root) ":" (getenv "TOOLS_PATH") "/cocotb:" (getenv "TOOLS_PATH") "/themis_fw:"))
     (message (concat "working on" (projectile-project-root) "/virtualenvs"))
     (venv-set-location (concat (projectile-project-root) "virtualenvs"))
     (venv-workon )
-    ;(lsp-restart-workspace)
     (lsp)
     (setq projectile-tags-command (concat (projectile-project-root)"scripts/etags/verilog_etags " (projectile-project-root) "rtl"))
     (setq projectile-tags-file-name (concat (projectile-project-root) "rtl/TAGS")))
-  (setq projectile-after-switch-project-hook #'setup_env))
+  (add-hook! 'projectile-after-switch-project-hook #'setup_env)
 
-(after! lsp-ui
-  (setq lsp-ui-doc-enable t))
+(setq-hook! 'lsp-ui-mode-hook
+  lsp-ui-doc-enable t
+  flycheck-checker 'python-pylint)
+(after! flycheck
+  (flycheck-add-next-checker 'python-pylint 'python-flake8))
 
 ;(after! lsp-python-ms
 ;  :hook (python-mode . (lambda ()
