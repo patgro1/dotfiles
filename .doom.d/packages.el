@@ -4,8 +4,6 @@
 
 (package! company-jedi)
 
-(package! virtualenvwrapper)
-
 (package! jinja2-mode)
 
 (package! verilog-mode)

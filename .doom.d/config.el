@@ -24,28 +24,30 @@
         projectile-project-search-path '("~/workspace"))
   (defun setup_env ()
     (interactive )
-    (message "In setup env")
-    (venv-deactivate)
+    (pyvenv-mode t)
     (setenv "TOOLS_PATH" (concat (projectile-project-root) "/tools"))
     (setenv "PYTHONPATH" (concat (projectile-project-root) ":" (getenv "TOOLS_PATH") "/cocotb:" (getenv "TOOLS_PATH") "/themis_fw:"))
     (message (concat "working on" (projectile-project-root) "/virtualenvs"))
-    (venv-set-location (concat (projectile-project-root) "virtualenvs"))
-    (venv-workon )
+    (setenv "WORKON_HOME" (concat (projectile-project-root) "virtualenvs"))
+    (pyvenv-workon (car (pyvenv-virtualenv-list)))
     (lsp))
     (setq projectile-tags-command (concat (projectile-project-root)"scripts/etags/verilog_etags " (projectile-project-root) "rtl"))
-    (setq projectile-tags-file-name (concat (projectile-project-root) "rtl/TAGS")))
-  (add-hook! 'projectile-after-switch-project-hook #'setup_env)
+    (setq projectile-tags-file-name (concat (projectile-project-root) "rtl/TAGS"))
+  (add-hook! 'projectile-after-switch-project-hook #'setup_env))
 
 (setq-hook! 'lsp-ui-mode-hook
-  lsp-ui-doc-enable t
-  flycheck-checker 'python-pylint)
-(after! flycheck
-  (flycheck-add-next-checker 'python-pylint 'python-flake8))
+  lsp-ui-doc-enable t)
 
-;(after! lsp-python-ms
-;  :hook (python-mode . (lambda ()
-;                       (require 'lsp-python-ms)
-;                       (lsp))))
+;TODO: why cant i make it enable by default?
+(after! flycheck
+  (defun set-python-flycheck ()
+    (interactive)
+    (message (executable-find "pylint"))
+    (setq flycheck-checker 'python-pylint)
+    (flycheck-add-next-checker 'python-pylint 'python-flake8)
+    ; This will re-enable pylint
+    (flycheck-disable-checker 'python-pylint t))
+  (add-hook 'python-mode-hook #'set-python-flycheck)
 
 (use-package! company-jedi
   :config
