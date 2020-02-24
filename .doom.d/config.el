@@ -47,7 +47,7 @@
     (flycheck-add-next-checker 'python-pylint 'python-flake8)
     ; This will re-enable pylint
     (flycheck-disable-checker 'python-pylint t))
-  (add-hook 'python-mode-hook #'set-python-flycheck)
+  (add-hook 'python-mode-hook #'set-python-flycheck))
 
 (use-package! company-jedi
   :config

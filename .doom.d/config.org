@@ -77,7 +77,7 @@ instead of only code. This function helps me with that.
 * Magit Configuration
 * Python specific configuration
 #+BEGIN_SRC emacs-lisp :tangle config.el
-;TODO: why cant i make it enable by default?
+                                        ;TODO: why cant i make it enable by default?
 (after! flycheck
   (defun set-python-flycheck ()
     (interactive)
@@ -86,7 +86,7 @@ instead of only code. This function helps me with that.
     (flycheck-add-next-checker 'python-pylint 'python-flake8)
     ; This will re-enable pylint
     (flycheck-disable-checker 'python-pylint t))
-  (add-hook 'python-mode-hook #'set-python-flycheck)
+  (add-hook 'python-mode-hook #'set-python-flycheck))
 #+END_SRC
 * Additional packages
 ** Graphviz dot mode
