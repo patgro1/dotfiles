@@ -40,11 +40,11 @@
 
 ;TODO: why cant i make it enable by default?
 (after! flycheck
+  (flycheck-add-next-checker 'python-pylint 'python-flake8)
   (defun set-python-flycheck ()
     (interactive)
     (message (executable-find "pylint"))
     (setq flycheck-checker 'python-pylint)
-    (flycheck-add-next-checker 'python-pylint 'python-flake8)
     ; This will re-enable pylint
     (flycheck-disable-checker 'python-pylint t))
   (add-hook 'python-mode-hook #'set-python-flycheck))
