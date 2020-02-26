@@ -77,16 +77,14 @@ instead of only code. This function helps me with that.
 * Magit Configuration
 * Python specific configuration
 #+BEGIN_SRC emacs-lisp :tangle config.el
-                                        ;TODO: why cant i make it enable by default?
 (after! flycheck
   (flycheck-add-next-checker 'python-pylint 'python-flake8)
-  (defun set-python-flycheck ()
-    (interactive)
-    (message (executable-find "pylint"))
-    (setq flycheck-checker 'python-pylint)
-    ; This will re-enable pylint
-    (flycheck-disable-checker 'python-pylint t))
-  (add-hook 'python-mode-hook #'set-python-flycheck))
+  (add-hook! 'flycheck-mode-hook
+    (defun set-python-flycheck ()
+      (when (eq major-mode 'python-mode)
+        (setq flycheck-checker 'python-pylint)
+        ;; This will re-enable pylint
+        (flycheck-disable-checker 'python-pylint t)))))
 #+END_SRC
 * Additional packages
 ** Graphviz dot mode
