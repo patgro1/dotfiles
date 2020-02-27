@@ -14,6 +14,8 @@
 
 (setq display-line-numbers-type 'relative)
 
+(add-hook! prog-mode-hook (modify-syntax-entry ?_ "w"))
+
 (after! ansi-color
   (defun display-ansi-colors ()
     (interactive)

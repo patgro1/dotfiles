@@ -32,6 +32,12 @@ I really like to have both absolute and relative line numbers.
 #+BEGIN_SRC emacs-lisp :tangle config.el
 (setq display-line-numbers-type 'relative)
 #+END_SRC
+** Word delimiter
+For all programming language, I prefere that the _ character is
+always part of the word. This is the Vim way
+#+BEGIN_SRC emacs-lisp :tangle config.el
+(add-hook! prog-mode-hook (modify-syntax-entry ?_ "w"))
+#+END_SRC
 * Custom functions
 ** Display ansi colors in file
 Some time, due to log checking, it happens I want to display the ansi color
