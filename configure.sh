@@ -44,3 +44,7 @@ fi
 ln -s -f $PWD/.doom.d ~
 ~/.emacs.d/bin/doom refresh
 
+# Alacritty config
+mkdir -p ~/.config/alacritty
+ln -s -f $PWD/alacritty.yml ~/.config/alacritty/alacritty.yml
+
