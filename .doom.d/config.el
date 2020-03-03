@@ -38,7 +38,8 @@
   (add-hook! 'projectile-after-switch-project-hook #'setup_env))
 
 (setq-hook! 'lsp-ui-mode-hook
-  lsp-ui-doc-enable t)
+  lsp-ui-doc-enable t
+  lsp-ui-doc-mode t)
 
 (after! flycheck
   (flycheck-add-next-checker 'python-pylint 'python-flake8)

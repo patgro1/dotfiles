@@ -78,7 +78,8 @@ instead of only code. This function helps me with that.
 * LSP Configuration
 #+BEGIN_SRC emacs-lisp :tangle config.el
 (setq-hook! 'lsp-ui-mode-hook
-  lsp-ui-doc-enable t)
+  lsp-ui-doc-enable t
+  lsp-ui-doc-mode t)
 #+END_SRC
 * Magit Configuration
 * Python specific configuration
