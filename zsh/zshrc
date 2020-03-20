@@ -57,7 +57,8 @@ SPACESHIP_RPROMPT_ORDER=(
 SPACESHIP_TIME_SHOW=true
 SPACESHIP_USER_SHOW=true
 SPACESHIP_GIT_STATUS_COLOR=green
+<<<<<<< HEAD
 
-# Global PATH valid for everyone
 export PATH=~/.emacs.d/bin:$PATH
 export PATH=~/bin:$PATH
+neofetch
