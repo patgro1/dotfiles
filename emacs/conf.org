@@ -336,7 +336,7 @@
     (use-package company-jedi
         :ensure t
         :config
-        (add-to-list 'company-backends 'company-jedi)
+        (add-to-list 'company-backends #'company-jedi)
         (setq jedi:complete-on-dot t)
         :hook
             (inferior-python-mode . jedi:setup)

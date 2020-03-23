@@ -26,12 +26,11 @@
         projectile-project-search-path '("~/workspace"))
   (defun setup_env ()
     (interactive )
-    (pyvenv-mode t)
+    (pyvenv-deactivate)
     (setenv "TOOLS_PATH" (concat (projectile-project-root) "/tools"))
     (setenv "PYTHONPATH" (concat (projectile-project-root) ":" (getenv "TOOLS_PATH") "/cocotb:" (getenv "TOOLS_PATH") "/themis_fw:"))
-    (message (concat "working on" (projectile-project-root) "/virtualenvs"))
-    (setenv "WORKON_HOME" (concat (projectile-project-root) "virtualenvs"))
-    (pyvenv-workon (car (pyvenv-virtualenv-list)))
+    (setenv "WORKON_HOME" "~/virtualenvs")
+    (pyvenv-activate )
     (lsp))
     (setq projectile-tags-command (concat (projectile-project-root)"scripts/etags/verilog_etags " (projectile-project-root) "rtl"))
     (setq projectile-tags-file-name (concat (projectile-project-root) "rtl/TAGS"))
@@ -42,7 +41,7 @@
   lsp-ui-doc-mode t)
 
 (after! flycheck
-  (flycheck-add-next-checker 'python-pylint 'python-flake8)
+  ;(flycheck-add-next-checker 'python-pylint 'python-flake8)
   (add-hook! 'flycheck-mode-hook
     (defun set-python-flycheck ()
       (when (eq major-mode 'python-mode)
