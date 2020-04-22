@@ -16,6 +16,8 @@
 
 (add-hook! prog-mode-hook (modify-syntax-entry ?_ "w"))
 
+(load-theme 'doom-dark+)
+
 (after! ansi-color
   (defun display-ansi-colors ()
     (interactive)

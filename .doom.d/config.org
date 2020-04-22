@@ -38,6 +38,11 @@ always part of the word. This is the Vim way
 #+BEGIN_SRC emacs-lisp :tangle config.el
 (add-hook! prog-mode-hook (modify-syntax-entry ?_ "w"))
 #+END_SRC
+** Load Theme
+#+BEGIN_SRC emacs-lisp :tangle config.el
+(load-theme 'doom-dark+)
+#+END_SRC
+
 * Custom functions
 ** Display ansi colors in file
 Some time, due to log checking, it happens I want to display the ansi color
@@ -74,7 +79,6 @@ instead of only code. This function helps me with that.
     (setq projectile-tags-command (concat (projectile-project-root)"scripts/etags/verilog_etags " (projectile-project-root) "rtl"))
     (setq projectile-tags-file-name (concat (projectile-project-root) "rtl/TAGS"))
   (add-hook! 'projectile-after-switch-project-hook #'setup_env))
-
 #+END_SRC
 
 * LSP Configuration
@@ -103,19 +107,6 @@ instead of only code. This function helps me with that.
 ** Graphviz dot mode
 #+BEGIN_SRC emacs-lisp :tangle packages.el
 (package! graphviz-dot-mode)
-#+END_SRC
-** Tabnine
-Trial for tabnine
-#+BEGIN_SRC emacs-lisp :tangle packages.el
-;(package! company-tabnine)
-;#+END_SRC
-;#+BEGIN_SRC emacs-lisp :tangle config.el
-;(use-package! company-tabnine
-;  :config
-;  (set-company-backend! 'conf-mode
-;    'company-tabnine 'company-capf 'company-dabbrev-code 'company-yasnippet)
-;  (set-company-backend! 'prog-mode
-;    'company-tabnine 'company-capf 'company-yasnippet))
 #+END_SRC
 ** LUA Mode
 #+BEGIN_SRC emacs-lisp :tangle packages.el
