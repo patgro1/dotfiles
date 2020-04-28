@@ -9,7 +9,7 @@ endif
 
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'preservim/nerdtree' " File explorer
-Plug 'chuling/vim-equinusocio-material' " Colorscheme
+Plug 'morhetz/gruvbox'
 Plug 'Yggdroot/indentLine' " Show indentation line
 Plug 'vim-airline/vim-airline' " Better status line
 Plug 'tpope/vim-fugitive' " Git wrapper
@@ -19,6 +19,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'jmcantrell/vim-virtualenv'
 Plug 'vhda/verilog_systemverilog.vim'
+Plug 'frazrepo/vim-rainbow'
 call plug#end()
 
 """""""""""""""""""""""""""""""
@@ -58,9 +59,7 @@ nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 """""""""""""""""""""""""""""""
 " Color scheme setup
 set termguicolors
-let g:equinusocio_material_darker = 1
-let g:equinusocio_material_hide_vertsplit = 1
-colorscheme equinusocio_material
+colorscheme gruvbox
 " Show line numbers
 set number
 " Setting relative number
@@ -128,6 +127,11 @@ map <leader>f. :Files<cr>
 
 
 """""""""""""""""""""""""""""""
+" Custom filetype mapping
+"""""""""""""""""""""""""""""""
+au BufRead,BufNewFile make_* set filetype=make
+
+"""""""""""""""""""""""""""""""
 " Python specific
 """""""""""""""""""""""""""""""
 let g:virtualenv_directory = '~/virtualenvs'
@@ -152,3 +156,8 @@ let g:which_key_map.f = {
 let g:which_key_map.b = {'name': '+Buffers'}
 let g:which_key_map.b.b = 'Open'
 let g:which_key_map.b.k = 'Kill'
+
+"""""""""""""""""""""""""""""""
+" Enable rainbow by default
+"""""""""""""""""""""""""""""""
+let g:rainbow_active=1
