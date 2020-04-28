@@ -20,6 +20,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'jmcantrell/vim-virtualenv'
 Plug 'vhda/verilog_systemverilog.vim'
 Plug 'frazrepo/vim-rainbow'
+Plug 'tommcdo/vim-lion'
 call plug#end()
 
 """""""""""""""""""""""""""""""
