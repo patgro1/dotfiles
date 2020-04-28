@@ -13,8 +13,8 @@ fi
 # Customize to your needs...
 alias vim='nvim'
 alias vi='nvim'
-export EDITOR='emacs'
-export GIT_EDITOR=emacs
+export EDITOR='vim'
+export GIT_EDITOR=vim
 alias adog="git log --all --decorate --oneline --graph"
 alias gst="git status"
 alias ll="ls -al"
