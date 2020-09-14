@@ -1,7 +1,7 @@
 (setq user-full-name "Patrick Grogan"
       user-mail-address "pgrogan@gmail.com")
 
-(setq doom-font (font-spec :family "Fira Code" :size 16))
+(setq doom-font (font-spec :family "Fira Code" :size 18))
 
 (setq doom-unicode-font (font-spec :name "DejaVu Sans Mono" :size 20))
 
@@ -16,7 +16,7 @@
 
 (add-hook! prog-mode-hook (modify-syntax-entry ?_ "w"))
 
-(load-theme 'doom-dark+)
+(load-theme 'doom-dark+ t)
 
 (after! ansi-color
   (defun display-ansi-colors ()
@@ -24,32 +24,46 @@
     (ansi-color-apply-on-region (point-min) (point-max))))
 
 (after! projectile
+  (setenv "WORKON_HOME" "~/virtualenvs")
   (setq projectile-indexing-mode 'alien
         projectile-project-search-path '("~/workspace"))
-  (defun setup_env ()
-    (interactive )
+  (defun setup_env (&optional name)
+    (interactive
+     (list
+      (completing-read "Work on: " (pyvenv-virtualenv-list)
+                       nil t nil 'pyenv-workon-history nil nil)))
     (pyvenv-deactivate)
     (setenv "TOOLS_PATH" (concat (projectile-project-root) "/tools"))
     (setenv "PYTHONPATH" (concat (projectile-project-root) ":" (getenv "TOOLS_PATH") "/cocotb:" (getenv "TOOLS_PATH") "/themis_fw:"))
-    (setenv "WORKON_HOME" "~/virtualenvs")
-    (pyvenv-activate )
-    (lsp))
+    ;(pyvenv-virtualenv-list)
+
+    (pyvenv-workon name)
+    (lsp)
     (setq projectile-tags-command (concat (projectile-project-root)"scripts/etags/verilog_etags " (projectile-project-root) "rtl"))
     (setq projectile-tags-file-name (concat (projectile-project-root) "rtl/TAGS"))
+    )
   (add-hook! 'projectile-after-switch-project-hook #'setup_env))
 
-(setq-hook! 'lsp-ui-mode-hook
+(after! lsp-ui
   lsp-ui-doc-enable t
   lsp-ui-doc-mode t)
+(map! :leader
+      :after lsp-ui
+      :desc "Jump backward"
+      "c ," #'lsp-ui-peek-jump-backward)
+(map! :leader
+      :after lsp-ui
+      :desc "Jump backward"
+      "c ." #'lsp-ui-peek-jump-forward)
 
 (after! flycheck
   ;(flycheck-add-next-checker 'python-pylint 'python-flake8)
   (add-hook! 'flycheck-mode-hook
     (defun set-python-flycheck ()
       (when (eq major-mode 'python-mode)
-        (setq flycheck-checker 'python-pylint)
+        (setq flycheck-checker 'python-flake8)))))
         ;; This will re-enable pylint
-        (flycheck-disable-checker 'python-pylint t)))))
+        ;(flycheck-disable-checker 'python-pylint t)
 
 (use-package! company-jedi
   :config
@@ -61,6 +75,7 @@
 
 (after! verilog-mode
   (setq verilog-auto-newline nil
+        verilog-tab-auto-indent nil
         verilog-case-indent 4
         verilog-cexp-indent 4
         verilog-highlight-grouping-keyword t
@@ -70,6 +85,10 @@
         verilog-indent-level-declaration 4
         verilog-indent-level-module 4
         verilog-auto-lineup 'assignment)
+  (define-key verilog-mode-map (kbd ";") 'self-insert-command)
+  (define-key verilog-mode-map (kbd ":") 'self-insert-command)
+  (define-key verilog-mode-map (kbd "RET") 'evil-ret)
+  (define-key verilog-mode-map (kbd "TAB") 'tab-to-tab-stop)
   ; Load verilog mode only when needed
   (autoload 'verilog-mode "verilog-mode" "Verilog mode" t)
   ; Any files that ends in .v, .dv or .sv should be in verilog mode
