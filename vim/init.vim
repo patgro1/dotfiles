@@ -21,11 +21,13 @@ Plug 'jmcantrell/vim-virtualenv'
 Plug 'vhda/verilog_systemverilog.vim'
 Plug 'frazrepo/vim-rainbow'
 Plug 'tommcdo/vim-lion'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'glench/vim-jinja2-syntax'
 call plug#end()
 
 """""""""""""""""""""""""""""""
 " TAB and Indentation
+"
 """""""""""""""""""""""""""""""
 " Use spaces instead of tabs
 set expandtab
@@ -164,3 +166,51 @@ let g:which_key_map.b.k = 'Kill'
 " Enable rainbow by default
 """""""""""""""""""""""""""""""
 let g:rainbow_active=1
+
+"""""""""""""""""""""""""""""""
+" COC Configuration
+"""""""""""""""""""""""""""""""
+set updatetime=300
+set signcolumn=yes
+" Tab to trigger cycle autocomplete
+inoremap <silent><expr> <TAB>
+            \ pumvisible() ? "\<C-n>" :
+            \ <SID>check_back_space() ? "\<TAB>" :
+            \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p" : "\<C-h?"
+function! s:check_back_space() abort
+    let col = col('.') - 1
+    return !col || getline('.')[col-1] =~# '\s'
+endfunction
+" Use ctrl-space to trigger autocomplete
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" [g and ]g to navigate diagnostic
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+" Goto navigation
+nmap <silent> <leader>gd <Plug>(coc-definition)
+nmap <silent> <leader>gy <Plug>(coc-type-definition)
+nmap <silent> <leader>gi <Plug>(coc-implementation)
+nmap <silent> <leader>gr <Plug>(coc-references)
+
+" Show documentation
+nmap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+    if (index(['vim', 'help'], &filetype) >= 0)
+        execute 'h '.expand('<cword>')
+    else
+        call CocAction('doHover')
+    endif
+endfunction
+
+" Rename current symbol
+nmap <leader>rn <Plug>(coc-rename)
+
+" Code Formating
+xmap <leader>cf <Plug>(coc-format-selected)
+nmap <leader>cf <Plug>(coc-format-selected)
+
+" Coc List
+nnoremap <silent> <leader>a :<C-u>CocList diagnostics<cr>
