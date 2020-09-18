@@ -21,6 +21,7 @@ Plug 'jmcantrell/vim-virtualenv'
 Plug 'vhda/verilog_systemverilog.vim'
 Plug 'frazrepo/vim-rainbow'
 Plug 'tommcdo/vim-lion'
+Plug 'glench/vim-jinja2-syntax'
 call plug#end()
 
 """""""""""""""""""""""""""""""
@@ -60,6 +61,7 @@ nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 """""""""""""""""""""""""""""""
 " Color scheme setup
 set termguicolors
+set background=dark
 colorscheme gruvbox
 " Show line numbers
 set number

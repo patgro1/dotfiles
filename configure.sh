@@ -35,14 +35,14 @@ case "$OSTYPE" in
     linux*)
 	echo "Doing emacs installation for Linux"
         sudo apt-get install ripgrep tar clang
-        sudo apt-get install emacs26
+        #sudo apt-get install emacs26
     ;;
 esac
 if [ ! -L ~/.emacs.d ]; then
     git clone https://github.com/hlissner/doom-emacs ~/.emacs.d
 fi
 ln -s -f $PWD/.doom.d ~
-~/.emacs.d/bin/doom refresh
+~/.emacs.d/bin/doom sync
 
 # Alacritty config
 mkdir -p ~/.config/alacritty

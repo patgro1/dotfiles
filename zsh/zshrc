@@ -13,8 +13,8 @@ fi
 # Customize to your needs...
 alias vim='nvim'
 alias vi='nvim'
-export EDITOR='vim'
-export GIT_EDITOR=vim
+export EDITOR='emacs'
+export GIT_EDITOR=emacs
 alias adog="git log --all --decorate --oneline --graph"
 alias gst="git status"
 alias ll="ls -al"
@@ -60,4 +60,6 @@ SPACESHIP_GIT_STATUS_COLOR=green
 
 export PATH=~/.emacs.d/bin:$PATH
 export PATH=~/bin:$PATH
+export PATH=~/bin/bin:$PATH
+export PATH=~/.cargo/bin:$PATH
 neofetch
