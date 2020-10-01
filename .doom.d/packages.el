@@ -12,4 +12,6 @@
 
 (package! verilog-mode)
 
+(package! yaml-mode)
+
 (package! vue-mode)

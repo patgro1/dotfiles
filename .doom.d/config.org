@@ -173,6 +173,10 @@ Basic user information
    ; Any files in verilog mode should have their keywords colorized
    (add-hook 'verilog-mode-hook '(lambda () (font-lock-mode 1))))
  #+END_SRC
+ ** Yaml
+ #+BEGIN_SRC emacs-lisp :tangle packages.el
+ (package! yaml-mode)
+ #+END_SRC
  ** Vue mode
  #+Begin_SRC emacs-lisp :tangle packages.el
  (package! vue-mode)
