@@ -18,6 +18,9 @@
 
 (load-theme 'doom-dark+ t)
 
+(add-to-list 'auto-mode-alist '("make_\.\*" . makefile-mode))
+(add-to-list 'auto-mode-alist '("Makefile\.\*" . makefile-mode))
+
 (after! ansi-color
   (defun display-ansi-colors ()
     (interactive)
@@ -72,6 +75,10 @@
   :hook
   (inferior-python-mode . jedi:setup)
   (python-mode . jedi:setup))
+
+(after! jinja2-mode
+ (add-to-list 'auto-mode-alist '("\\.jinja2?\\'" . jinja2-mode))
+ )
 
 (after! verilog-mode
   (setq verilog-auto-newline nil

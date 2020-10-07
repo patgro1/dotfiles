@@ -43,6 +43,13 @@ Basic user information
  (load-theme 'doom-dark+ t)
  #+END_SRC
 
+ * Filetype mapping
+ ** Makefiles
+ All sort of makefiles should be mapped in makefile-mode. For example, make_reg or Makefile.mentor
+  #+BEGIN_SRC emacs-lisp :tangle config.el
+  (add-to-list 'auto-mode-alist '("make_\.\*" . makefile-mode))
+  (add-to-list 'auto-mode-alist '("Makefile\.\*" . makefile-mode))
+  #+END_SRC
  * Custom functions
  ** Display ansi colors in file
  Some time, due to log checking, it happens I want to display the ansi color
@@ -50,6 +57,7 @@ Basic user information
  #+BEGIN_SRC emacs-lisp :tangle packages.el
  (package! ansi-color)
  #+END_SRC
+
  #+BEGIN_SRC emacs-lisp :tangle config.el
  (after! ansi-color
    (defun display-ansi-colors ()
@@ -144,6 +152,11 @@ Basic user information
  ** Jinja2
  #+BEGIN_SRC emacs-lisp :tangle packages.el
  (package! jinja2-mode)
+ #+END_SRC
+ #+BEGIN_SRC emacs-lisp :tangle config.el
+ (after! jinja2-mode
+  (add-to-list 'auto-mode-alist '("\\.jinja2?\\'" . jinja2-mode))
+  )
  #+END_SRC
  ** Verilog Mode
  #+BEGIN_SRC emacs-lisp :tangle packages.el
