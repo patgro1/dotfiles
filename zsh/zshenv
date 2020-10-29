@@ -9,3 +9,11 @@
 if [[ ( "$SHLVL" -eq 1 && ! -o LOGIN ) && -s "${ZDOTDIR:-$HOME}/.zprofile" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprofile"
 fi
+export EDITOR='emacs'
+export GIT_EDITOR=emacs
+export TERMINAL=st
+
+export PATH=~/.emacs.d/bin:$PATH
+export PATH=~/bin:$PATH
+export PATH=~/bin/bin:$PATH
+export PATH=~/.cargo/bin:$PATH

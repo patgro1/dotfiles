@@ -9,11 +9,15 @@ Basic user information
  ** Font and Size
  *** Font face
  #+BEGIN_SRC emacs-lisp :tangle config.el
- (setq doom-font (font-spec :family "Fira Code" :size 18))
+ (setq doom-font (font-spec :family "FiraCode Nerd Font" :size 18))
  #+END_SRC
  *** Unicode Font
  #+BEGIN_SRC emacs-lisp :tangle config.el
- (setq doom-unicode-font (font-spec :name "DejaVu Sans Mono" :size 20))
+ (setq doom-unicode-font (font-spec :name "Noto Color Emoji" :size 20))
+ #+END_SRC
+ *** Emojis
+ #+BEGIN_SRC emacs-lisp :tangle packages.el
+ (package! emojify)
  #+END_SRC
  ** Whitespace management
  Some of these settings are the doom's default but I just want to make sure

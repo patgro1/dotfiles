@@ -1,3 +1,5 @@
+(package! emojify)
+
 (package! ansi-color)
 
 (package! virtualenvwrapper)

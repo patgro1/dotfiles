@@ -1,9 +1,9 @@
 (setq user-full-name "Patrick Grogan"
       user-mail-address "pgrogan@gmail.com")
 
-(setq doom-font (font-spec :family "Fira Code" :size 18))
+(setq doom-font (font-spec :family "FiraCode Nerd Font" :size 18))
 
-(setq doom-unicode-font (font-spec :name "DejaVu Sans Mono" :size 20))
+(setq doom-unicode-font (font-spec :name "Noto Color Emoji" :size 20))
 
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)

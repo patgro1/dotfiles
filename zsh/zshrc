@@ -13,8 +13,6 @@ fi
 # Customize to your needs...
 alias vim='nvim'
 alias vi='nvim'
-export EDITOR='emacs'
-export GIT_EDITOR=emacs
 alias adog="git log --all --decorate --oneline --graph"
 alias gst="git status"
 alias ll="ls -al"
@@ -40,11 +38,11 @@ SPACESHIP_PROMPT_ORDER=(
   git           # Git section (git_branch + git_status)
   package       # Package version
   docker        # Docker section
-  venv          # virtualenv section
-  pyenv         # Pyenv section
+  #venv          # virtualenv section
+  #pyenv         # Pyenv section
   kubecontext   # Kubectl context section
   exec_time     # Execution time
-  line_sep      # Line break
+  #line_sep      # Line break
   battery       # Battery level and status
   vi_mode       # Vi-mode indicator
   jobs          # Background jobs indicator
@@ -58,8 +56,4 @@ SPACESHIP_TIME_SHOW=true
 SPACESHIP_USER_SHOW=true
 SPACESHIP_GIT_STATUS_COLOR=green
 
-export PATH=~/.emacs.d/bin:$PATH
-export PATH=~/bin:$PATH
-export PATH=~/bin/bin:$PATH
-export PATH=~/.cargo/bin:$PATH
 neofetch
