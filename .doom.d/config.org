@@ -9,11 +9,9 @@ Basic user information
 ** Font and Size
 *** Font face
  #+BEGIN_SRC emacs-lisp :tangle config.el
- (setq doom-font (font-spec :family "FiraCode Nerd Font" :size 18)
+ (setq doom-font (font-spec :family "FiraCode Nerd Font" :size 16)
         doom-unicode-font (font-spec :name "Noto Color Emoji" :size 20)
-        doom-variable-pitch-font (font-spec :family "FiraCode Nerd Font" :size 18))
-        ;doom-variable-pitch-font (font-spec :family "Ubuntu" :size 18))
- (add-hook 'text-mode-hook 'variable-pitch-mode)
+        doom-variable-pitch-font (font-spec :family "Helvetica Neue" :size 16))
 #+END_SRC
 #+END_SRC
 *** Emojis
@@ -215,7 +213,17 @@ First we configure org bullets.
   (setq org-bullets-bullet-list '("○" "☉" "◎" "◉" "○" "◌" "◎" "●" "◦" "◯")))
 #+END_SRC
 ** Fonts configuration
-#+BEGIN_SRC emacs-lisp :tangle configuration.el
+#+BEGIN_SRC emacs-lisp :tangle packages.el
+(package! mixed-pitch)
+#+END_SRC
+#+BEGIN_SRC emacs-lisp :tangle config.el
+(add-hook 'text-mode-hook 'mixed-pitch-mode)
+(defun nolinum ()
+  (interactive)
+  (setq doom--line-number-style nil)
+  (setq display-line-numbers nil)
+)
+(add-hook 'org-mode-hook 'nolinum)
 (after! org
   (set-face-attribute 'org-table nil :inherit 'fixed-pitch)
   (set-face-attribute 'org-code nil :inherit 'fixed-pitch)
