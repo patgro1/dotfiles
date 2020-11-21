@@ -17,3 +17,5 @@
 (package! yaml-mode)
 
 (package! vue-mode)
+
+(package! org-bullets)

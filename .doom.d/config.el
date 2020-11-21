@@ -1,9 +1,11 @@
 (setq user-full-name "Patrick Grogan"
       user-mail-address "pgrogan@gmail.com")
 
-(setq doom-font (font-spec :family "FiraCode Nerd Font" :size 18))
-
-(setq doom-unicode-font (font-spec :name "Noto Color Emoji" :size 20))
+(setq doom-font (font-spec :family "FiraCode Nerd Font" :size 18)
+       doom-unicode-font (font-spec :name "Noto Color Emoji" :size 20)
+       doom-variable-pitch-font (font-spec :family "FiraCode Nerd Font" :size 18))
+       ;doom-variable-pitch-font (font-spec :family "Ubuntu" :size 18))
+(add-hook 'text-mode-hook 'variable-pitch-mode)
 
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
@@ -105,3 +107,8 @@
 
 (after! vue-mode
   (add-hook 'vue-mode-hook #'lsp))
+
+(use-package! org-bullets
+  :hook (org-mode . org-bullets-mode)
+  :config
+  (setq org-bullets-bullet-list '("○" "☉" "◎" "◉" "○" "◌" "◎" "●" "◦" "◯")))

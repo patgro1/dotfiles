@@ -6,20 +6,21 @@ Basic user information
 (setq user-full-name "Patrick Grogan"
       user-mail-address "pgrogan@gmail.com")
 #+End_SRC
- ** Font and Size
- *** Font face
+** Font and Size
+*** Font face
  #+BEGIN_SRC emacs-lisp :tangle config.el
- (setq doom-font (font-spec :family "FiraCode Nerd Font" :size 18))
- #+END_SRC
- *** Unicode Font
- #+BEGIN_SRC emacs-lisp :tangle config.el
- (setq doom-unicode-font (font-spec :name "Noto Color Emoji" :size 20))
- #+END_SRC
- *** Emojis
+ (setq doom-font (font-spec :family "FiraCode Nerd Font" :size 18)
+        doom-unicode-font (font-spec :name "Noto Color Emoji" :size 20)
+        doom-variable-pitch-font (font-spec :family "FiraCode Nerd Font" :size 18))
+        ;doom-variable-pitch-font (font-spec :family "Ubuntu" :size 18))
+ (add-hook 'text-mode-hook 'variable-pitch-mode)
+#+END_SRC
+#+END_SRC
+*** Emojis
  #+BEGIN_SRC emacs-lisp :tangle packages.el
  (package! emojify)
  #+END_SRC
- ** Whitespace management
+** Whitespace management
  Some of these settings are the doom's default but I just want to make sure
  #+BEGIN_SRC emacs-lisp :tangle config.el
      (setq-default indent-tabs-mode nil)
@@ -31,31 +32,31 @@ Basic user information
  #+BEGIN_SRC emacs-lisp :tangle config.el
      (add-hook 'before-save-hook 'delete-trailing-whitespace)
  #+END_SRC
- ** Line numbers
+** Line numbers
  I really like to have both absolute and relative line numbers.
  #+BEGIN_SRC emacs-lisp :tangle config.el
  (setq display-line-numbers-type 'relative)
  #+END_SRC
- ** Word delimiter
+** Word delimiter
  For all programming language, I prefere that the _ character is
  always part of the word. This is the Vim way
  #+BEGIN_SRC emacs-lisp :tangle config.el
  (add-hook! prog-mode-hook (modify-syntax-entry ?_ "w"))
  #+END_SRC
- ** Load Theme
+** Load Theme
  #+BEGIN_SRC emacs-lisp :tangle config.el
  (load-theme 'doom-dark+ t)
  #+END_SRC
 
- * Filetype mapping
- ** Makefiles
+* Filetype mapping
+** Makefiles
  All sort of makefiles should be mapped in makefile-mode. For example, make_reg or Makefile.mentor
   #+BEGIN_SRC emacs-lisp :tangle config.el
   (add-to-list 'auto-mode-alist '("make_\.\*" . makefile-mode))
   (add-to-list 'auto-mode-alist '("Makefile\.\*" . makefile-mode))
   #+END_SRC
- * Custom functions
- ** Display ansi colors in file
+* Custom functions
+** Display ansi colors in file
  Some time, due to log checking, it happens I want to display the ansi color
  instead of only code. This function helps me with that.
  #+BEGIN_SRC emacs-lisp :tangle packages.el
@@ -68,7 +69,7 @@ Basic user information
      (interactive)
      (ansi-color-apply-on-region (point-min) (point-max))))
  #+END_SRC
- * Projectile Configuration
+* Projectile Configuration
  1- Set the indexing method to alien
  2- Set the search path to ~/workspace
  3- Defining a custom switching function that workd with lsp
@@ -99,7 +100,7 @@ Basic user information
    (add-hook! 'projectile-after-switch-project-hook #'setup_env))
  #+END_SRC
 
- * LSP Configuration
+* LSP Configuration
  #+BEGIN_SRC emacs-lisp :tangle config.el
 (after! lsp-ui
   lsp-ui-doc-enable t
@@ -113,8 +114,7 @@ Basic user information
       :desc "Jump backward"
       "c ." #'lsp-ui-peek-jump-forward)
  #+END_SRC
- * Magit Configuration
- * Python specific configuration
+* Python specific configuration
  #+BEGIN_SRC emacs-lisp :tangle config.el
  (after! flycheck
    ;(flycheck-add-next-checker 'python-pylint 'python-flake8)
@@ -129,76 +129,95 @@ Basic user information
  #+RESULTS:
  | +emacs-lisp-reduce-flycheck-errors-in-emacs-config-h | set-python-flycheck | flycheck-mode-set-explicitly | doom-modeline-update-flycheck-text | doom-modeline-update-flycheck-icon | +syntax-init-popups-h |
 
- * Additional packages
- ** Graphviz dot mode
- #+BEGIN_SRC emacs-lisp :tangle packages.el
- (package! graphviz-dot-mode)
- #+END_SRC
- ** LUA Mode
- #+BEGIN_SRC emacs-lisp :tangle packages.el
- (package! lua-mode)
- #+END_SRC
- ** Python
- We use jedi as a company backend.
- #+BEGIN_SRC emacs-lisp :tangle packages.el
- (package! company-jedi)
- #+END_SRC
- #+BEGIN_SRC emacs-lisp :tangle config.el
- (use-package! company-jedi
-   :config
-   (add-to-list 'company-backends 'company-jedi)
-   (setq jedi:complete-on-dot t)
-   :hook
-   (inferior-python-mode . jedi:setup)
-   (python-mode . jedi:setup))
- #+END_SRC
+* Additional packages
+** Graphviz dot mode
+  #+BEGIN_SRC emacs-lisp :tangle packages.el
+  (package! graphviz-dot-mode)
+  #+END_SRC
+** LUA Mode
+  #+BEGIN_SRC emacs-lisp :tangle packages.el
+  (package! lua-mode)
+  #+END_SRC
+** Python
+  We use jedi as a company backend.
+  #+BEGIN_SRC emacs-lisp :tangle packages.el
+  (package! company-jedi)
+  #+END_SRC
+  #+BEGIN_SRC emacs-lisp :tangle config.el
+  (use-package! company-jedi
+    :config
+    (add-to-list 'company-backends 'company-jedi)
+    (setq jedi:complete-on-dot t)
+    :hook
+    (inferior-python-mode . jedi:setup)
+    (python-mode . jedi:setup))
+  #+END_SRC
 
- ** Jinja2
- #+BEGIN_SRC emacs-lisp :tangle packages.el
- (package! jinja2-mode)
- #+END_SRC
- #+BEGIN_SRC emacs-lisp :tangle config.el
- (after! jinja2-mode
-  (add-to-list 'auto-mode-alist '("\\.jinja2?\\'" . jinja2-mode))
-  )
- #+END_SRC
- ** Verilog Mode
- #+BEGIN_SRC emacs-lisp :tangle packages.el
- (package! verilog-mode)
- #+END_SRC
- #+BEGIN_SRC emacs-lisp :tangle config.el
- (after! verilog-mode
-   (setq verilog-auto-newline nil
-         verilog-tab-auto-indent nil
-         verilog-case-indent 4
-         verilog-cexp-indent 4
-         verilog-highlight-grouping-keyword t
-         verilog-highlight-modules nil
-         verilog-indent-level 4
-         verilog-indent-level-behavioral 4
-         verilog-indent-level-declaration 4
-         verilog-indent-level-module 4
-         verilog-auto-lineup 'assignment)
-   (define-key verilog-mode-map (kbd ";") 'self-insert-command)
-   (define-key verilog-mode-map (kbd ":") 'self-insert-command)
-   (define-key verilog-mode-map (kbd "RET") 'evil-ret)
-   (define-key verilog-mode-map (kbd "TAB") 'tab-to-tab-stop)
-   ; Load verilog mode only when needed
-   (autoload 'verilog-mode "verilog-mode" "Verilog mode" t)
-   ; Any files that ends in .v, .dv or .sv should be in verilog mode
-   (add-to-list 'auto-mode-alist '("\\.[ds]?vh?\\'" . verilog-mode))
-   ; Any files in verilog mode should have their keywords colorized
-   (add-hook 'verilog-mode-hook '(lambda () (font-lock-mode 1))))
- #+END_SRC
- ** Yaml
- #+BEGIN_SRC emacs-lisp :tangle packages.el
- (package! yaml-mode)
- #+END_SRC
- ** Vue mode
- #+Begin_SRC emacs-lisp :tangle packages.el
- (package! vue-mode)
- #+END_SRC
- #+BEGIN_SRC emacs-lisp :tangle config.el
- (after! vue-mode
-   (add-hook 'vue-mode-hook #'lsp))
- #+END_SRC
+** Jinja2
+  #+BEGIN_SRC emacs-lisp :tangle packages.el
+  (package! jinja2-mode)
+  #+END_SRC
+  #+BEGIN_SRC emacs-lisp :tangle config.el
+  (after! jinja2-mode
+   (add-to-list 'auto-mode-alist '("\\.jinja2?\\'" . jinja2-mode))
+   )
+  #+END_SRC
+** Verilog Mode
+  #+BEGIN_SRC emacs-lisp :tangle packages.el
+  (package! verilog-mode)
+  #+END_SRC
+  #+BEGIN_SRC emacs-lisp :tangle config.el
+  (after! verilog-mode
+    (setq verilog-auto-newline nil
+          verilog-tab-auto-indent nil
+          verilog-case-indent 4
+          verilog-cexp-indent 4
+          verilog-highlight-grouping-keyword t
+          verilog-highlight-modules nil
+          verilog-indent-level 4
+          verilog-indent-level-behavioral 4
+          verilog-indent-level-declaration 4
+          verilog-indent-level-module 4
+          verilog-auto-lineup 'assignment)
+    (define-key verilog-mode-map (kbd ";") 'self-insert-command)
+    (define-key verilog-mode-map (kbd ":") 'self-insert-command)
+    (define-key verilog-mode-map (kbd "RET") 'evil-ret)
+    (define-key verilog-mode-map (kbd "TAB") 'tab-to-tab-stop)
+    ; Load verilog mode only when needed
+    (autoload 'verilog-mode "verilog-mode" "Verilog mode" t)
+    ; Any files that ends in .v, .dv or .sv should be in verilog mode
+    (add-to-list 'auto-mode-alist '("\\.[ds]?vh?\\'" . verilog-mode))
+    ; Any files in verilog mode should have their keywords colorized
+    (add-hook 'verilog-mode-hook '(lambda () (font-lock-mode 1))))
+  #+END_SRC
+** Yaml
+  #+BEGIN_SRC emacs-lisp :tangle packages.el
+  (package! yaml-mode)
+  #+END_SRC
+** Vue mode
+  #+Begin_SRC emacs-lisp :tangle packages.el
+  (package! vue-mode)
+  #+END_SRC
+  #+BEGIN_SRC emacs-lisp :tangle config.el
+  (after! vue-mode
+    (add-hook 'vue-mode-hook #'lsp))
+  #+END_SRC
+* Org Mode Configuration
+#+BEGIN_SRC emacs-lisp :tangle packages.el
+(package! org-bullets)
+#+END_SRC
+** Org Bullets configuration
+First we configure org bullets.
+#+BEGIN_SRC emacs-lisp :tangle config.el
+(use-package! org-bullets
+  :hook (org-mode . org-bullets-mode)
+  :config
+  (setq org-bullets-bullet-list '("○" "☉" "◎" "◉" "○" "◌" "◎" "●" "◦" "◯")))
+#+END_SRC
+** Fonts configuration
+#+BEGIN_SRC emacs-lisp :tangle configuration.el
+(after! org
+  (set-face-attribute 'org-table nil :inherit 'fixed-pitch)
+  (set-face-attribute 'org-code nil :inherit 'fixed-pitch)
+  (set-face-attribute 'org-block nil :inherit 'fixed-pitch))
+#+END_SRC
