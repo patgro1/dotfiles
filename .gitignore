@@ -18,6 +18,6 @@ emacs/transient
 /emacs/projectile.cache
 zsh/prezto
 emacs/mspyls/
-/.DS_Store
 config.el
 packages.el
+.DS_Store
