@@ -206,6 +206,7 @@ Basic user information
 First we configure org bullets.
 #+BEGIN_SRC emacs-lisp :tangle config.el
 (use-package! org-bullets
+  :after org
   :hook (org-mode . org-bullets-mode)
   :config
   (setq org-bullets-bullet-list '("○" "☉" "◎" "◉" "○" "◌" "◎" "●" "◦" "◯")))
