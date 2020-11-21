@@ -19,3 +19,5 @@ emacs/transient
 zsh/prezto
 emacs/mspyls/
 /.DS_Store
+config.el
+packages.el
