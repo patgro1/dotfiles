@@ -156,9 +156,7 @@ Basic user information
   (package! jinja2-mode)
   #+END_SRC
   #+BEGIN_SRC emacs-lisp :tangle config.el
-  (after! jinja2-mode
-   (add-to-list 'auto-mode-alist '("\\.jinja2?\\'" . jinja2-mode))
-   )
+  (add-to-list 'auto-mode-alist '("\\.jinja2?\\'" . jinja2-mode))
   #+END_SRC
 ** Verilog Mode
   #+BEGIN_SRC emacs-lisp :tangle packages.el
