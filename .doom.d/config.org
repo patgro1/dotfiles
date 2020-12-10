@@ -11,8 +11,12 @@ Basic user information
  #+BEGIN_SRC emacs-lisp :tangle config.el
  (setq doom-font (font-spec :family "FiraCode Nerd Font" :size 16)
         doom-unicode-font (font-spec :name "Noto Color Emoji" :size 20)
-        doom-variable-pitch-font (font-spec :family "Helvetica Neue" :size 16))
+        doom-variable-pitch-font (font-spec :family "Ubuntu" :size 16))
 #+END_SRC
+
+#+RESULTS:
+: #<font-spec nil nil Ubuntu nil nil nil nil nil 16 nil nil nil nil>
+
 *** Emojis
  #+BEGIN_SRC emacs-lisp :tangle packages.el
  (package! emojify)
@@ -41,8 +45,13 @@ Basic user information
  (add-hook! prog-mode-hook (modify-syntax-entry ?_ "w"))
  #+END_SRC
 ** Load Theme
- #+BEGIN_SRC emacs-lisp :tangle config.el
+#+BEGIN_SRC emacs-lisp :tangle config.el
  (load-theme 'doom-dark+ t)
+;(def-package! doom-modeline
+;  :defer t
+;  :hook (after-init . doom-modeline-init))
+ (after! doom-modeline
+   (setq doom-modeline-major-mode-color-icon t))
  #+END_SRC
 ** Undo
 We want to use undo-fu as a undo manager.
@@ -191,7 +200,15 @@ We want to use undo-fu as a undo manager.
     ; Any files that ends in .v, .dv or .sv should be in verilog mode
     (add-to-list 'auto-mode-alist '("\\.[ds]?vh?\\'" . verilog-mode))
     ; Any files in verilog mode should have their keywords colorized
-    (add-hook 'verilog-mode-hook '(lambda () (font-lock-mode 1))))
+    (lsp-register-client
+     (make-lsp-client :new-connection (lsp-stdio-connection '("svls"))
+                      :major-modes '(verilog-mode)
+                      :priority: -1))
+    (add-hook 'verilog-mode-hook '(lambda()
+        (font-lock-mode 1)
+        (lsp)
+        (flycheck-mode t)
+        (add-to-list 'lsp-language-id-configuration '(verilog-mode . "verilog")))))
   #+END_SRC
 ** Yaml
   #+BEGIN_SRC emacs-lisp :tangle packages.el
