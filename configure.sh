@@ -3,11 +3,11 @@
 if [ ! -d zsh/prezto ]; then
     git clone --recursive https://github.com/sorin-ionescu/prezto.git zsh/prezto
     ln -sf $PWD/zsh/prezto ~/.zprezto
-    ln -sf $PWD/zsh/zshlogin ~/.zlogin
-    ln -sf $PWD/zsh/zshlogout ~/.zlogout
+    ln -sf $PWD/zsh/zlogin ~/.zlogin
+    ln -sf $PWD/zsh/zlogout ~/.zlogout
     ln -sf $PWD/zsh/zpreztorc ~/.zpreztorc
     ln -sf $PWD/zsh/zprofile ~/.zprofile
-    ln -sf $PWD/zsh/zshenc ~/.zshenv
+    ln -sf $PWD/zsh/zshenv ~/.zshenv
     ln -sf $PWD/zsh/zshrc ~/.zshrc
 fi
 # Add the prexzto contrib repo
@@ -44,7 +44,4 @@ fi
 ln -s -f $PWD/.doom.d ~
 ~/.emacs.d/bin/doom sync
 
-# Alacritty config
-mkdir -p ~/.config/alacritty
-ln -s -f $PWD/alacritty.yml ~/.config/alacritty/alacritty.yml
 
