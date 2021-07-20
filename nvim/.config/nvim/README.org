@@ -1,0 +1,6 @@
+* Test links
+[[file:./lua/patgro/orgmode.lua]]
+* TEST COde block
++BEGIN_SRC python
+    def lfjdslkjfls
++END_SRC
