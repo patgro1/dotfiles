@@ -1,6 +1,10 @@
 #+TITLE: Dot files
 * Usage
 * Tools setup
+[[bspwm/.config/bspwm/README.org][BSPWM Setup]]
+[[dunst/.config/dunst/README.org][Dunst Setup]]
+[[picom/.config/picom/README.org][Picom Setup]]
+[[polybar/.config/polybar/README.org][Polybar Setup]]
 ** i3lock color
 *** Prerequisites
     #+BEGIN_SRC bash
