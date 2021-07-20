@@ -1,0 +1,12 @@
+#+TITLE: Dunst setup
+* Prerequisites
+#+BEGIN_SRC bash
+sudo apt install libnotify-dev wmctrl
+#+END_SRC
+* Installation
+#+BEGIN_SRC bash
+git clone https://github.com/dunst-project/dunst.git
+cd dunst
+make
+sudo make install
+#+END_SRC

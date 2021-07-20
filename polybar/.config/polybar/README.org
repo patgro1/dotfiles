@@ -1,0 +1,23 @@
+#+TITLE: Polybar setup
+* Prerequisites
+** Fira Code Nerd Font
+#+BEGIN_SRC bash
+mkdir -p ~/.local/share/fonts/FiraCode
+cd ~/.local/share/fonts/FiraCode
+wget -L https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/FiraCode.zip
+unzip FiraCode.zip
+rm -f FiraCode.zip
+rm -f Fura*
+sudo fc-cache -f -v
+#+END_SRC
+** Packages
+#+BEGIN_SRC bash
+sudo apt install -y libasound2-dev libpulse-dev libjsoncpp-dev libmpdclient-dev libxcb-util-dev wireless-tools libcurl4-openssl-dev libiw-dev xcb-proto python-xcbgen
+#+END_SRC
+* Installation
+#+BEGIN_SRC bash
+git clone https://github.com/polybar/polybar.git
+cd polybar
+./build.sh
+sudo make install
+#+END_SRC
