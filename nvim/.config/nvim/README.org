@@ -1,6 +1,8 @@
-* Test links
-[[file:./lua/patgro/orgmode.lua]]
-* TEST COde block
-+BEGIN_SRC python
-    def lfjdslkjfls
-+END_SRC
+#+TITLE: Nvim configuration
+#+AUTHOR: Patrick Grogan
+
+* Introduction
+  This is my neovim configuration.
+* Prerequisites
+  - Neovim 0.5
+
