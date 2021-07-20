@@ -8,18 +8,16 @@ else
 	INSTALLER_CMD := sudo apt install
 endif
 
-STOW_DIRS := $(foreach dir,$(shell find -mindepth 1 -maxdepth 1 -type d),$(notdir $(dir)))
-STOW_DIRS := $(filter-out .git,$(STOW_DIRS))
+ALL_DIRS := $(wildcard */)
+STOW_DIRS := $(ALL_DIRS:/=)
 
 .prerequisites:
 	$(INSTALLER_CMD) $(DEPENDENCIES_SW)
 	@touch $@
 
 all: .prerequisites zsh/.zprezto/contrib
-	stow $(STOW_DIRS)
-
-bob:
-	echo $(STOW_DIRS)
+	@echo "Applying stow"
+	@stow $(STOW_DIRS)
 
 zsh/.zprezto:
 	git clone --recursive https://github.com/sorin-ionescu/prezto.git zsh/.zprezto
@@ -31,9 +29,11 @@ update:
 	git fetch
 	git pull --rebase
 
-cleann_all: clean
+clean_all: clean
 	@rm -f .prerequisites
+	@echo "Cleaning zsh"
 	@rm -rf zsh/.zprezto
 
 clean:
-	stow -D $(STOW_DIRS)
+	@echo "Cleaning all stowed directory"
+	@stow -D $(STOW_DIRS)
