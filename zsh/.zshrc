@@ -17,6 +17,7 @@ alias adog="git log --all --decorate --oneline --graph"
 alias gst="git status"
 alias ll="ls -al"
 alias tmux="tmux -2"
+alias stmux="create_tmux_session"
 
 bindkey "^[[A" history-beginning-search-backward
 bindkey "^[[B" history-beginning-search-forward
