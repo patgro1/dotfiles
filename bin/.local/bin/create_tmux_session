@@ -15,8 +15,14 @@ do
 done
 echo $dirname
 
-tmux switch-clien -t $dirname
+# If we are already in a tmux session, try to switch else try to attach
+if [[ $TMUX ]] then
+    tmux switch-client -t $dirname
+else
+    tmux attach -t $dirname
+fi
 if [[ $? -eq 0 ]]; then
     exit 0
 fi
+
 tmux new-session -c $selected -d -s $dirname && tmux switch-client -t $dirname || tmux new -c $selected -A -s $dirname
