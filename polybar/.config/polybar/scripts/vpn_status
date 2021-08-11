@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+green=$(polybar --quiet --dump=good-green primary)
+red=$(polybar --quiet --dump=alert-red primary)
+
+IFACE=$(ip -o link | grep cscotun | awk '{print $2}')
+
+if [ "$IFACE" = "cscotun0:" ]; then
+    echo -n "%{F$green}"
+else
+    echo -n "%{F$red}"
+fi
+echo "嬨"

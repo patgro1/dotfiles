@@ -76,7 +76,7 @@ modules-left = bspwm
 ;modules-center = previous next playpause
 modules-center = spotify
 ;modules-right = filesystem alsa pulseaudio xkeyboard memory cpu eth temperature date powermenu
-modules-right = memory cpu filesystem pulseaudio date powermenu
+modules-right = memory cpu vpn filesystem pulseaudio date powermenu
 
 tray-position = right
 tray-padding = 2
@@ -270,7 +270,7 @@ card = intel_backlight
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = " "
+format-prefix = "  "
 format-prefix-foreground = ${theme.background-alt}
 format-underline = ${colors.darkred}
 label = %percentage:2%%
@@ -278,7 +278,7 @@ label = %percentage:2%%
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
+format-prefix = "  "
 format-prefix-foreground = ${theme.background-alt}
 format-underline = ${colors.darkpurple}
 label = %percentage_used%%
@@ -304,6 +304,12 @@ ramp-signal-2 = 
 ramp-signal-3 = 
 ramp-signal-4 = 
 ramp-signal-foreground = ${theme.background-alt}
+
+[module/vpn]
+type = custom/script
+interval = 3
+exec = "$HOME/.config/polybar/scripts/vpn_status"
+click-left = "$HOME/.config/polybar/scripts/vpn_toggle_connection &"
 
 [module/eth]
 type = internal/network
