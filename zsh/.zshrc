@@ -22,6 +22,11 @@ alias stmux="create_tmux_session"
 bindkey "^[[A" history-beginning-search-backward
 bindkey "^[[B" history-beginning-search-forward
 
+# shortcut to activate stmux selector
+stmux-widget() create_tmux_session
+zle -N stmux-widget
+bindkey "^t" stmux-widget
+
 if [[ -r ~/.zshrc_local ]]; then
     source ~/.zshrc_local
 fi
