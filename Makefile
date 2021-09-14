@@ -17,7 +17,7 @@ STOW_DIRS := $(ALL_DIRS:/=)
 
 all: .prerequisites zsh/.zprezto/contrib
 	@echo "Applying stow"
-	@stow $(STOW_DIRS)
+	@stow $(STOW_DIRS) -t ~
 
 zsh/.zprezto:
 	git clone --recursive https://github.com/sorin-ionescu/prezto.git zsh/.zprezto

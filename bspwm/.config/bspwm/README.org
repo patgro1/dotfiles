@@ -1,16 +1,16 @@
 #+TITLE: BSPWM setup
 * prerequisites:
 #+BEGIN_SRC bash
-   sudo apt -y install libxcb-ewmh-dev libxcb-icccm4-dev libxcb1-dev libxcb-keysyms1-dev xdo feh rofi
+   sudo apt -y install libxcb-ewmh-dev libxcb-icccm4-dev libxcb1-dev libxcb-keysyms1-dev xdo feh rofi libxcb-xinerama0-dev libxcb-randr0-dev libxcb-util-dev libxcb-shape0-dev
    git clone https://github.com/baskerville/bspwm.git
    git clone https://github.com/baskerville/sxhkd.git
    cd bspwm
    git checkout 0.9.10
    make
    sudo make install
+   sudo cp contrib/freedesktop/bspwm.desktop /usr/share/xsessions
    cd ../sxhkd
    make
    sudo make install
-   sudo cp contrib/freedesktop/bspwm.desktop /usr/share/xsessions
 #+END_SRC
 
