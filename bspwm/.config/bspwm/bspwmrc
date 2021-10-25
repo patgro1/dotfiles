@@ -43,6 +43,9 @@ fi
 #     spotify&
 # fi
 
+# Remap caps lock to escape
+setxkbmap -option caps:escape
+
 # Look and fell
 bspc config top_padding 32
 bspc config bottom_padding 0
