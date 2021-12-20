@@ -1,4 +1,3 @@
-#
 # Executes commands at the start of an interactive session.
 #
 # Authors:
@@ -63,3 +62,4 @@ SPACESHIP_USER_SHOW=true
 SPACESHIP_GIT_STATUS_COLOR=green
 
 neofetch
+[ $TERM = "dumb" ] && unsetopt zle && PS1='$ '
