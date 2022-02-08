@@ -18,6 +18,7 @@ wmname LG3D
 feh --bg-scale ~/.config/images/wallpaper.png
 
 xrandr --output DP-2 --primary --left-of DP-0
+xrandr --output DP-0 --rotate left
 bspc monitor DP-2 -d 1 2 3 4 5 6 7
 bspc monitor DP-0 -d 8 9 0
 
