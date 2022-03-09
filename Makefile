@@ -15,15 +15,9 @@ STOW_DIRS := $(ALL_DIRS:/=)
 	$(INSTALLER_CMD) $(DEPENDENCIES_SW)
 	@touch $@
 
-all: .prerequisites zsh/.zprezto/contrib
+all: .prerequisites
 	@echo "Applying stow"
 	@stow $(STOW_DIRS) -t ~
-
-zsh/.zprezto:
-	git clone --recursive https://github.com/sorin-ionescu/prezto.git zsh/.zprezto
-
-zsh/.zprezto/contrib: zsh/.zprezto
-	git clone --recurse-submodules https://github.com/belak/prezto-contrib zsh/.zprezto/contrib
 
 update:
 	git fetch
@@ -31,8 +25,6 @@ update:
 
 clean_all: clean
 	@rm -f .prerequisites
-	@echo "Cleaning zsh"
-	@rm -rf zsh/.zprezto
 
 clean:
 	@echo "Cleaning all stowed directory"

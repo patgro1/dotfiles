@@ -1,0 +1,21 @@
+# Shell nav and utilities
+alias ls='ls --color'
+alias ll='ls --color -a -l'
+
+# Git
+alias gst='git status'
+alias adog='git log --all --decorate --oneline --graph'
+alias gf='git fetch --all'
+alias gc='git commit'
+alias gpr='git pull --rebase'
+alias gco='git checkout'
+alias gp='git push'
+alias gpo='git push origin'
+alias gpl='git pull'
+alias gplo='git pull origin'
+
+# Nvim
+alias vim='nvim'
+alias vi='nvim'
+alias v='nvim'
+alias svim='sudo vim'
