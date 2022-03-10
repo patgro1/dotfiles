@@ -1,7 +1,7 @@
 # Divergence between ls on Linux and MacOS...
 if [ "$(uname)" = "Darwin" ]; then
     alias ls='ls -G'
-elif [ "$(uname)" = "Linux"]; then
+elif [ "$(uname)" = "Linux" ]; then
     alias ls='ls --color'
 fi
 alias ll='ls -al '
