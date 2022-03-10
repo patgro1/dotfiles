@@ -18,7 +18,9 @@ zsh-add-plugin "romkatv/powerlevel10k"
 
 
 # We can source a local zshrc if it exists in the $HOME folder
-[ -f "$HOME/.zshrc_local" ]; source "$HOME/.zshrc_local"
+if [ -f "$HOME/.zshrc_local" ]; then
+    source "$HOME/.zshrc_local"
+fi
 
 # To customize prompt, run `p10k configure` or edit ~/.config//zsh/.p10k.zsh.
 [[ ! -f ~/.config//zsh/.p10k.zsh ]] || source ~/.config//zsh/.p10k.zsh
