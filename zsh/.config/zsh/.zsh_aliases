@@ -1,6 +1,13 @@
-# Shell nav and utilities
-alias ls='ls --color'
-alias ll='ls --color -a -l'
+# Divergence between ls on Linux and MacOS...
+if [ "$(uname)" = "Darwin" ]; then
+    alias ls='ls -G'
+elif [ "$(uname)" = "Linux"]; then
+    alias ls='ls --color'
+fi
+alias ll='ls -al '
+# Copy with a progress bar
+alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
+alias cpvr="rsync -rpoghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
 
 # Git
 alias gst='git status'

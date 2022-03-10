@@ -16,6 +16,8 @@ setopt AUTO_CD
 zsh-add-plugin "zsh-users/zsh-syntax-highlighting"
 zsh-add-plugin "romkatv/powerlevel10k"
 
+source $ZDOTDIR/.zsh-vi-mode
+source $ZDOTDIR/zsh-completion
 
 # We can source a local zshrc if it exists in the $HOME folder
 if [ -f "$HOME/.zshrc_local" ]; then

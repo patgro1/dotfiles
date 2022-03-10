@@ -1,0 +1,10 @@
+# Enable Vim mode in ZSH
+bindkey -v
+
+# Be able to edit a line in Vim
+autoload edit-command-line
+zle -N edit-command-line
+
+bindkey "^e" edit-command-line
+bindkey "^R" history-incremental-search-backward
+bindkey "^G" "clear"
