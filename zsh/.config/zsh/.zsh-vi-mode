@@ -5,6 +5,19 @@ bindkey -v
 autoload edit-command-line
 zle -N edit-command-line
 
+# History incremental search
+autoload up-line-or-beginning-search
+autoload down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+
 bindkey "^e" edit-command-line
 bindkey "^R" history-incremental-search-backward
+bindkey "^F" history-incremental-search-forward
 bindkey "^G" "clear"
+
+# Up and down arrow in insert mode, j and k in normal mode
+bindkey "^[[A" up-line-or-beginning-search
+bindkey "^[[B" down-line-or-beginning-search
+bindkey -M vicmd "k" up-line-or-beginning-search
+bindkey -M vicmd "j" down-line-or-beginning-search
