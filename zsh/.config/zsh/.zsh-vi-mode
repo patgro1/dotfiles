@@ -17,7 +17,7 @@ bindkey "^F" history-incremental-search-forward
 bindkey "^G" "clear"
 
 # Up and down arrow in insert mode, j and k in normal mode
-bindkey "^[[A" up-line-or-beginning-search
-bindkey "^[[B" down-line-or-beginning-search
+bindkey "^[OA" up-line-or-beginning-search
+bindkey "^[OB" down-line-or-beginning-search
 bindkey -M vicmd "k" up-line-or-beginning-search
 bindkey -M vicmd "j" down-line-or-beginning-search
