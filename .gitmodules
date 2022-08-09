@@ -4,3 +4,6 @@
 [submodule "zsh/.zprezto"]
     path = zsh/.zprezto
 	url = https://github.com/sorin-ionescu/prezto.git
+[submodule "doom/.doom.d"]
+	path = doom/.doom.d
+	url = git@github.com:patgro1/.doom.d.git
