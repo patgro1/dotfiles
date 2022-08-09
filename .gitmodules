@@ -7,3 +7,6 @@
 [submodule "doom/.doom.d"]
 	path = doom/.doom.d
 	url = git@github.com:patgro1/.doom.d.git
+[submodule "i3/.config/i3blocks"]
+	path = i3/.config/i3blocks
+	url = git@github.com:patgro1/i3blocks-contrib.git
