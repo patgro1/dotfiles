@@ -198,7 +198,7 @@ bindsym $mod+r mode "resize"
 bar {
         tray_output primary
         output primary
-        output eDP-1
+        output eDP1
         status_command i3blocks
 }
 
