@@ -38,10 +38,12 @@ exec --no-startup-id nm-applet
 
 # Use pactl to adjust volume in PulseAudio.
 # change volume or toggle mute
-bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+10 i3blocks
-bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+10 i3blocks
-bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+10 i3blocks
-
+bindsym XF86AudioRaiseVolume exec amixer set Master 5%+ && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioLowerVolume exec amixer set Master 5%- && pkill -RTMIN+10 i3blocks
+bindsym XF86AudioMute exec amixer set Master toggle && pkill -RTMIN+10 i3blocks
+## Backlight control
+bindsym XF86MonBrightnessUp exec brightnessctl s 10%+
+bindsym XF86MonBrightnessDown exec brightnessctl s 10%-
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
