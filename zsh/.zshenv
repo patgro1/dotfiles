@@ -5,4 +5,8 @@ export EDITOR="nvim"
 export VISUAL="nvim"
 
 export PATH=~/.local/bin:$PATH
-. "$HOME/.cargo/env"
+export PATH=~/.emacs.d/bin:$PATH
+
+if [ -d "$HOME/.cargo/env" ]; then
+    . "$HOME/.cargo/env"
+fi
