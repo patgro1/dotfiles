@@ -5,7 +5,7 @@ DEPENDENCIES_SW := stow git
 ifeq ($(OS),Darwin)
 	INSTALLER_CMD := brew install
 else
-	INSTALLER_CMD := sudo apt install
+	INSTALLER_CMD := echo sudo apt install
 endif
 
 ALL_DIRS := $(wildcard */)

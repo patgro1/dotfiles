@@ -25,6 +25,8 @@ exec --no-startup-id autorandr -c
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
 
+exec --no-startup-id py3status
+
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
 
@@ -35,6 +37,8 @@ exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
+exec --no-startup-id blueman-applet
+exec --no-startup-id kmix
 
 # Use pactl to adjust volume in PulseAudio.
 # change volume or toggle mute
@@ -131,9 +135,9 @@ workspace 4 output primary
 workspace 5 output primary
 workspace 6 output primary
 workspace 7 output primary
-workspace 8 output eDP-1
-workspace 9 output eDP-1
-workspace 0 output eDP-1
+workspace 8 output eDP1
+workspace 9 output eDP1
+workspace 0 output eDP1
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -199,7 +203,8 @@ bar {
         tray_output primary
         output primary
         output eDP1
-        status_command i3blocks
+        status_command py3status
+        font pango: FiraCode-Retina 12
 }
 
 for_window [class="^.*"] border pixel 1

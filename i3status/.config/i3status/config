@@ -1,0 +1,30 @@
+order += "wifi"
+order += "battery_level"
+order += "volume_status"
+order += "time"
+
+py3status {
+    stop_signal = 0
+}
+
+battery_level{
+	blocks = ""
+	charging_character = ""
+	format = " {percent} {icon} {time_remaining}"
+	color_charging = "#FFFFFF"
+	cache_timeout = 5
+}
+
+volume_status speakers {
+    command = "pactl" device = "alsa_output.pci-0000_00_1f.3.analog-stereo"
+    format = "💻{percentage}%"
+    format_muted = "💻{percentage}%"
+    on_click 2 = "exec pactl set-default-sink alsa_output.pci-0000_00_1f.3.analog-stereo"
+    cache_timeout = 1
+    thresholds = [(0, 'bad'), (5, 'degraded'), (10, 'good')]
+}
+
+wifi {
+     blocks = "_▁▂▃▄▅▆▇█"
+     format = " {ssid} {bitrate}mbps {icon}"
+}
