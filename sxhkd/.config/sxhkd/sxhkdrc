@@ -4,11 +4,11 @@
 
 # terminal emulator
 super + Return
-	alacritty
+	kitty
 
 # program launcher
-super + @space
-	rofi -show run -lines 3 -width 25 -padding 25 -theme ~/scripts/Arc-Darker.rasi
+super + d
+    rofi -show run
 
 # make sxhkd reload its configuration files:
 super + Escape
@@ -20,10 +20,10 @@ super + ctrl + p
 # screen lock
 ctrl + alt + l
 	 betterlockscreen -l
-# to cache the image for the lockscreen use:
-# betterlockscreen -u %picture_to_use% -r %resolution%
-# ie, to lock with wallpaper:
-# betterlockscreen -u ~/.config/images/wallpaper.png -r 3840x2160
+#to cache the image for the lockscreen use:
+#betterlockscreen -u %picture_to_use% -r %resolution%
+#ie, to lock with wallpaper:
+#betterlockscreen -u ~/.config/images/wallpaper.png
 
 #
 # bspwm hotkeys

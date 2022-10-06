@@ -63,10 +63,6 @@ xmessage() {
 	layer=normal;
 }
 
-zoom() {
-	echo state=floating;
-}
-
 case $instance.$class in
 	(*.Emacs) emacs;;
 	(*.[Ff]irefox) firefox;;
