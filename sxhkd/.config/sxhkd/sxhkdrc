@@ -145,19 +145,15 @@ super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
 # Volume controls
-XF86AudioRaiseVolume
-	pactl set-sink-volume 1 +5% #increase sound volume
-XF86AudioLowerVolume
-	pactl set-sink-volume 1 -5% #decrease sound volume
+XF86Audio{Raise,Lower}Volume
+	pactl set-sink-volume @DEFAULT_SINK@ {+,-}5%
 XF86AudioMute
-	pactl set-sink-mute 1 toggle # mute sound
+	pactl set-sink-mute @DEFAULT_SINK@ toggle # mute sound
 
 # Media control
-XF86AudioPlay
-	playerctl play-pause
-XF86AudioPause
-	playerctl play-pause
-XF86AudioNext
-	playerctl next
-XF86AudioPrev
-	playerctl previous
+XF86Audio{Play,Pause,Next,Prev}
+	playerctl {play-pause,play-pause,next,previous}
+
+# Brightness control
+XF86MonBrightness{Up,Down}
+    brightnessctl s 10%{+,-}
