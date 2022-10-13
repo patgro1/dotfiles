@@ -157,3 +157,7 @@ XF86Audio{Play,Pause,Next,Prev}
 # Brightness control
 XF86MonBrightness{Up,Down}
     brightnessctl s 10%{+,-}
+
+# Screenshot
+Print
+    flameshot gui

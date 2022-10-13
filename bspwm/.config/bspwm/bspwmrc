@@ -31,24 +31,6 @@ fi
 
 . $XDG_CONFIG_HOME/bspwm/polybar/launch.sh
 
-ps -aux | grep slack | grep -v grep > /dev/null
-if [ $? -eq 1 ]
-then
-    slack&
-fi
-
-ps -aux | grep Discord | grep -v grep > /dev/null
-if [ $? -eq 1 ]
-then
-    discord&
-fi
-
-# ps -aux | grep Spotify | grep -v grep > /dev/null
-# if [ $? -eq 1 ]
-# then
-#     spotify&
-# fi
-
 # Remap caps lock to escape
 setxkbmap -option caps:escape
 

@@ -12,5 +12,6 @@ picom -b
 run dunst
 run nm-applet
 run blueman-applet
+run flameshot
 
 pgrep mons >> /dev/null || mons -ax $XDG_CONFIG_HOME/bspwm/dock.sh
