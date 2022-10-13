@@ -32,7 +32,7 @@ case $MONS_NUMBER in
         ;;
     2)
         echo "Dual"
-        mons -e left
+        mons -e right
         add_monitor
         ;;
 esac
