@@ -58,6 +58,10 @@ vivado() {
 	echo state=floating;
 }
 
+zoom {
+    echo desktop=0
+}
+
 xmessage() {
 	state=floating;
 	layer=normal;
