@@ -3,12 +3,14 @@
 killall polybar
 while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
  
-if type "xrandr"; then
-    for m in $(polybar -m | cut -d":" -f1); do
-        MONITOR=$m polybar -c $XDG_CONFIG_HOME/bspwm/polybar/config.ini --reload top &
-    done
-else
-    polybar --reload top &
-fi
+for m in $(polybar -m | cut -d":" -f1); do
+    MONITOR=$m polybar -c $XDG_CONFIG_HOME/bspwm/polybar/config.ini --reload workspaces&
+done
+polybar -c $XDG_CONFIG_HOME/bspwm/polybar/config.ini --reload media&
+polybar -c $XDG_CONFIG_HOME/bspwm/polybar/config.ini --reload system_status&
+sleep 1
+xdo raise -N Polybar
+polybar-msg cmd hide
+
 
 
