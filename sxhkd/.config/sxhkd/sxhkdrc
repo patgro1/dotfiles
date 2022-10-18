@@ -25,10 +25,6 @@ ctrl + alt + l
 #ie, to lock with wallpaper:
 #betterlockscreen -u ~/.config/images/wallpaper.png
 
-# show bar
-super + shift + b
-    $XDG_CONFIG_HOME/bspwm/polybar/toggle.sh
-
 #
 # bspwm hotkeys
 #
