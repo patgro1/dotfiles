@@ -9,6 +9,9 @@ alias ll='ls -al '
 alias cpv="rsync -poghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
 alias cpvr="rsync -rpoghb --backup-dir=/tmp/rsync -e /dev/null --progress --"
 
+# History search with fzf
+alias hf="print -z \$(history 0 | fzf | cut -c 8-)"
+
 # Git
 alias gst='git status'
 alias adog='git log --all --decorate --oneline --graph'
@@ -20,9 +23,13 @@ alias gp='git push'
 alias gpo='git push origin'
 alias gpl='git pull'
 alias gplo='git pull origin'
+alias lg='lazygit'
 
 # Nvim
 alias vim='nvim'
 alias vi='nvim'
 alias v='nvim'
 alias svim='sudo vim'
+
+# Spotify on fedora
+alias spotify='flatpak run com.spotify.Client'
