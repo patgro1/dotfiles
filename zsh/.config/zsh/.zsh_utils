@@ -23,3 +23,7 @@ function zsh-update-plugins() {
     done
 
 }
+
+function cheat() {
+    curl cht.sh/$1 | less -R
+}
