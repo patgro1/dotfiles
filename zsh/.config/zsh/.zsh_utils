@@ -1,29 +1,29 @@
 function zsh-source-plugin() {
-    [ -f "$ZDOTDIR/$1" ] && source "$ZDOTDIR/$1"
+[ -f "$ZDOTDIR/$1" ] && source "$ZDOTDIR/$1"
 }
 
 function zsh-add-plugin() {
-    PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
-    # If the plugin is not cloned already, add it in
-    if [ ! -d $ZDOTDIR/plugins/$PLUGIN_NAME ]; then
-        git clone --depth=1 "https://github.com/$1" "$ZDOTDIR/plugins/$PLUGIN_NAME"
-    fi
-    zsh-source-plugin "plugins/$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh" ||
+PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
+# If the plugin is not cloned already, add it in
+if [ ! -d $ZDOTDIR/plugins/$PLUGIN_NAME ]; then
+    git clone --depth=1 "https://github.com/$1" "$ZDOTDIR/plugins/$PLUGIN_NAME"
+fi
+zsh-source-plugin "plugins/$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh" ||
     zsh-source-plugin "plugins/$PLUGIN_NAME/$PLUGIN_NAME.zsh" ||
     zsh-source-plugin "plugins/$PLUGIN_NAME/$PLUGIN_NAME.zsh-theme"
 }
 
 function zsh-update-plugins() {
-    for dir in $ZDOTDIR/plugins/*/
-    do
-        pushd $dir
-        git fetch
-        git pull
-        popd
-    done
+for dir in $ZDOTDIR/plugins/*/
+do
+    pushd $dir
+    git fetch
+    git pull
+    popd
+done
 
 }
 
 function cheat() {
-    curl cht.sh/$1 | less -R
+    curl -s cht.sh/$1 | less -R
 }
