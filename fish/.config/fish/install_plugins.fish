@@ -3,7 +3,8 @@ set PLUGINS "PatrickF1/fzf.fish" \
             "jomik/fish-gruvbox"\
             "IlanCosman/tide@v5"\
             "jorgebucaran/autopair.fish"\
-            "patrickf3139/Colored-Man-Pages"
+            "patrickf3139/Colored-Man-Pages"\
+            "edc/bass"
 
 
 for plugin in $PLUGINS

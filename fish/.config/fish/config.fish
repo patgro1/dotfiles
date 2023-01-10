@@ -9,6 +9,10 @@ if status is-interactive
         source $XDG_CONFIG_HOME/fish/install_plugins.fish
     end
 
+    if test -f $HOME/.cargo/env
+        bass source $HOME/.cargo/env
+    end
+
     # Set the color scheme to gruvbox
     theme_gruvbox dark hard
 
