@@ -14,7 +14,8 @@ if status is-interactive
     end
 
     # Set the color scheme to gruvbox
-    theme_gruvbox dark hard
+    #theme_gruvbox dark hard
+    source $XDG_CONFIG_HOME/fish/themes/tokyonight-night.fish
 
     # Commands to run in interactive sessions can go here
     if test -f $XDG_CONFIG_HOME/fish/fish_aliases.fish
