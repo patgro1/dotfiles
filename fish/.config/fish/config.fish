@@ -22,6 +22,12 @@ if status is-interactive
         source $XDG_CONFIG_HOME/fish/fish_aliases.fish
     end
 
+    # Start vim mode
+    fish_vi_key_bindings
+    bind \ct "tmux_switch"
+    bind -M insert \ct "tmux_switch"
+    bind -M normal \ct "tmux_switch"
+
 end
 
 

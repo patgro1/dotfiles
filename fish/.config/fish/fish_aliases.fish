@@ -16,3 +16,5 @@ alias gplo "command git pull origin"
 alias lg "command lazygit"
 
 alias top "command ytop -p"
+
+alias tmux_switch "tmux_sessionizer $HOME/workspace $HOME/dotfiles"

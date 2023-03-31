@@ -7,6 +7,7 @@ zsh/.config/zsh/.zcompdump
 fish/.config/fish/fish_plugins
 fish/.config/fish/fish_variables
 fish/.config/fish/functions/*
+!fish/.config/fish/functions/tmux_sessionizer.fish
 !fish/.config/fish/functions/PLACEHOLDER
 
 fish/.config/fish/theme/*
