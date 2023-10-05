@@ -19,3 +19,4 @@ fish/.config/fish/completions/*
 fish/.config/fish/conf.d/*
 !fish/.config/fish/conf.d/PLACEHOLDER
 
+fish/.config/fish/fishd.tmp.*

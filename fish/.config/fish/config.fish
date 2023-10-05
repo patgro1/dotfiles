@@ -8,9 +8,13 @@ if status is-interactive
         curl -sL https://git.io/fisher | source && fisher install jorgebucaran/fisher
         source $XDG_CONFIG_HOME/fish/install_plugins.fish
     end
+    set -a PATH $HOME/.local/bin
 
     if test -f $HOME/.cargo/env
         bass source $HOME/.cargo/env
+    end
+    if test -e $XDG_CONFIG_HOME/emacs/bin
+        set -a PATH $XDG_CONFIG_HOME/emacs/bin
     end
 
     # Set the color scheme to gruvbox
@@ -30,4 +34,5 @@ if status is-interactive
 
 end
 
-
+# opam configuration
+source /home/pgrogan/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
