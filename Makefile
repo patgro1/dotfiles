@@ -8,7 +8,7 @@ else
 	INSTALLER_CMD := echo sudo apt install
 endif
 
-ALL_DIRS := $(wildcard */)
+ALL_DIRS := $(shell ls config)
 STOW_DIRS := $(ALL_DIRS:/=)
 
 .prerequisites:
@@ -16,8 +16,9 @@ STOW_DIRS := $(ALL_DIRS:/=)
 	@touch $@
 
 all: .prerequisites
+	@echo $(STOW_DIRS)
 	@echo "Applying stow"
-	@stow $(STOW_DIRS) -t ~
+	@stow $(STOW_DIRS) -d config -t ~
 
 update:
 	git fetch
@@ -28,4 +29,4 @@ clean_all: clean
 
 clean:
 	@echo "Cleaning all stowed directory"
-	@stow -D $(STOW_DIRS)
+	@stow -D $(STOW_DIRS) -d config -t ~

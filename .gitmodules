@@ -1,12 +1,12 @@
 [submodule "nvim/.config/nvim"]
-	path = nvim/.config/nvim
+	path = config/nvim/.config/nvim
 	url = git@github.com:patgro1/nvim
 [submodule "zsh/.zprezto"]
     path = zsh/.zprezto
 	url = https://github.com/sorin-ionescu/prezto.git
 [submodule "doom/.doom.d"]
-	path = doom/.doom.d
+	path = config/doom/.doom.d
 	url = git@github.com:patgro1/.doom.d.git
 [submodule "i3/.config/i3blocks"]
-	path = i3/.config/i3blocks
+	path = config/i3/.config/i3blocks
 	url = git@github.com:patgro1/i3blocks-contrib.git

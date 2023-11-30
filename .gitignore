@@ -1,22 +1,22 @@
 .prerequisites
-zsh/.config/zsh/plugins/
-zsh/.config/zsh/.zsh_history
-zsh/.config/zsh/.zcompdump
+config/zsh/.config/zsh/plugins/
+config/zsh/.config/zsh/.zsh_history
+config/zsh/.config/zsh/.zcompdump
 
 
-fish/.config/fish/fish_plugins
-fish/.config/fish/fish_variables
-fish/.config/fish/functions/*
-!fish/.config/fish/functions/tmux_sessionizer.fish
-!fish/.config/fish/functions/PLACEHOLDER
+config/fish/.config/fish/fish_plugins
+config/fish/.config/fish/fish_variables
+config/fish/.config/fish/functions/*
+!config/fish/.config/fish/functions/tmux_sessionizer.fish
+!config/fish/.config/fish/functions/PLACEHOLDER
 
-fish/.config/fish/theme/*
-!fish/.config/fish/theme/PLACEHOLDER
+config/fish/.config/fish/theme/*
+!config/fish/.config/fish/theme/PLACEHOLDER
 
-fish/.config/fish/completions/*
-!fish/.config/fish/completions/PLACEHOLDER
+config/fish/.config/fish/completions/*
+!config/fish/.config/fish/completions/PLACEHOLDER
 
-fish/.config/fish/conf.d/*
-!fish/.config/fish/conf.d/PLACEHOLDER
+config/fish/.config/fish/conf.d/*
+!config/fish/.config/fish/conf.d/PLACEHOLDER
 
-fish/.config/fish/fishd.tmp.*
+config/fish/.config/fish/fishd.tmp.*
