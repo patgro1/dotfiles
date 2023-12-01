@@ -1,6 +1,20 @@
 OS := $(shell uname -s)
 
-DEPENDENCIES_SW := stow git
+DISTRO ?= archlinux
+DISTRO_VERSION ?= latest
+
+DOCKER_IMAGE_NAME := test_$(DISTRO)_$(DISTRO_VERSION)
+DOCKER_IMAGE_FOLDER := docker/docker_$(DISTRO)
+
+DEPENDENCIES_SW := stow git ansible
+
+TEST_DEPENDENCIES_SW := docker
+
+ANSIBLE_PLAYBOOK_ARGS=
+
+ifeq ($(wildcard /.dockerenv),)
+	ANSIBLE_PLAYBOOK_ARGS+="--ask-become-pass"
+endif
 
 ifeq ($(OS),Darwin)
 	INSTALLER_CMD := brew install
@@ -11,12 +25,29 @@ endif
 ALL_DIRS := $(shell ls config)
 STOW_DIRS := $(ALL_DIRS:/=)
 
+all: .run_ansible .apply_stow
+
 .prerequisites:
 	$(INSTALLER_CMD) $(DEPENDENCIES_SW)
 	@touch $@
 
-all: .prerequisites
-	@echo $(STOW_DIRS)
+.test_prerequisites:
+	$(INSTALLER_CMD) $(TEST_DEPENDENCIES_SW)
+	@touch $@
+
+build_docker: $(DOCKER_IMAGE_FOLDER)/Dockerfile
+	docker build -t $(DOCKER_IMAGE_NAME) -f $(DOCKER_IMAGE_FOLDER)/Dockerfile --build-arg TAG=$(DISTRO_VERSION) --build-arg USER=$(USER) .
+
+run_docker: build_docker
+	docker run -it --rm -v $(shell pwd):/home/$(USER)/dotfiles $(DOCKER_IMAGE_NAME)
+
+.run_ansible:
+	cd ansible; ansible-galaxy collection install -r requirements.yml
+	cd ansible; ansible-playbook $(ANSIBLE_PLAYBOOK_ARGS) ./bootstrap.yml
+
+	rm -f ~/.zshenv
+
+.apply_stow:
 	@echo "Applying stow"
 	@stow $(STOW_DIRS) -d config -t ~
 

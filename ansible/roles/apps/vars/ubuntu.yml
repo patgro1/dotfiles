@@ -1,0 +1,5 @@
+__distrib_packages: 
+  - fd-find
+
+__repos:
+  - ppa:fish-shell/release-3

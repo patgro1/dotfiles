@@ -1,4 +1,6 @@
 #+TITLE: Dot files
+* Prerequisites
+    make
 * Usage
 * Tools setup
 [[bspwm/.config/bspwm/README.org][BSPWM Setup]]
@@ -27,7 +29,7 @@
 Please start by installing i3lockcolor
 *** Prerequisites
  #+BEGIN_SRC bash
- sudo apt install -y imagemagick xdpyinfo xrandr bc feh 
+ sudo apt install -y imagemagick xdpyinfo xrandr bc feh
  #+END_SRC
 *** Installation
  #+BEGIN_SRC bash

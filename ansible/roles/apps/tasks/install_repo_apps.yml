@@ -1,0 +1,5 @@
+- name: install app packages
+  become: yes
+  ansible.builtin.package:
+    name: "{{ __packages + __distrib_packages | list }}"
+    state: present

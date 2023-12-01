@@ -1,0 +1,26 @@
+- include_vars: "{{ ansible_facts['distribution'] | lower }}.yml"
+  name: __packages
+
+- name: install neovim prerequisites
+  ansible.builtin.package:
+    name: "{{ __packages | list }}"
+    state: present
+  become: yes
+
+- name: clone neovim repo
+  ansible.builtin.git:
+    repo: "https://github.com/neovim/neovim"
+    version: nightly
+    clone: yes
+    dest: "{{ ansible_env.HOME }}/workspace/neovim"
+
+- name: build neovim
+  ansible.builtin.command: "make CMAKE_BUILD_TYPE=Release -j {{ ansible_facts['processor_nproc'] }}"
+  args:
+    chdir: "{{ ansible_env.HOME }}/workspace/neovim"
+
+- name: install neovim
+  become: yes
+  ansible.builtin.command: make install
+  args:
+    chdir: "{{ ansible_env.HOME }}/workspace/neovim"

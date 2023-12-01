@@ -1,0 +1,4 @@
+collections:
+  # Install latest version of community general
+  - name: community.general
+  - name: kewlfft.aur

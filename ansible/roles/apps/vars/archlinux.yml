@@ -1,0 +1,4 @@
+__distrib_packages: 
+  - base-devel
+  - fd
+  - which

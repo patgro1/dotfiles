@@ -1,0 +1,7 @@
+__packages: 
+  - openssh
+  - make
+  - base-devel
+  - stow  # Make sure stow is present before dotfiles are set
+  - fontconfig
+  - tmux

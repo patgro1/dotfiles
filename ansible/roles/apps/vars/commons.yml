@@ -1,0 +1,5 @@
+__packages:
+  - zsh
+  - fish
+  - ripgrep
+  - tmux

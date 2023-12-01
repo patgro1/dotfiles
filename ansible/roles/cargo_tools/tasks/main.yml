@@ -1,0 +1,38 @@
+- include_vars: "{{ ansible_facts['distribution'] | lower }}.yml"
+  name: __packages
+
+- name: install cargo tools dependencies
+  ansible.builtin.package:
+    name: "{{ __packages | list }}"
+    state: present
+  become: yes
+
+- name: Install ytop for process management
+  community.general.cargo:
+    name: ytop
+  environment:
+    PATH: "{{ ansible_env.HOME }}/.cargo/bin:{{ ansible_env.PATH }}"
+
+- name: Install cargo bininstall for binary installation
+  community.general.cargo:
+    name: cargo-binstall
+  environment:
+    PATH: "{{ ansible_env.HOME }}/.cargo/bin:{{ ansible_env.PATH }}"
+
+- name: Install cargo-watch for rust repo action on change
+  community.general.cargo:
+    name: cargo-watch
+  environment:
+    PATH: "{{ ansible_env.HOME }}/.cargo/bin:{{ ansible_env.PATH }}"
+
+- name: Install alacritty as a terminal
+  community.general.cargo:
+    name: alacritty
+  environment:
+    PATH: "{{ ansible_env.HOME }}/.cargo/bin:{{ ansible_env.PATH }}"
+
+- name: Install stylua for Lua file formatting
+  community.general.cargo:
+    name: stylua
+  environment:
+    PATH: "{{ ansible_env.HOME }}/.cargo/bin:{{ ansible_env.PATH }}"

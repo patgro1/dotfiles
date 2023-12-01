@@ -1,0 +1,7 @@
+__packages:
+  - bspwm
+  - sxhkd
+  - dunst
+  - picom
+  - polybar
+  - rofi

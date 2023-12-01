@@ -1,0 +1,7 @@
+__packages:
+  - base-devel
+  - cmake
+  - unzip
+  - ninja
+  - tree-sitter
+  - curl

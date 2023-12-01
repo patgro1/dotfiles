@@ -1,0 +1,23 @@
+- include_vars: "{{ ansible_facts['distribution'] | lower }}.yml"
+
+- name: install base packages
+  become: yes
+  ansible.builtin.package:
+    name: "{{ __packages | list }}"
+    state: present
+
+- name: install fira code nerd font
+  block:
+    - name: copy fira code fonts into the local share fonts folder
+      ansible.builtin.copy:
+        src: firacode
+        dest: "{{ ansible_env.HOME }}/.local/share/fonts/"
+    - name: update font cache
+      ansible.builtin.command: fc-cache -f -v
+- name: Disable lecture prompt on sudo
+  become: yes
+  ansible.builtin.lineinfile:
+    path: /etc/sudoers.d/privacy
+    line: 'Defaults        lecture = never'
+    create: yes
+    validate: 'visudo -cf %s'

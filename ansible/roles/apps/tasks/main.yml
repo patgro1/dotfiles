@@ -1,0 +1,43 @@
+- include_vars: "{{ ansible_facts['distribution'] | lower }}.yml"
+- include_vars: "commons.yml"
+
+- name: add repos for ubuntu
+  become: yes
+  ansible.builtin.apt_repository:
+    repo: "{{ item }}"
+  loop: "{{ __repos }}"
+  when: ansible_facts['distribution'] == "Ubuntu"
+
+
+
+- include_tasks: install_repo_apps.yml
+- include_tasks: install_rust.yml
+
+# - name: setup paru for archlinux
+- name: Clone and install paru for Archlinux
+  block:
+    - name: Clone paru
+      ansible.builtin.git:
+        repo: https://aur.archlinux.org/paru.git
+        clone: yes
+        dest: "{{ ansible_env.HOME }}/workspace/paru"
+    - name: build paru
+      ansible.builtin.command: "makepkg -sri --noconfirm"
+      args:
+        chdir: "{{ ansible_env.HOME }}/workspace/paru"
+    - name: Create the `aur_builder` user
+      become: yes
+      ansible.builtin.user:
+        name: aur_builder
+        create_home: yes
+        group: wheel
+    - name: Allow the `aur_builder` user to run `sudo pacman` without a password
+      become: yes
+      ansible.builtin.lineinfile:
+        path: /etc/sudoers.d/11-install-aur_builder
+        line: 'aur_builder ALL=(ALL) NOPASSWD: /usr/bin/pacman'
+        create: yes
+        validate: 'visudo -cf %s'
+  when: ansible_facts['distribution'] == "Archlinux"
+
+

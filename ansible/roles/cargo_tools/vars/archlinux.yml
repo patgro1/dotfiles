@@ -1,0 +1,5 @@
+__packages:
+  - freetype2
+  - fontconfig
+  - libxcb
+  - libxkbcommon
