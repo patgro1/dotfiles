@@ -11,6 +11,7 @@
 
 
 - include_tasks: install_repo_apps.yml
+- include_tasks: install_tmux_tpm.yml
 - include_tasks: install_rust.yml
 
 # - name: setup paru for archlinux

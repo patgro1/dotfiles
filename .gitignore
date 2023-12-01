@@ -20,3 +20,4 @@ config/fish/.config/fish/conf.d/*
 !config/fish/.config/fish/conf.d/PLACEHOLDER
 
 config/fish/.config/fish/fishd.tmp.*
+/config/tmux/.config/tmux/plugins
