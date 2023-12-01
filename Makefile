@@ -4,7 +4,7 @@ DISTRO ?= archlinux
 DISTRO_VERSION ?= latest
 
 DOCKER_IMAGE_NAME := test_$(DISTRO)_$(DISTRO_VERSION)
-DOCKER_IMAGE_FOLDER := docker/docker_$(DISTRO)
+DOCKERFILE := docker/Dockerfile.$(DISTRO)
 
 DEPENDENCIES_SW := stow git ansible
 
@@ -35,8 +35,8 @@ all: .run_ansible .apply_stow
 	$(INSTALLER_CMD) $(TEST_DEPENDENCIES_SW)
 	@touch $@
 
-build_docker: $(DOCKER_IMAGE_FOLDER)/Dockerfile
-	docker build -t $(DOCKER_IMAGE_NAME) -f $(DOCKER_IMAGE_FOLDER)/Dockerfile --build-arg TAG=$(DISTRO_VERSION) --build-arg USER=$(USER) .
+build_docker: $(DOCKERFILE)
+	docker build -t $(DOCKER_IMAGE_NAME) -f $(DOCKERFILE) --build-arg TAG=$(DISTRO_VERSION) --build-arg USER=$(USER) .
 
 run_docker: build_docker
 	docker run -it --rm -v $(shell pwd):/home/$(USER)/dotfiles $(DOCKER_IMAGE_NAME)

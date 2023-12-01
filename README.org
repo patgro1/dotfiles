@@ -1,41 +1,5 @@
 #+TITLE: Dot files
 * Prerequisites
-    make
+    ansible make git sudo
 * Usage
-* Tools setup
-[[bspwm/.config/bspwm/README.org][BSPWM Setup]]
 
-[[dunst/.config/dunst/README.org][Dunst Setup]]
-
-[[picom/.config/picom/README.org][Picom Setup]]
-
-[[polybar/.config/polybar/README.org][Polybar Setup]]
-
-** i3lock color
-*** Prerequisites
-    #+BEGIN_SRC bash
-    sudo apt install autoconf gcc make pkg-config libpam0g-dev libcairo2-dev libfontconfig1-dev libxcb-composite0-dev libev-dev libx11-xcb-dev libxcb-xkb-dev libxcb-xinerama0-dev libxcb-randr0-dev libxcb-image0-dev libxcb-util-dev libxcb-xrm-dev libxkbcommon-dev libxkbcommon-x11-dev libjpeg-dev
-    #+END_SRC
-*** Installation
-  #+BEGIN_SRC bash
-  git clone https://github.com/Raymo111/i3lock-color.git
-  cd i3lock-color
-  chmod +x build.sh
-  ./build.sh
-  chmod +x install-i3lock-color.sh
-  ./install-i3lock-color.sh
-  #+END_SRC
-** BetterLockScreen
-Please start by installing i3lockcolor
-*** Prerequisites
- #+BEGIN_SRC bash
- sudo apt install -y imagemagick xdpyinfo xrandr bc feh
- #+END_SRC
-*** Installation
- #+BEGIN_SRC bash
- git clone https://github.com/pavanjadhaw/betterlockscreen
- cd betterlockscreen
- mkdir -p ~/.local/bin
- cp betterlockscreen ~/.local/bin/
- #+END_SRC
-* Installation
