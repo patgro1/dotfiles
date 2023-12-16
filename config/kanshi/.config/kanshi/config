@@ -1,0 +1,15 @@
+profile Home-Docked{
+    output eDP-1 mode 1920x1080 position 5830,1970
+    output "Unknown Gigabyte M32U 0x00000101" mode 3840x2160 position 7750,1000
+    output "Samsung Electric Company LS27A70 HCJR500026" mode 3840x2160 position 11590,0 transform 270
+}
+
+profile Office-Docked{
+    output eDP-1 mode 1920x1080 position 0,180
+    output "ViewSonic Corporation VA2715-QHD WPX224120500" mode 2560x1440@60Hz position 1920,0
+    output "ViewSonic Corporation VA2715-QHD WPX224120736" mode 2560x1440@59.951Hz position 4480,0
+    }
+
+profile Undocked {
+    output eDP-1 mode 1920x1080
+}

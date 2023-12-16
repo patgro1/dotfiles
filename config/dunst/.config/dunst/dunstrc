@@ -1,33 +1,16 @@
 [global]
-    # Which monitor should the notifications be displayed on.
-    monitor = 0
-    # Make notification follow the mouse since it is highly probable our focus is on that monitor
-    follow = mouse
-    width = (0, 400)
-    height = 300
-    # Show how many messages are currently hidden (because of geometry).
-    indicate_hidden = yes
-    transparency = 0
-    separator_height = 2
-    padding = 12
-    text_icon_padding = 20
-    font = "Fira Code Nerd Font 14"
-
-    format = "<b>%s</b>\n%b"
+frame_color = "#89B4FA"
+separator_color= frame
 
 [urgency_low]
-    background = "#ABB2BF"
-    foreground = "#282c34"
-    timeout = 7
-    icon = ~/.config/dunst/icons/info.png
+background = "#1E1E2E"
+foreground = "#CDD6F4"
+
 [urgency_normal]
-    background = "#282c34"
-    foreground = "#ABB2BF"
-    timeout = 7
-    icon = ~/.config/dunst/icons/info.png
+background = "#1E1E2E"
+foreground = "#CDD6F4"
+
 [urgency_critical]
-    background = "#E06c75"
-    foreground = "#282c34"
-    icon = ~/.config/dunst/icons/critical.png
-    # Making sure these critical message never times out
-    timeout = 0
+background = "#1E1E2E"
+foreground = "#CDD6F4"
+frame_color = "#FAB387"

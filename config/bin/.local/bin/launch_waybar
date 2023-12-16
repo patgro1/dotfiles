@@ -1,0 +1,5 @@
+#!/bin/sh
+
+pkill waybar -x
+sleep 0.5
+waybar

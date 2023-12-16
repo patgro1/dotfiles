@@ -2,9 +2,14 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    items=`find ~/workspace -maxdepth 1 -mindepth 1 -type d`
-    items+="\n$HOME/dotfiles"
-    selected=`echo "$items" | fzf`
+    items=()
+    items=$(find ~/dotfiles/config/nvim/.config/ ~/workspace -maxdepth 1 -mindepth 1 -type d)
+    items+=("$HOME/dotfiles")
+    selected=$(printf "%s\n" "${items[@]}" | fzf)
+fi
+
+if [[ $selected -eq "" ]]; then
+    exit
 fi
 
 selected_name=$(basename "$selected" | tr . _)

@@ -13,6 +13,7 @@
 - include_tasks: install_repo_apps.yml
 - include_tasks: install_tmux_tpm.yml
 - include_tasks: install_rust.yml
+- include_tasks: install_fzf.yml
 
 # - name: setup paru for archlinux
 - name: Clone and install paru for Archlinux
