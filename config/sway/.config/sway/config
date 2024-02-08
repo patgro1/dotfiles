@@ -91,10 +91,10 @@ default_border none
     bindsym $mod+Shift+q kill
 
     # Start your launcher
-    bindsym $mod+d exec bash $HOME/.config/rofi/bin/launcher
-    bindsym $mod+r exec bash $HOME/.config/rofi/bin/runner
-    bindsym $mod+p exec bash $HOME/.config/rofi/bin/powermenu
-    bindsym $mod+s exec bash $HOME/.config/rofi/bin/screenshot
+    bindsym $mod+d exec bash $HOME/.config/rofi/scripts/launcher_t2
+    # bindsym $mod+r exec bash $HOME/.config/rofi/bin/runner
+    bindsym $mod+p exec bash $HOME/.config/rofi/scripts/powermenu_t2
+    # bindsym $mod+s exec bash $HOME/.config/rofi/bin/screenshot
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -110,6 +110,15 @@ default_border none
 
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
+
+    # Lock screen
+    bindsym $mod+Shift+s exec swaylock
+
+    # Screenshots
+    bindsym Print exec grim
+    bindsym Shift+Print exec 'grim -g "$(slurp)" - | wl-copy'
+
+
 #
 # Moving around:
 #
