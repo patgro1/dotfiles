@@ -9,7 +9,10 @@ local _M = {
     -- However, you can use another modifier like Mod1, but it may interact with others.
     modkey = "Mod4",
     -- This is used later as the default terminal and editor to run.
-    editor = os.getenv("EDITOR") or "nvim"
+    editor = os.getenv("EDITOR") or "nvim",
+
+    theme = "catppuccin"
+
 }
 
 return _M

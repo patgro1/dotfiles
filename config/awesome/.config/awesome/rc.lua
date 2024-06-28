@@ -3,13 +3,12 @@
 pcall(require, "luarocks.loader")
 
 -- Standard awesome library
-local gears = require("gears")
 local awful = require("awful")
 require("awful.autofocus")
 -- Theme handling library
 local beautiful = require("beautiful")
 
-local config_path = awful.util.getdir("config") .. "/"
+local config_path = awful.util.getdir("config")
 
 
 -- Error handling
@@ -37,15 +36,13 @@ local bindings = {
 RC.layouts = main.layouts()
 RC.tags = main.tags()
 RC.menu = main.menu()
-local modkey = RC.vars.modkey
 RC.globalkeys = bindings.globalkeys()
 RC.globalkeys = bindings.bindtotags(RC.globalkeys)
 
-
-
 -- {{{ Variable definitions
 -- Themes define colours, icons, font and wallpapers.
-beautiful.init(gears.filesystem.get_themes_dir() .. "default/theme.lua")
+local theme_rc = config_path .. "themes/" .. RC.vars.theme .. "/theme.lua"
+beautiful.init(theme_rc)
 
 -- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = main.layouts()
@@ -69,5 +66,16 @@ root.keys(RC.globalkeys)
 awful.rules.rules = main.rules(bindings.clientkeys(), bindings.clientbuttons())
 -- }}}
 
+
 require("main.signals")
 require("deco.statusbar")
+
+do
+    local autorun_apps = {
+        "picom"
+    }
+
+    for _,i in pairs(autorun_apps) do
+        awful.spawn.single_instance(i, awful.rules.rules)
+    end
+end

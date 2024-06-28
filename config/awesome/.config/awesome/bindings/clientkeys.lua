@@ -12,7 +12,7 @@ function _M.get()
                 c:raise()
             end,
             { description = "toggle fullscreen", group = "client" }),
-        awful.key({ RC.vars.modkey, "Shift" }, "c", function(c) c:kill() end,
+        awful.key({ RC.vars.modkey, "Shift" }, "q", function(c) c:kill() end,
             { description = "close", group = "client" }),
         awful.key({ RC.vars.modkey, "Control" }, "space", awful.client.floating.toggle,
             { description = "toggle floating", group = "client" }),
