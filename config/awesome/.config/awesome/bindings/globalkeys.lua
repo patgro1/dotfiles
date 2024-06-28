@@ -79,10 +79,6 @@ function _M.get()
             { description = "increase the number of master clients", group = "layout" }),
         awful.key({ RC.vars.modkey, "Shift" }, "l", function() awful.tag.incnmaster(-1, nil, true) end,
             { description = "decrease the number of master clients", group = "layout" }),
-        -- awful.key({ RC.vars.modkey, "Control" }, "h", function() awful.tag.incncol(1, nil, true) end,
-        --     { description = "increase the number of columns", group = "layout" }),
-        -- awful.key({ RC.vars.modkey, "Control" }, "l", function() awful.tag.incncol(-1, nil, true) end,
-        --     { description = "decrease the number of columns", group = "layout" }),
         awful.key({ RC.vars.modkey, }, "space", function() awful.layout.inc(1) end,
             { description = "select next", group = "layout" }),
         awful.key({ RC.vars.modkey, "Shift" }, "space", function() awful.layout.inc(-1) end,
@@ -93,6 +89,8 @@ function _M.get()
             { description = "launch application", group = "launcher" }),
         awful.key({ RC.vars.modkey }, "p", function() awful.spawn(rofi_dir .. "powermenu_t2") end,
             { description = "power menu", group = "launcher" }),
+        awful.key({ RC.vars.modkey }, "b", function() awful.spawn(rofi_dir .. "bluetooth") end,
+            { description = "bluetooth menu", group = "launcher" }),
 
         awful.key({ RC.vars.modkey, "Control" }, "n",
             function()
