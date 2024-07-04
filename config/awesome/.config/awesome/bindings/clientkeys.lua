@@ -1,6 +1,7 @@
 local gears = require("gears")
 local awful = require("awful")
 
+local moves = require("utils.moves")
 
 local _M = {}
 
@@ -12,6 +13,10 @@ function _M.get()
                 c:raise()
             end,
             { description = "toggle fullscreen", group = "client" }),
+        awful.key({ RC.vars.modkey, "Shift" }, "h", function(c) moves.move_left_right(c, "left") end,
+            { description = "Move client to left", group = "client" }),
+        awful.key({ RC.vars.modkey, "Shift" }, "l", function(c) moves.move_left_right(c, "right") end,
+            { description = "Move client to left", group = "client" }),
         awful.key({ RC.vars.modkey, "Shift" }, "q", function(c) c:kill() end,
             { description = "close", group = "client" }),
         awful.key({ RC.vars.modkey, "Control" }, "space", awful.client.floating.toggle,

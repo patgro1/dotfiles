@@ -23,27 +23,36 @@ function _M.get()
         awful.key({ RC.vars.modkey, }, "Escape", awful.tag.history.restore,
             { description = "go back", group = "tag" }),
 
+        awful.key({ RC.vars.modkey, }, "h",
+            function()
+                awful.client.focus.global_bydirection("left")
+            end,
+            { description = "focus client on left", group = "client" }
+        ),
         awful.key({ RC.vars.modkey, }, "j",
             function()
-                awful.client.focus.byidx(1)
+                awful.client.focus.global_bydirection("down")
             end,
-            { description = "focus next by index", group = "client" }
+            { description = "focus client down", group = "client" }
         ),
         awful.key({ RC.vars.modkey, }, "k",
             function()
-                awful.client.focus.byidx(-1)
+                awful.client.focus.global_bydirection("up")
             end,
-            { description = "focus previous by index", group = "client" }
+            { description = "focus client up", group = "client" }
         ),
-        awful.key({ RC.vars.modkey, }, "w", function() mymainmenu:show() end,
-            { description = "show main menu", group = "awesome" }),
+        awful.key({ RC.vars.modkey, }, "l",
+            function()
+                awful.client.focus.global_bydirection("right")
+            end,
+            { description = "focus client right", group = "client" }
+        ),
 
         -- Layout manipulation
         awful.key({ RC.vars.modkey, "Shift" }, "j", function() awful.client.swap.byidx(1) end,
             { description = "swap with next client by index", group = "client" }),
         awful.key({ RC.vars.modkey, "Shift" }, "k", function() awful.client.swap.byidx(-1) end,
             { description = "swap with previous client by index", group = "client" }),
-
         awful.key({ RC.vars.modkey, "Control" }, "h", function() awful.screen.focus_bydirection("left") end,
             { description = "focus the next screen", group = "screen" }),
         awful.key({ RC.vars.modkey, "Control" }, "j", function() awful.screen.focus_bydirection("down") end,
@@ -52,7 +61,6 @@ function _M.get()
             { description = "focus the previous screen", group = "screen" }),
         awful.key({ RC.vars.modkey, "Control" }, "l", function() awful.screen.focus_bydirection("right") end,
             { description = "focus the previous screen", group = "screen" }),
-
         awful.key({ RC.vars.modkey, }, "u", awful.client.urgent.jumpto,
             { description = "jump to urgent client", group = "client" }),
         awful.key({ RC.vars.modkey, }, "Tab",
@@ -75,10 +83,10 @@ function _M.get()
             { description = "increase master width factor", group = "layout" }),
         awful.key({ RC.vars.modkey, }, "h", function() awful.tag.incmwfact(-0.05) end,
             { description = "decrease master width factor", group = "layout" }),
-        awful.key({ RC.vars.modkey, "Shift" }, "h", function() awful.tag.incnmaster(1, nil, true) end,
-            { description = "increase the number of master clients", group = "layout" }),
-        awful.key({ RC.vars.modkey, "Shift" }, "l", function() awful.tag.incnmaster(-1, nil, true) end,
-            { description = "decrease the number of master clients", group = "layout" }),
+        -- awful.key({ RC.vars.modkey, "Shift" }, "h", function() awful.tag.incnmaster(1, nil, true) end,
+        --     { description = "increase the number of master clients", group = "layout" }),
+        -- awful.key({ RC.vars.modkey, "Shift" }, "l", function() awful.tag.incnmaster(-1, nil, true) end,
+        --     { description = "decrease the number of master clients", group = "layout" }),
         awful.key({ RC.vars.modkey, }, "space", function() awful.layout.inc(1) end,
             { description = "select next", group = "layout" }),
         awful.key({ RC.vars.modkey, "Shift" }, "space", function() awful.layout.inc(-1) end,
