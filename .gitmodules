@@ -10,3 +10,6 @@
 [submodule "i3/.config/i3blocks"]
 	path = config/i3/.config/i3blocks
 	url = git@github.com:patgro1/i3blocks-contrib.git
+[submodule "config/awesome/.config/lain"]
+	path = config/awesome/.config/awesome/lain
+	url = https://github.com/lcpz/lain.git

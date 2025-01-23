@@ -11,7 +11,7 @@ local _M = {
     -- This is used later as the default terminal and editor to run.
     editor = os.getenv("EDITOR") or "nvim",
 
-    theme = "catppuccin"
+    theme = "steamburn"
 
 }
 

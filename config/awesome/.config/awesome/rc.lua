@@ -68,6 +68,7 @@ awful.rules.rules = main.rules(bindings.clientkeys(), bindings.clientbuttons())
 
 
 require("main.signals")
+-- require("main.docking-undocking")
 require("deco.statusbar")
 
 do
@@ -75,7 +76,7 @@ do
         "picom"
     }
 
-    for _,i in pairs(autorun_apps) do
+    for _, i in pairs(autorun_apps) do
         awful.spawn.single_instance(i, awful.rules.rules)
     end
 end
