@@ -14,33 +14,21 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term /usr/bin/wezterm
+set $term wezterm
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu dmenu_path | dmenu | xargs swaymsg exec --
+set $rofi_dir ~/.config/rofi/scripts/
+# local local_bin_dir = os.getenv("HOME") .. "/.local/bin/"
+set $menu $rofi_dir/launcher_t2 | xargs swaymsg exec --
+set $power_menu $rofi_dir/powermenu_t2 | xargs swaymsg exec --
 
 include /etc/sway/config-vars.d/*
 
 ### Output configuration
 #
-# output eDP-1 mode 1920x1080 pos 5830,1970
-output "Unknown Gigabyte M32U 0x00000101" mode 3840x2160 position 7750,1000
-# # output DP-7 mode 3840x2160 position 7750,1000
-# output "Samsung Electric Company LS27A70 HCJR500026" mode 3840x2160@59.998Hz position 11590,0 transform 90
-
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/.config/images/wallhaven-kxj3l1_3840x2160.png fill
-
-# Run kanshi to manage hot plug
-exec_always pkill kanshi; exec kanshi
-exec_always pkill dunst; exec dunst
-for_window [app_id="dunst"] floating enable
-
-# Setup workspaces
-exec_always sway_set_workspaces
-
-
+output * bg ~/.config/images/wallpaper.png fill
 #
 # Example configuration:
 #
@@ -75,11 +63,6 @@ exec_always sway_set_workspaces
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
-# Appearance
-default_border none
-
-
-
 ### Key bindings
 #
 # Basics:
@@ -91,10 +74,7 @@ default_border none
     bindsym $mod+Shift+q kill
 
     # Start your launcher
-    bindsym $mod+d exec bash $HOME/.config/rofi/scripts/launcher_t2
-    # bindsym $mod+r exec bash $HOME/.config/rofi/bin/runner
-    bindsym $mod+p exec bash $HOME/.config/rofi/scripts/powermenu_t2
-    # bindsym $mod+s exec bash $HOME/.config/rofi/bin/screenshot
+    bindsym $mod+d exec $menu
 
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
@@ -105,33 +85,11 @@ default_border none
 
     # Reload the configuration file
     bindsym $mod+Shift+c reload
-    # Reload waybar
-    bindsym $mod+Shift+b exec ~/.local/bin/launch_waybar
+    # Power/Logout menu
+    bindsym $mod+Shift+p $power_menu
 
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
-
-    # Lock screen
-    bindsym $mod+Shift+s exec swaylock
-
-    # Screenshots
-    bindsym Print exec grim
-    bindsym Shift+Print exec 'grim -g "$(slurp)" - | wl-copy'
-
-    # Playerctl controls
-    bindsym XF86AudioPlay exec 'playerctl play-pause'
-    bindsym XF86AudioStop exec 'playerctl stop'
-    bindsym XF86AudioPrev exec 'playerctl previous'
-    bindsym XF86AudioNext exec 'playerctl next'
-    # Sound control
-    bindsym XF86AudioMute exec 'pactl set-sink-mute @DEFAULT_SINK@ toggle'
-    bindsym XF86AudioRaiseVolume exec 'pactl set-sink-volume @DEFAULT_SINK@ +5%'
-    bindsym XF86AudioLowerVolume exec 'pactl set-sink-volume @DEFAULT_SINK@ -5%'
-    # Brightness control
-    bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl s 5%-
-    bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl s 5%+
-
-
 #
 # Moving around:
 #
@@ -183,10 +141,6 @@ default_border none
     bindsym $mod+Shift+0 move container to workspace number 10
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
-    bindsym $mod+Control+Shift+Right move workspace to output right
-    bindsym $mod+Control+Shift+Left move workspace to output left
-    bindsym $mod+Control+Shift+Down move workspace to output down
-    bindsym $mod+Control+Shift+Up move workspace to output up
 #
 # Layout stuff:
 #
@@ -197,10 +151,9 @@ default_border none
     bindsym $mod+v splitv
 
     # Switch the current container between different layout styles
-    # TODO: Find new mappings for this.
-    # bindsym $mod+s layout stacking
-    # bindsym $mod+w layout tabbed
-    # bindsym $mod+e layout toggle split
+    bindsym $mod+s layout stacking
+    bindsym $mod+w layout tabbed
+    bindsym $mod+e layout toggle split
 
     # Make the current focus fullscreen
     bindsym $mod+f fullscreen
@@ -248,8 +201,24 @@ mode "resize" {
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
-bindsym $mod+Shift+r mode "resize"
+bindsym $mod+r mode "resize"
 
+#
+# Status Bar:
+#
+# Read `man 5 sway-bar` for more information about this section.
+bar {
+    position top
 
-exec_always ~/.local/bin/launch_waybar
+    # When the status_command prints a new line to stdout, swaybar updates.
+    # The default just shows the current date and time.
+    status_command while date +'%Y-%m-%d %I:%M:%S %p'; do sleep 1; done
+
+    colors {
+        statusline #ffffff
+        background #323232
+        inactive_workspace #32323200 #32323200 #5c5c5c
+    }
+}
+
 include /etc/sway/config.d/*

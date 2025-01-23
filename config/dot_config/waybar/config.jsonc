@@ -2,17 +2,26 @@
 	"layer": "top",
 	"modules-left": ["custom/launcher","cpu","memory","custom/media","tray"],
 	"modules-center": ["sway/workspaces"],
-	"modules-right": ["custom/updates","custom/wallpaper","backlight","pulseaudio","clock", "battery","custom/power"],
+	"modules-right": ["custom/updates","backlight","pulseaudio","clock", "battery","custom/power"],
 
 	"pulseaudio": {
 		"tooltip": false,
 		"scroll-step": 5,
 		"format": "{icon} {volume}%",
-		"format-muted": "{icon} {volume}%",
+        "format-muted": "🔇",
 		"on-click":"pactl set-sink-mute @DEFAULT_SINK@ toggle",
-		"format-icons": {
-			"default": ["", "", ""]
-		}
+		"on-click-right":"pavucontrol",
+        "format-icons": {
+                    "headphones": [" ", " ", " "],
+                    "handsfree": "",
+                    "headset":  [" ", " ", " "],
+                    "phone": [" ", " ", " "],
+                    "portable": [" ", " ", " "],
+                    "car": [" ", " ", " "],
+                    "default": ["", "", ""]
+        },
+        "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
+        "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%"
 	},
 
 	"network": {

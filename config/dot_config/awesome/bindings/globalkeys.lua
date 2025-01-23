@@ -11,6 +11,7 @@ menubar.utils.terminal = RC.vars.terminal -- Set the terminal for applications t
 local _M = {}
 
 local rofi_dir = os.getenv("HOME") .. "/.config/rofi/scripts/"
+local local_bin_dir = os.getenv("HOME") .. "/.local/bin/"
 
 function _M.get()
     local global_keys = gears.table.join(
@@ -99,6 +100,9 @@ function _M.get()
             { description = "power menu", group = "launcher" }),
         awful.key({ RC.vars.modkey }, "b", function() awful.spawn(rofi_dir .. "bluetooth") end,
             { description = "bluetooth menu", group = "launcher" }),
+        -- awful.key({ "Control", "Alt_L" }, "l", function() awful.spawn(local_bin_dir .. "local.sh") end,
+        --     { description = "lock screen", group = "launcher" }),
+
 
         awful.key({ RC.vars.modkey, "Control" }, "n",
             function()
