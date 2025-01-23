@@ -8,7 +8,7 @@ config/dot_config/fish/fish_plugins
 config/dot_config/fish/fish_variables
 config/dot_config/fish/functions/*
 !config/dot_config/fish/functions/tmux_sessionizer.fish
-!config/dot_config/fish/functions/PLACEHOLDER
+!config/dot_config/fish/functions/fish_prompt.fish
 
 config/dot_config/fish/theme/*
 !config/dot_config/fish/theme/PLACEHOLDER
