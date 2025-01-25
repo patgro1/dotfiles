@@ -22,3 +22,4 @@ config/dot_config/fish/conf.d/*
 config/dot_config/fish/fishd.tmp.*
 /config/tmux/.config/tmux/plugins
 
+config/dot_config/tmux/plugins
