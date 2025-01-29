@@ -27,7 +27,21 @@ do
     target="$HOME/$name"
     if [ -d $target ] || [ -f $target ]; then
         if [ ! -L $target ]; then
-            echo "Conflict for $name. A directory already exists in $DOT_CONFIG_DIR"
+            echo "Conflict for $name. A directory already exists in $HOME"
+        else
+            rm $target
+        fi
+    fi
+done
+
+for dir in $CONFIG_DIR/dot_local/*
+do
+    dir=${dir%*/}
+    name=$(basename $dir)
+    target="$HOME/.local/$name"
+    if [ -d $target ] || [ -f $target ]; then
+        if [ ! -L $target ]; then
+            echo "Conflict for $name. A directory already exists in $HOME/.local"
         else
             rm $target
         fi

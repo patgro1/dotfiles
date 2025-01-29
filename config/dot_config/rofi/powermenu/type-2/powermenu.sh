@@ -59,7 +59,7 @@ run_rofi() {
 }
 
 lock() {
-    ~/.local/bin/lock.sh
+    $HOME/.local/scripts/lock.sh
 }
 
 # Execute Command
