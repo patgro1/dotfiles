@@ -28,9 +28,9 @@ if status is-interactive
 
     # Start vim mode
     fish_vi_key_bindings
-    bind \et "tmux_switch"
-    bind -M insert \et "tmux_switch"
-    bind -M normal \et "tmux_switch"
+    bind \et "tmux_sessionizer"
+    bind -M insert \et "tmux_sessionizer"
+    bind -M normal \et "tmux_sessionizer"
 
 end
 
