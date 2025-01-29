@@ -9,6 +9,8 @@ config/dot_config/fish/fish_variables
 config/dot_config/fish/functions/*
 !config/dot_config/fish/functions/tmux_sessionizer.fish
 !config/dot_config/fish/functions/fish_prompt.fish
+!config/dot_config/fish/functions/__git.init.fish
+!config/dot_config/fish/functions/git_checkout.fish
 
 config/dot_config/fish/theme/*
 !config/dot_config/fish/theme/PLACEHOLDER
@@ -17,7 +19,7 @@ config/dot_config/fish/completions/*
 !config/dot_config/fish/completions/PLACEHOLDER
 
 config/dot_config/fish/conf.d/*
-!config/dot_config/fish/conf.d/PLACEHOLDER
+!config/dot_config/fish/conf.d/git.fish
 
 config/dot_config/fish/fishd.tmp.*
 /config/tmux/.config/tmux/plugins
