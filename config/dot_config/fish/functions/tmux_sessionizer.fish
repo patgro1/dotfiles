@@ -1,10 +1,13 @@
 function tmux_sessionizer --description "Tmux session manager"
     set -l folders $(string split ' ' (_get_tmux_folders))
-    set -l selected_project_dir $(printf "%s\n" $folders | fzf)
+    set -l selected_project_dir $(printf "%s\n" $folders | fzf --border=sharp)
 
     if test -z $selected_project_dir
         return
     end
+
+    # Replace ~ by /home/$USER
+    set selected_project_dir (string replace "~" "/home/$USER" $selected_project_dir)
 
     # Extract the basename of the directory for tmux session
     set -l tmux_session_name $(basename $selected_project_dir)
