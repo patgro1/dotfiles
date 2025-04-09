@@ -1,7 +1,7 @@
 profile Home-Docked{
     output eDP-1 mode 1920x1080 position 5830,1970
     output "Unknown Gigabyte M32U 0x00000101" mode 3840x2160 position 7750,1000
-    output "Samsung Electric Company LS27A70 HCJR500026" mode 3840x2160 position 11590,0 transform 270
+    output "Samsung Electric Company LS27A70 HCJR500026" mode 3840x2160 position 11590,0 transform 270 disable
 }
 
 profile Office-Docked{

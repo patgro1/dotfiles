@@ -1,0 +1,43 @@
+[branch]
+    sort = -committerdate
+
+[column]
+    ui = auto
+
+[commit]
+    verbose = true
+
+[diff]
+    algorithm = histogram
+    colorMoved = plain
+    mnemonicPrefix = true
+    renames = true
+
+[fetch]
+    prune = true
+    pruneTags = true
+    all = true
+
+[merge]
+    conflictstyle = diff3
+
+[pull]
+    rebase = true
+
+[push]
+    default = simple
+    autoSetupRemote = true
+
+[rerere]
+    enabled = true
+    autoupdate = true
+
+[rebase]
+    autostash = true
+
+[tag]
+    sort = version:refname
+
+[user]
+	name = Patrick Grogan
+	email = patrick.grogan@enyx.fr
