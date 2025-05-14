@@ -1,42 +1,49 @@
 {
-	"layer": "top",
-	"modules-left": ["custom/launcher","cpu","memory","custom/media","tray"],
-	"modules-center": ["sway/workspaces"],
-	"modules-right": ["custom/updates","backlight","pulseaudio","clock", "battery","custom/power"],
+    "layer": "top",
+    "height": 1,
+    "modules-left": ["sway/window", "custom/spotify"],
+    "modules-center": ["sway/workspaces"],
+    "modules-right": ["tray", "cpu", "memory", "battery", "pulseaudio", "network", "clock", "custom/power_menu"],
 
-	"pulseaudio": {
-		"tooltip": false,
-		"scroll-step": 5,
-		"format": "{icon} {volume}%",
+    "sway/window": {
+        "all-outputs": false
+    },
+
+    "pulseaudio": {
+        "tooltip": false,
+        "scroll-step": 5,
+        "format": "  {volume}%",
         "format-muted": "🔇",
-		"on-click":"pactl set-sink-mute @DEFAULT_SINK@ toggle",
-		"on-click-right":"pavucontrol",
+        "on-click":"pactl set-sink-mute @DEFAULT_SINK@ toggle",
+        "on-click-right":"pavucontrol",
         "format-icons": {
-                    "headphones": [" ", " ", " "],
-                    "handsfree": "",
-                    "headset":  [" ", " ", " "],
-                    "phone": [" ", " ", " "],
-                    "portable": [" ", " ", " "],
-                    "car": [" ", " ", " "],
-                    "default": ["", "", ""]
+            "headphones": [" ", " ", " "],
+            "handsfree": "",
+            "headset":  [" ", " ", " "],
+            "phone": [" ", " ", " "],
+            "portable": [" ", " ", " "],
+            "car": [" ", " ", " "],
+            "default": ["", "", ""]
         },
+        "max-volume": 130,
         "on-scroll-up": "pactl set-sink-volume @DEFAULT_SINK@ +5%",
         "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%"
-	},
+    },
 
-	"network": {
-		"tooltip": false,
-		"format-wifi": "  {essid}",
-		"format-ethernet": ""
-	},
-	"backlight": {
-		"tooltip": false,
-		"format": " {}%",
-		"interval":1,
+    "network": {
+        "tooltip": false,
+        "format-wifi": "  {essid}",
+        "format-ethernet": "  {ipaddr}"
+    },
+    "backlight": {
+        "tooltip": false,
+        "format": " {}%",
+        "interval":1,
         "on-scroll-up": "light -A 5",
-		"on-scroll-down": "light -U 5"
-	},
+        "on-scroll-down": "light -U 5"
+    },
     "battery": {
+        "adapter": "/sys/class/power_supply/AC",
         "states": {
             "good": 95,
             "warning": 30,
@@ -45,19 +52,31 @@
         "format": "{icon}  {capacity}%",
         "format-charging": " {capacity}%",
         "format-plugged": " {capacity}%",
+        "format-full": " {capacity}%",
         "format-alt": "{time} {icon}",
         "format-icons": ["", "", "", "", ""]
     },
-	"tray":{
-		"icon-size":18,
-		"spacing": 10
-	},
+    "tray":{
+        "icon-size":18,
+        "spacing": 10
+    },
     "clock": {
         "format": "{: %I:%M %p   %d/%m/%Y}"
     },
     "cpu": {
-        "interval": 15,
-        "format": " {}%",
+        "interval": 1,
+        // "format": " {usage}",
+        "format": " {icon0}{icon1}{icon2}{icon3}{icon4}{icon5}{icon6}{icon7}{icon8}{icon9}{icon10}{icon11}{icon12}{icon13}{icon14}{icon15}",
+        "format-icons": [
+            "<span color='#69ff94'>▁</span>", // green
+            "<span color='#2aa9ff'>▂</span>", // blue
+            "<span color='#f8f8f2'>▃</span>", // white
+            "<span color='#f8f8f2'>▄</span>", // white
+            "<span color='#ffffa5'>▅</span>", // yellow
+            "<span color='#ffffa5'>▆</span>", // yellow
+            "<span color='#ff9977'>▇</span>", // orange
+            "<span color='#dd532e'>█</span>"  // red
+        ],
         "max-length": 10
     },
     "memory": {
@@ -78,6 +97,14 @@
         "exec": "$HOME/.config/system_scripts/mediaplayer.py 2> /dev/null",
         "on-click": "playerctl play-pause"
     },
+    "custom/spotify": {
+        "exec": "/usr/bin/python3 ~/.local/scripts/waybar_modules/mediaplayer.py --player spotify",
+        "format": "{}  ",
+        "return-type": "json",
+        "on-click": "playerctl play-pause",
+        "on-scroll-up": "playerctl next",
+        "on-scroll-down": "playerctl previous"
+    },
     "custom/launcher":{
         "format": " ",
         "on-click": "bash ~/.config/rofi/bin/launcher",
@@ -97,5 +124,9 @@
     "custom/wallpaper":{
         "format":" ",
         "on-click": "bash ~/.config/system_scripts/pkill_bc"
+    },
+    "custom/power_menu":{
+        "format":"",
+        "on-click": "wlogout"
     }
 }

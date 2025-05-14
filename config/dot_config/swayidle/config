@@ -1,0 +1,2 @@
+timeout 120 "swaylock --clock --indicator"
+before-sleep "swaylock --clock --indicator"
