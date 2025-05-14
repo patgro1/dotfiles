@@ -29,6 +29,6 @@ end
 function _get_tmux_folders --description "Create a list of folders to pass to fzf"
     set -l folders_list "~/dotfiles/"
     set -a folders_list "~/dotfiles/config/dot_config/nvim"
-    set -a folders_list $(fdfind --type d --max-depth 1 . ~/workspace)
+    set -a folders_list $(fd --type d --max-depth 1 . ~/workspace)
     echo $folders_list
 end

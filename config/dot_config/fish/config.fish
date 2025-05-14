@@ -16,7 +16,7 @@ if status is-interactive
     if test -e $XDG_CONFIG_HOME/emacs/bin
         set -a PATH $XDG_CONFIG_HOME/emacs/bin
     end
-
+    
     # Set the color scheme to gruvbox
     #theme_gruvbox dark hard
     source $XDG_CONFIG_HOME/fish/themes/tokyonight-night.fish
@@ -28,11 +28,9 @@ if status is-interactive
 
     # Start vim mode
     fish_vi_key_bindings
-    bind \et "tmux_sessionizer"
-    bind -M insert \et "tmux_sessionizer"
-    bind -M normal \et "tmux_sessionizer"
+    for mode in (bind -L)
+        bind -M $mode alt-t "tmux_sessionizer"
+        bind -M $mode alt-g "lazygit"
+    end
 
 end
-
-# opam configuration
-source /home/pgrogan/.opam/opam-init/init.fish > /dev/null 2> /dev/null; or true
