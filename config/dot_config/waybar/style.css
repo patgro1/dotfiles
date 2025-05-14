@@ -81,6 +81,7 @@ window#waybar {
 #cpu,
 .custom-spotify,
 #custom-power_menu,
+#custom-screenshot,
 #tray {
     font-size: 14px;
     font-weight: 800;
@@ -96,6 +97,7 @@ window#waybar {
 #cpu,
 .custom-spotify,
 #custom-power_menu,
+#custom-screenshot,
 #tray {
     padding: 4px 4px;
     margin: 3px 3px;
@@ -175,6 +177,12 @@ window#waybar.empty {
 #custom-power_menu {
 	color: @text;
     border: 2px solid @red;
+    padding-right: 8px;
+}
+
+#custom-screenshot {
+	color: @text;
+    border: 2px solid @pink2;
     padding-right: 8px;
 }
 

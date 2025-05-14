@@ -3,7 +3,7 @@
     "height": 1,
     "modules-left": ["sway/window", "custom/spotify"],
     "modules-center": ["sway/workspaces"],
-    "modules-right": ["tray", "cpu", "memory", "battery", "pulseaudio", "network", "clock", "custom/power_menu"],
+    "modules-right": ["tray", "cpu", "memory", "battery", "pulseaudio", "network", "clock", "custom/screenshot", "custom/power_menu"],
 
     "sway/window": {
         "all-outputs": false
@@ -128,5 +128,9 @@
     "custom/power_menu":{
         "format":"",
         "on-click": "wlogout"
+    },
+    "custom/screenshot": {
+        "format": "󰹑",
+        "on-click": "slurp | grim -g - - | wl-copy"
     }
 }
