@@ -1,0 +1,6 @@
+keybinding:
+  universal:
+    filteringMenu: <c-S>
+  commits:
+    modeDownCommit: <c-j>
+    modeUpCommit: <c-k>
