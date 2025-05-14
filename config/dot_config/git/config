@@ -41,3 +41,8 @@
 [user]
 	name = Patrick Grogan
 	email = patrick.grogan@enyx.fr
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

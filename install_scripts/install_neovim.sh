@@ -22,7 +22,7 @@ fi
 sudo $PACMAN_INSTALL -y $PACKAGE_LIST
 
 # Check if there is already a neovim installed in the directory
-NVIM_SRC_DIR="$HOME/workspace/tools/neovim"
+NVIM_SRC_DIR="$HOME/.local_install/neovim"
 if [ ! -d $NVIM_SRC_DIR ]; then
     # Making sure the tools directory exists
     mkdir -p $(dirname $NVIM_SRC_DIR)
