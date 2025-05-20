@@ -3,7 +3,7 @@
     "height": 1,
     "modules-left": ["sway/window", "custom/spotify"],
     "modules-center": ["sway/workspaces"],
-    "modules-right": ["tray", "cpu", "memory", "battery", "pulseaudio", "network", "clock", "custom/screenshot", "custom/power_menu"],
+    "modules-right": ["tray", "cpu", "memory", "battery", "pulseaudio", "network", "clock", "idle_inhibitor", "custom/screenshot", "custom/power_menu"],
 
     "sway/window": {
         "all-outputs": false
@@ -132,5 +132,12 @@
     "custom/screenshot": {
         "format": "󰹑",
         "on-click": "slurp | grim -g - - | wl-copy"
-    }
+    },
+    "idle_inhibitor": {
+      "format": "{icon}",
+      "format-icons": {
+        "activated": "",
+        "deactivated": ""
+      }
+    },
 }

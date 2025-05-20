@@ -81,6 +81,7 @@ window#waybar {
 #cpu,
 .custom-spotify,
 #custom-power_menu,
+#idle_inhibitor,
 #custom-screenshot,
 #tray {
     font-size: 14px;
@@ -96,6 +97,7 @@ window#waybar {
 #memory,
 #cpu,
 .custom-spotify,
+#idle_inhibitor,
 #custom-power_menu,
 #custom-screenshot,
 #tray {
@@ -196,4 +198,16 @@ window#waybar.empty {
 	transition: none;
     color: @sky;
     background: @text;
+}
+
+#idle_inhibitor.deactivated {
+	color: @text;
+    border: 2px solid @red;
+    padding-right: 13px;
+}
+
+#idle_inhibitor.activated {
+	color: @text;
+    border: 2px solid @green;
+    padding-right: 13px;
 }
