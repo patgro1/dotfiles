@@ -67,6 +67,9 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
 
+# Remap capslock <-> escape
+input "type:keyboard" xkb_options caps:swapescape
+
 exec_always systemctl --user restart kanshi.service
 exec_always systemctl --user restart waybar.service
 exec_always systemctl --user restart swayidle.service
@@ -147,13 +150,13 @@ client.placeholder        $color_bg     $color_unused          $color_unused    
 #
 # Media:
 #
-    bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
-    bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-    bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-    bindsym XF86AudioStop exec playerctl stop
-    bindsym XF86AudioPlay exec playerctl play-pause
-    bindsym XF86AudioNext exec playerctl next
-    bindsym XF86AudioPrev exec playerctl previous
+    bindsym --locked XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+    bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+    bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+    bindsym --locked XF86AudioStop exec playerctl stop
+    bindsym --locked XF86AudioPlay exec playerctl play-pause
+    bindsym --locked XF86AudioNext exec playerctl next
+    bindsym --locked XF86AudioPrev exec playerctl previous
 
 
 #
@@ -218,7 +221,7 @@ client.placeholder        $color_bg     $color_unused          $color_unused    
 #
 # Lockscreen
 #
-bindsym $mod+Alt+L exec "swaswaylock --clock --indicatorylock --clock --indicator"
+bindsym $mod+Alt+L exec "swaylock --clock --indicator"
 bindsym $mod+P exec "wlogout"
 
 #
