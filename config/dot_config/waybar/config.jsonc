@@ -2,11 +2,16 @@
     "layer": "top",
     "height": 1,
     "modules-left": ["sway/window", "custom/spotify"],
-    "modules-center": ["sway/workspaces"],
+    "modules-center": ["sway/mode", "sway/workspaces"],
     "modules-right": ["tray", "cpu", "memory", "battery", "pulseaudio", "network", "clock", "idle_inhibitor", "custom/screenshot", "custom/power_menu"],
 
     "sway/window": {
         "all-outputs": false
+    },
+    
+    "sway/mode": {
+        "format": " {}",
+        "max-length": 50
     },
 
     "pulseaudio": {
