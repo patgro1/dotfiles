@@ -76,7 +76,6 @@ exec_always systemctl --user restart swayidle.service
 
 # Theme
 # Color scheme (Gruvbox dark) - adapted from https://github.com/maximbaz/dotfiles/blob/master/.config/sway/config
-
 set $color_bg #282828
 set $color_bg1 #3c3836
 set $color_bg2 #504945
@@ -217,6 +216,8 @@ client.placeholder        $color_bg     $color_unused          $color_unused    
     bindsym $mod+Shift+0 move container to workspace number 10
     # Note: workspaces can have any name you want, not just numbers.
     # We just use 1-10 as the default.
+    bindsym $mod+greater move workspace to output right
+    bindsym $mod+less move workspace to output left
 
 #
 # Lockscreen
