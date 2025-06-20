@@ -6,8 +6,8 @@ profile Home-Docked{
 
 profile Office-Docked{
     output eDP-1 mode 1920x1080 position 0,360
-    output "ViewSonic Corporation VA2715-QHD WPX224120500" mode 2560x1440@60Hz position 1920,0
-    output "ViewSonic Corporation VA2715-QHD WPX224120736" mode 2560x1440@59.951Hz position 4480,0
+    output "ViewSonic Corporation VA2715-QHD WPX224120500" mode 2560x1440@75Hz position 1920,0
+    output "ViewSonic Corporation VA2715-QHD WPX224120736" mode 2560x1440@60Hz position 4480,0
     }
 
 profile Undocked {
