@@ -1,6 +1,6 @@
 {
     "label" : "lock",
-    "action" : "swaylock --clock --indicator",
+    "action" : "~/.local/scripts/lock_wayland.sh",
     "text" : "Lock",
     "keybind" : "l"
 }
