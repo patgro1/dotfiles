@@ -73,7 +73,8 @@ window#waybar {
 
 #window,
 #workspaces,
-#network,
+#custom-network,
+#custom-vpn,
 #pulseaudio,
 #battery,
 #clock,
@@ -90,7 +91,8 @@ window#waybar {
     background: @base
 }
 
-#network,
+#custom-network,
+#custom-vpn,
 #pulseaudio,
 #battery,
 #clock,
@@ -105,7 +107,7 @@ window#waybar {
     margin: 3px 3px;
 }
 
-#network {
+#custom-network {
     color: @dark-green;
     border: 2px solid @dark-green;
 }
@@ -210,4 +212,21 @@ window#waybar.empty {
 	color: @text;
     border: 2px solid @green;
     padding-right: 13px;
+}
+
+#custom-vpn {
+/*     text-align: center; */
+}
+/* Connected state - green */
+#custom-vpn.connected {
+    color: @dark-green;
+    border: 2px solid @dark-green;
+    padding-right: 8px;
+}
+
+/* Disconnected state - red */
+#custom-vpn.disconnected {
+    color: @red;
+    border: 2px solid @red;
+    padding-right: 8px;
 }

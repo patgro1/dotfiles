@@ -3,7 +3,7 @@
     "height": 1,
     "modules-left": ["sway/window", "custom/spotify"],
     "modules-center": ["sway/mode", "sway/workspaces"],
-    "modules-right": ["tray", "cpu", "memory", "battery", "pulseaudio", "network", "clock", "idle_inhibitor", "custom/screenshot", "custom/power_menu"],
+    "modules-right": ["tray", "cpu", "memory", "battery", "pulseaudio", "custom/vpn", "custom/network", "clock", "idle_inhibitor", "custom/screenshot", "custom/power_menu"],
 
     "sway/window": {
         "all-outputs": false
@@ -35,10 +35,22 @@
         "on-scroll-down": "pactl set-sink-volume @DEFAULT_SINK@ -5%"
     },
 
-    "network": {
-        "tooltip": false,
-        "format-wifi": "  {essid}",
-        "format-ethernet": "  {ipaddr}"
+    "custom/network": {
+        "format": {},
+        "exec": "~/.local/scripts/waybar_modules/network-status.sh",
+        "return-type": "json",
+        "tooltip": true,
+        "interval": 5,
+        "signal": 9
+    },
+    "custom/vpn": {
+        "format": {},
+        "exec": "~/.local/scripts/waybar_modules/vpn-status.sh",
+        "return-type": "json",
+        "interval": 5,
+        "on-click": "~/.local/scripts/waybar_modules/vpn-status.sh toggle",
+        "signal": 8,
+        "tooltip": true
     },
     "backlight": {
         "tooltip": false,
