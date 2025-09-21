@@ -2,7 +2,7 @@
     "layer": "top",
     "height": 1,
     "modules-left": ["sway/window", "custom/spotify"],
-    "modules-center": ["sway/mode", "sway/workspaces"],
+    "modules-center": ["sway/mode", "hyprland/workspaces"],
     "modules-right": ["tray", "cpu", "memory", "battery", "pulseaudio", "custom/vpn", "custom/network", "clock", "idle_inhibitor", "custom/screenshot", "custom/power_menu"],
 
     "sway/window": {
@@ -78,12 +78,12 @@
         "spacing": 10
     },
     "clock": {
-        "format": "{: %I:%M %p   %d/%m/%Y}"
+        "format": " {:%I:%M %p   %d/%m/%Y}"
     },
     "cpu": {
         "interval": 1,
         // "format": " {usage}",
-        "format": " {icon0}{icon1}{icon2}{icon3}{icon4}{icon5}{icon6}{icon7}{icon8}{icon9}{icon10}{icon11}{icon12}{icon13}{icon14}{icon15}",
+        "format": " {icon0}{icon1}{icon2}{icon3}{icon4}{icon5}{icon6}{icon7}{icon8}{icon9}{icon10}{icon11}",
         "format-icons": [
             "<span color='#69ff94'>▁</span>", // green
             "<span color='#2aa9ff'>▂</span>", // blue
