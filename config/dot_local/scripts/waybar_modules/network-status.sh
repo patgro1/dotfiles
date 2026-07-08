@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Your physical interfaces in priority order
-INTERFACES=("wlp0s20f3" "enp46s0" "enp39s0" "enx605b3038ed0a" "enx605b302142ca")
+INTERFACES=("wlp0s20f3" "enp46s0" "enp39s0" "enx605b3038ed0a" "enx605b302142ca", "enp8s0")
 
 get_network_status() {
     # Check each interface in priority order
