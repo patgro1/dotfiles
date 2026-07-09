@@ -2,8 +2,8 @@
     "layer": "top",
     "height": 1,
     "modules-left": ["sway/window", "custom/spotify"],
-    "modules-center": ["sway/mode", "hyprland/workspaces"],
-    "modules-right": ["tray", "cpu", "memory", "battery", "pulseaudio", "custom/vpn", "custom/network", "clock", "idle_inhibitor", "custom/screenshot", "custom/power_menu"],
+    "modules-center": ["sway/mode", "sway/workspaces"],
+    "modules-right": ["tray", "temperature", "cpu", "memory", "battery", "pulseaudio", "custom/vpn", "custom/network", "clock", "idle_inhibitor", "custom/screenshot", "custom/power_menu"],
 
     "sway/window": {
         "all-outputs": false
@@ -156,5 +156,13 @@
         "activated": "",
         "deactivated": ""
       }
+    },
+    "temperature": {
+    // "thermal-zone": 2,
+    // "hwmon-path": "/sys/class/hwmon/hwmon2/temp1_input",
+    "critical-threshold": 80,
+    "format-critical": "{temperatureC}°C ",
+    "format": "{temperatureC}°C ",
+    "interval": 10
     },
 }

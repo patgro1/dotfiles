@@ -79,6 +79,7 @@ window#waybar {
 #battery,
 #clock,
 #memory,
+#temperature,
 #cpu,
 .custom-spotify,
 #custom-power_menu,
@@ -97,6 +98,7 @@ window#waybar {
 #battery,
 #clock,
 #memory,
+#temperature,
 #cpu,
 .custom-spotify,
 #idle_inhibitor,
@@ -229,4 +231,18 @@ window#waybar.empty {
     color: @red;
     border: 2px solid @red;
     padding-right: 8px;
+}
+#temperature {
+    color: @green;
+    border: 2px solid @green;
+}
+
+#temperature.critical {
+    color: @red;
+    border: 2px solid @red;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
 }

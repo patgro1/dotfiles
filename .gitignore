@@ -11,6 +11,7 @@ config/dot_config/fish/functions/*
 !config/dot_config/fish/functions/fish_prompt.fish
 !config/dot_config/fish/functions/__git.init.fish
 !config/dot_config/fish/functions/git_checkout.fish
+!config/dot_config/fish/conf.d/inspector_tui.fish
 
 config/dot_config/fish/theme/*
 !config/dot_config/fish/theme/PLACEHOLDER
