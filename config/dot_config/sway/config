@@ -52,7 +52,6 @@ output * bg ~/.config/images/wallpaper.png fill
 
 ###########################################################################################
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
-
 ### Input configuration
 #
 # Example configuration:
@@ -68,7 +67,13 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DE
 # Read `man 5 sway-input` for more information about this section.
 
 # Remap capslock <-> escape
-input "type:keyboard" xkb_options caps:swapescape
+# input "type:keyboard" xkb_options caps:swapescape
+# input 6645:13077:NuPhy_NuPhy_Halo65_V2_Keyboard {
+#     xkb_options caps:swapescape
+# }
+# input * {
+#     xkb_options caps:swapescape
+# }
 
 exec_always systemctl --user restart kanshi.service
 exec_always systemctl --user restart waybar.service
@@ -101,6 +106,7 @@ gaps inner 10
 smart_gaps on
 
 default_border pixel 3
+for_window [title="^.*"] title_format ""
 default_floating_border pixel 3
 
 set $opacity 0.9

@@ -4,7 +4,8 @@ set PLUGINS "PatrickF1/fzf.fish" \
             "jorgebucaran/autopair.fish"\
             "patrickf3139/Colored-Man-Pages"\
             "edc/bass" \
-            "zzhaolei/transient.fish"
+            "zzhaolei/transient.fish" \
+            "jorgebucaran/nvm.fish"
 
 
 for plugin in $PLUGINS

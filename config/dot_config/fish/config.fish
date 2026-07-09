@@ -16,6 +16,7 @@ if status is-interactive
     if test -e $XDG_CONFIG_HOME/emacs/bin
         set -a PATH $XDG_CONFIG_HOME/emacs/bin
     end
+    set -Ux nvm_default_version lts
     
     # Set the color scheme to gruvbox
     #theme_gruvbox dark hard

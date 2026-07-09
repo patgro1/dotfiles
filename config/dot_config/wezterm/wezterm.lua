@@ -1,6 +1,13 @@
 local wezterm = require 'wezterm'
 local config = {};
 
+local function is_dir(path_str)
+    local entries = wezterm.read_dir(path_str)
+    -- If `read_dir` returns a table, it's a directory.
+    -- Otherwise, it returned nil because it couldn't be read.
+    return type(entries) == 'table'
+end
+
 if wezterm.config_builder then
     config = wezterm.config_builder()
 end
@@ -38,16 +45,27 @@ config.color_schemes = {
         brights = { "#eddeb5", "#ea6962", "#a9b665", "#d8a657", "#7daea3", "#d3869b", "#89b482", "#d4be98" },
     },
 }
+wezterm.on('update-right-status', function(window, pane)
+    window:set_right_status(window:active_workspace())
+end)
+-- Tab bar config
+config.hide_tab_bar_if_only_one_tab = true
+config.tab_bar_at_bottom = true
+config.use_fancy_tab_bar = false
+config.tab_and_split_indices_are_zero_based = true
+
 config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
-config.font = wezterm.font {
-    family = 'FiraCode Nerd Font',
-}
+config.warn_about_missing_glyphs = false
+config.font = wezterm.font_with_fallback({
+    { family = 'FiraCode Nerd Font' },
+    { family = 'Noto Sans Telugu UI' },
+    { family = 'Noto Sans Telugu' }
+})
 config.font_size = 10
 config.window_frame = {
     font = wezterm.font { family = "FiraCode Nerd Font" },
     font_size = 10
 }
-
 
 -- Keymaps
 local act = wezterm.action
@@ -110,18 +128,19 @@ config.keys = {
         mods = 'LEADER',
         action = act.ActivatePaneDirection 'Right'
     },
+
+    {
+        key = '2',
+        mods = 'ALT',
+        action = wezterm.action.SendKey { key = 'F2' },
+    }
 }
-
--- Switch to tab number
+-- Tab navigation that is indexed based
 for i = 0, 9 do
-    table.insert(config.keys,
-        {
-            key = tostring(i),
-            mods = 'LEADER',
-            action = act.ActivateTab(i)
-        }
-    )
+    table.insert(config.keys, {
+        key = tostring(i),
+        mods = 'LEADER',
+        action = wezterm.action.ActivateTab(i)
+    })
 end
-
-
 return config

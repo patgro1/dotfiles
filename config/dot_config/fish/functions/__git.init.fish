@@ -25,6 +25,7 @@ function __git.init
     __git.create_abbr gla               git log --all
     __git.create_abbr gldo              git log --decorate --oneline --graph
     __git.create_abbr adog              git log --all --decorate --oneline --graph
+    __git.create_abbr dog               git log --decorate --oneline --graph
 
     __git.create_abbr gco               --function git_checkout
     __git.create_abbr gcoa              --function git_checkout_from_all
