@@ -1,1 +1,1 @@
-export XDG_CONFIG_HOME=/home/$USER/.config
+XDG_CONFIG_HOME DEFAULT=@{HOME}/.config
