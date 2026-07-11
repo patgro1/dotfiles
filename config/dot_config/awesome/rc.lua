@@ -73,10 +73,14 @@ require("deco.statusbar")
 
 do
     local autorun_apps = {
-        "picom"
+        "picom",
+        "xss-lock -- " .. os.getenv("HOME") .. "/.local/scripts/lock.sh"
     }
 
     for _, i in pairs(autorun_apps) do
         awful.spawn.single_instance(i, awful.rules.rules)
     end
 end
+
+-- Swap CapsLock and Escape
+awful.spawn.with_shell("setxkbmap -option caps:swapescape")

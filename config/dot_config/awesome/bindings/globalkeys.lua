@@ -1,5 +1,7 @@
 local gears = require("gears")
 local awful = require("awful")
+local beautiful = require("beautiful")
+local naughty = require("naughty")
 local hotkeys_popup = require("awful.hotkeys_popup")
 -- Enable hotkeys help widget for VIM and other apps
 -- when client with a matching name is opened:
@@ -11,7 +13,19 @@ menubar.utils.terminal = RC.vars.terminal -- Set the terminal for applications t
 local _M = {}
 
 local rofi_dir = os.getenv("HOME") .. "/.config/rofi/scripts/"
-local local_bin_dir = os.getenv("HOME") .. "/.local/bin/"
+
+-- OSD-style feedback: one notification per category, replaced in place
+-- instead of stacking, so spamming a key doesn't flood the screen.
+local osd_ids = {}
+local function osd_notify(category, text)
+    local n = naughty.notify({
+        title = category,
+        text = text,
+        timeout = 1.5,
+        replaces_id = osd_ids[category],
+    })
+    osd_ids[category] = n.id
+end
 
 function _M.get()
     local global_keys = gears.table.join(
@@ -80,14 +94,16 @@ function _M.get()
             { description = "reload awesome", group = "awesome" }),
         awful.key({ RC.vars.modkey, "Shift" }, "e", awesome.quit,
             { description = "quit awesome", group = "awesome" }),
-        awful.key({ RC.vars.modkey, }, "l", function() awful.tag.incmwfact(0.05) end,
+        awful.key({ RC.vars.modkey, "Shift" }, "x", function() awful.spawn("xkill") end,
+            { description = "kill an unresponsive window", group = "awesome" }),
+        awful.key({ RC.vars.modkey, }, "bracketright", function() awful.tag.incmwfact(0.05) end,
             { description = "increase master width factor", group = "layout" }),
-        awful.key({ RC.vars.modkey, }, "h", function() awful.tag.incmwfact(-0.05) end,
+        awful.key({ RC.vars.modkey, }, "bracketleft", function() awful.tag.incmwfact(-0.05) end,
             { description = "decrease master width factor", group = "layout" }),
-        -- awful.key({ RC.vars.modkey, "Shift" }, "h", function() awful.tag.incnmaster(1, nil, true) end,
-        --     { description = "increase the number of master clients", group = "layout" }),
-        -- awful.key({ RC.vars.modkey, "Shift" }, "l", function() awful.tag.incnmaster(-1, nil, true) end,
-        --     { description = "decrease the number of master clients", group = "layout" }),
+        awful.key({ RC.vars.modkey, "Control" }, "bracketright", function() awful.tag.incnmaster(1, nil, true) end,
+            { description = "increase the number of master clients", group = "layout" }),
+        awful.key({ RC.vars.modkey, "Control" }, "bracketleft", function() awful.tag.incnmaster(-1, nil, true) end,
+            { description = "decrease the number of master clients", group = "layout" }),
         awful.key({ RC.vars.modkey, }, "space", function() awful.layout.inc(1) end,
             { description = "select next", group = "layout" }),
         awful.key({ RC.vars.modkey, "Shift" }, "space", function() awful.layout.inc(-1) end,
@@ -100,8 +116,74 @@ function _M.get()
             { description = "power menu", group = "launcher" }),
         awful.key({ RC.vars.modkey }, "b", function() awful.spawn(rofi_dir .. "bluetooth") end,
             { description = "bluetooth menu", group = "launcher" }),
-        -- awful.key({ "Control", "Alt_L" }, "l", function() awful.spawn(local_bin_dir .. "local.sh") end,
-        --     { description = "lock screen", group = "launcher" }),
+        awful.key({ RC.vars.modkey }, "w", function() awful.spawn(rofi_dir .. "wifi") end,
+            { description = "wifi menu", group = "launcher" }),
+        awful.key({ "Control", "Mod1" }, "l", function() awful.spawn(os.getenv("HOME") .. "/.local/scripts/lock.sh") end,
+            { description = "lock screen", group = "launcher" }),
+
+        -- Volume keys
+        awful.key({}, "XF86AudioRaiseVolume", function()
+            awful.spawn.easy_async("amixer -q set Master 5%+", function()
+                beautiful.volume.update()
+                awful.spawn.easy_async("amixer get Master", function(stdout)
+                    local level, status = stdout:match("([%d]+)%%.*%[([%l]*)")
+                    osd_notify("Volume", status == "off" and "Muted" or (level .. "%"))
+                end)
+            end)
+        end, { description = "raise volume", group = "launcher" }),
+        awful.key({}, "XF86AudioLowerVolume", function()
+            awful.spawn.easy_async("amixer -q set Master 5%-", function()
+                beautiful.volume.update()
+                awful.spawn.easy_async("amixer get Master", function(stdout)
+                    local level, status = stdout:match("([%d]+)%%.*%[([%l]*)")
+                    osd_notify("Volume", status == "off" and "Muted" or (level .. "%"))
+                end)
+            end)
+        end, { description = "lower volume", group = "launcher" }),
+        awful.key({}, "XF86AudioMute", function()
+            awful.spawn.easy_async("amixer -q set Master toggle", function()
+                beautiful.volume.update()
+                awful.spawn.easy_async("amixer get Master", function(stdout)
+                    local level, status = stdout:match("([%d]+)%%.*%[([%l]*)")
+                    osd_notify("Volume", status == "off" and "Muted" or (level .. "%"))
+                end)
+            end)
+        end, { description = "toggle mute", group = "launcher" }),
+
+        -- Media keys
+        awful.key({}, "XF86AudioPlay", function() awful.spawn("playerctl play-pause") end,
+            { description = "play/pause", group = "launcher" }),
+        awful.key({}, "XF86AudioNext", function() awful.spawn("playerctl next") end,
+            { description = "next track", group = "launcher" }),
+        awful.key({}, "XF86AudioPrev", function() awful.spawn("playerctl previous") end,
+            { description = "previous track", group = "launcher" }),
+
+        -- Screenshots
+        awful.key({}, "Print", function() awful.spawn("flameshot full -c") end,
+            { description = "screenshot to clipboard", group = "launcher" }),
+        awful.key({ "Shift" }, "Print", function()
+            awful.spawn("flameshot full -c -p " .. os.getenv("HOME") .. "/Pictures/Screenshots")
+        end, { description = "screenshot to clipboard + file", group = "launcher" }),
+        awful.key({}, "XF86Launch2", function() awful.spawn("flameshot gui") end,
+            { description = "snipping tool (region select)", group = "launcher" }),
+
+        -- Brightness keys
+        awful.key({}, "XF86MonBrightnessUp", function()
+            awful.spawn.easy_async("brightnessctl set +5%", function()
+                awful.spawn.easy_async("brightnessctl -m", function(stdout)
+                    local pct = stdout:match(",(%d+)%%,")
+                    if pct then osd_notify("Brightness", pct .. "%") end
+                end)
+            end)
+        end, { description = "increase brightness", group = "launcher" }),
+        awful.key({}, "XF86MonBrightnessDown", function()
+            awful.spawn.easy_async("brightnessctl set 5%-", function()
+                awful.spawn.easy_async("brightnessctl -m", function(stdout)
+                    local pct = stdout:match(",(%d+)%%,")
+                    if pct then osd_notify("Brightness", pct .. "%") end
+                end)
+            end)
+        end, { description = "decrease brightness", group = "launcher" }),
 
 
         awful.key({ RC.vars.modkey, "Control" }, "n",

@@ -1,11 +1,6 @@
 -------------------------------------------------
 -- Spotify Widget for Awesome Window Manager
--- Shows currently playing song on Spotify for Linux client
--- More details could be found here:
--- https://github.com/streetturtle/awesome-wm-widgets/tree/master/spotify-widget
-
--- @author Pavel Makhov
--- @copyright 2020 Pavel Makhov
+-- Shows currently playing song via playerctl (MPRIS)
 -------------------------------------------------
 
 local awful = require("awful")
@@ -27,21 +22,22 @@ local spotify_widget = {}
 local function worker(user_args)
     local args = user_args or {}
 
-    local play_icon = args.play_icon or '/usr/share/icons/Arc/actions/24/player_play.png'
-    local pause_icon = args.pause_icon or '/usr/share/icons/Arc/actions/24/player_pause.png'
+    local play_icon = args.play_icon or '/usr/share/icons/Humanity/actions/24/media-playback-start.svg'
+    local pause_icon = args.pause_icon or '/usr/share/icons/Humanity/actions/24/media-playback-pause.svg'
     local font = args.font or 'Play 9'
     local dim_when_paused = args.dim_when_paused == nil and false or args.dim_when_paused
     local dim_opacity = args.dim_opacity or 0.2
     local max_length = args.max_length or 15
     local show_tooltip = args.show_tooltip == nil and true or args.show_tooltip
     local timeout = args.timeout or 1
-    local sp_bin = args.sp_bin or 'sp'
+    local player = args.player or 'spotify'
 
-    local GET_SPOTIFY_STATUS_CMD = sp_bin .. ' status'
-    local GET_CURRENT_SONG_CMD = sp_bin .. ' current'
-    local PLAY_PAUSE_CMD = sp_bin .. ' play'
-    local NEXT_SONG_CMD = sp_bin .. ' next'
-    local PREVIOUS_SONG_CMD = sp_bin .. ' prev'
+    local PLAYERCTL = 'playerctl -p ' .. player
+    local GET_STATUS_CMD = PLAYERCTL .. ' status'
+    local GET_METADATA_CMD = PLAYERCTL .. ' metadata --format {{album}}|||{{artist}}|||{{title}}'
+    local PLAY_PAUSE_CMD = PLAYERCTL .. ' play-pause'
+    local NEXT_SONG_CMD = PLAYERCTL .. ' next'
+    local PREVIOUS_SONG_CMD = PLAYERCTL .. ' previous'
 
     local cur_artist = ''
     local cur_title = ''
@@ -49,22 +45,15 @@ local function worker(user_args)
 
     spotify_widget = wibox.widget {
         {
+            id = "icon",
+            widget = wibox.widget.imagebox,
+            forced_width = args.icon_size or 14,
+            forced_height = args.icon_size or 14,
+        },
+        {
             id = 'artistw',
             font = font,
             widget = wibox.widget.textbox,
-        },
-        {
-            layout = wibox.layout.stack,
-            {
-                id = "icon",
-                widget = wibox.widget.imagebox,
-            },
-            {
-                widget = wibox.widget.textbox,
-                font = font,
-                text = ' ',
-                forced_height = 1
-            }
         },
         {
             layout = wibox.container.scroll.horizontal,
@@ -77,7 +66,8 @@ local function worker(user_args)
                 widget = wibox.widget.textbox
             }
         },
-        layout = wibox.layout.align.horizontal,
+        layout = wibox.layout.fixed.horizontal,
+        spacing = 4,
         set_status = function(self, is_playing)
             self:get_children_by_id('icon')[1]:set_image(is_playing and play_icon or pause_icon)
             if dim_when_paused then
@@ -102,21 +92,20 @@ local function worker(user_args)
         end
     }
 
-    local update_widget_icon = function(widget, stdout, _, _, _)
+    local update_widget_icon = function(widget, stdout, _, _, exitcode)
         stdout = string.gsub(stdout, "\n", "")
-        widget:set_status(stdout == 'Playing' and true or false)
+        widget:set_status(exitcode == 0 and stdout == 'Playing')
     end
 
-    local update_widget_text = function(widget, stdout, _, _, _)
-        if string.find(stdout, 'Error: Spotify is not running.') ~= nil then
+    local update_widget_text = function(widget, stdout, _, _, exitcode)
+        if exitcode ~= 0 or stdout == '' then
             widget:set_text('', '')
             widget:set_visible(false)
             return
         end
 
         local escaped = string.gsub(stdout, "&", '&amp;')
-        local album, _, artist, title =
-            string.match(escaped, 'Album%s*(.*)\nAlbumArtist%s*(.*)\nArtist%s*(.*)\nTitle%s*(.*)\n')
+        local album, artist, title = string.match(escaped, '^(.-)|||(.-)|||(.-)\n?$')
 
         if album ~= nil and title ~= nil and artist ~= nil then
             cur_artist = artist
@@ -128,8 +117,8 @@ local function worker(user_args)
         end
     end
 
-    watch(GET_SPOTIFY_STATUS_CMD, timeout, update_widget_icon, spotify_widget)
-    watch(GET_CURRENT_SONG_CMD, timeout, update_widget_text, spotify_widget)
+    watch(GET_STATUS_CMD, timeout, update_widget_icon, spotify_widget)
+    watch(GET_METADATA_CMD, timeout, update_widget_text, spotify_widget)
 
     --- Adds mouse controls to the widget:
     --  - left click - play/pause
@@ -143,7 +132,7 @@ local function worker(user_args)
         elseif (button == 5) then
             awful.spawn(PREVIOUS_SONG_CMD, false) -- scroll down
         end
-        awful.spawn.easy_async(GET_SPOTIFY_STATUS_CMD, function(stdout, stderr, exitreason, exitcode)
+        awful.spawn.easy_async(GET_STATUS_CMD, function(stdout, stderr, exitreason, exitcode)
             update_widget_icon(spotify_widget, stdout, stderr, exitreason, exitcode)
         end)
     end)

@@ -30,4 +30,13 @@ end)
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+
+-- Firefox re-requests maximized state shortly after mapping (async EWMH
+-- request), which can override the rules.lua property set at manage time.
+-- Keep rejecting it so it stays tiled.
+client.connect_signal("property::maximized", function(c)
+    if c.maximized and c.class and c.class:lower() == "firefox" then
+        c.maximized = false
+    end
+end)
 -- }}}

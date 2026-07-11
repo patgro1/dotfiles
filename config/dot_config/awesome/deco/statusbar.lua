@@ -20,6 +20,7 @@ local theme            = beautiful.get()
 
 -- local battery          = require("deco.widgets.battery")
 local spotify          = require("deco.widgets.spotify")
+local powerprofile     = require("deco.widgets.powerprofile")
 
 local taglist_buttons  = deco.taglist()
 local tasklist_buttons = deco.tasklist()
@@ -44,13 +45,12 @@ theme.cal              = lain.widget.cal({
 })
 local spotify_w = spotify({
     font = 'Ubuntu Mono 9',
-    play_icon = '/usr/share/icons/breeze/actions/32/media-playback-start.svg',
-    pause_icon = '/usr/share/icons/breeze/actions/32/media-playback-pause.svg',
+    play_icon = '/usr/share/icons/Humanity/actions/24/media-playback-start.svg',
+    pause_icon = '/usr/share/icons/Humanity/actions/24/media-playback-pause.svg',
     dim_when_paused = true,
     dim_opacity = 0.5,
     max_length = -1,
     show_tooltip = false,
-    -- sp_bin = gears.filesystem.get_configuration_dir() .. 'scripts/sp'
 })
 
 -- Media Player
@@ -76,7 +76,7 @@ theme.volume           = lain.widget.alsa({
         vlevel = volume_now.level
 
         if volume_now.status == "off" then
-            vlevel = vlevel .. "M "
+            vlevel = "Muted "
         else
             vlevel = vlevel .. " "
         end
@@ -86,9 +86,9 @@ theme.volume           = lain.widget.alsa({
 
 
 -- CPU widget
-local cpu     = lain.widget.sysload({
+local cpu     = lain.widget.cpu({
     settings = function()
-        widget:set_markup(markup.font(theme.font, markup(gray, " Cpu ") .. load_1 .. " "))
+        widget:set_markup(markup.font(theme.font, markup(gray, " Cpu ") .. cpu_now.usage .. "% "))
     end
 })
 
@@ -113,13 +113,15 @@ local battery = lain.widget.bat({
     end
 })
 
+local powerprofile_w = powerprofile({
+    font = theme.font,
+})
+
 -- Separators
 local first   = wibox.widget.textbox(markup.font("Terminus 4", " "))
 local spr     = wibox.widget.textbox(' ')
 
 awful.screen.connect_for_each_screen(function(s)
-    s.quake = lain.util.quake({ app = awful.util.terminal })
-
     -- Wallpaper
     set_wallpaper(s)
 
@@ -186,6 +188,8 @@ awful.screen.connect_for_each_screen(function(s)
             spr,
             cpu.widget,
             mem.widget,
+            powerprofile_w,
+            spr,
             battery.widget,
             theme.volume.widget,
             mytextclock,

@@ -1,0 +1,107 @@
+#!/usr/bin/env bash
+#
+# A rofi menu that uses nmcli to list, connect to, and manage wifi networks.
+# Mirrors the style of the bluetooth rofi script in this same directory.
+#
+# Depends on: rofi, NetworkManager (nmcli)
+
+divider="---------"
+goback="Back"
+
+wifi_on() {
+    [ "$(nmcli radio wifi)" = "enabled" ]
+}
+
+toggle_wifi() {
+    if wifi_on; then
+        nmcli radio wifi off
+    else
+        nmcli radio wifi on
+        sleep 1
+    fi
+    show_menu
+}
+
+current_ssid() {
+    nmcli -t -f active,ssid dev wifi | awk -F: '$1 == "yes" { print $2; exit }'
+}
+
+connect_to() {
+    local ssid="$1"
+    local active
+    active="$(current_ssid)"
+
+    if [ "$ssid" = "$active" ]; then
+        nmcli connection down "$ssid" >/dev/null 2>&1
+        show_menu
+        return
+    fi
+
+    # Already-known connection: just bring it up
+    if nmcli -t -f NAME connection show | grep -Fxq "$ssid"; then
+        nmcli connection up "$ssid" >/dev/null 2>&1
+        show_menu
+        return
+    fi
+
+    local security
+    security="$(nmcli -t -f ssid,security dev wifi list | awk -F: -v s="$ssid" '$1 == s { print $2; exit }')"
+
+    if [ -z "$security" ] || [ "$security" = "--" ]; then
+        nmcli device wifi connect "$ssid" >/dev/null 2>&1
+    else
+        password="$(echo -e "" | $rofi_command "Password for $ssid" -password)"
+        [ -z "$password" ] && { show_menu; return; }
+        nmcli device wifi connect "$ssid" password "$password" >/dev/null 2>&1
+    fi
+    show_menu
+}
+
+show_menu() {
+    if wifi_on; then
+        power="Wifi: on"
+        active="$(current_ssid)"
+
+        networks=$(nmcli -t -f ssid dev wifi list | awk -F: '!seen[$1]++ && $1 != ""')
+        options=""
+        while IFS= read -r ssid; do
+            if [ "$ssid" = "$active" ]; then
+                options="${options}${ssid} (connected)\n"
+            else
+                options="${options}${ssid}\n"
+            fi
+        done <<<"$networks"
+
+        options="${options}${divider}\n${power}\nRescan\nExit"
+    else
+        power="Wifi: off"
+        options="${power}\nExit"
+    fi
+
+    chosen="$(echo -e "$options" | $rofi_command "Wifi")"
+
+    case "$chosen" in
+        "" | "$divider")
+            ;;
+        "$power")
+            toggle_wifi
+            ;;
+        "Rescan")
+            nmcli device wifi rescan >/dev/null 2>&1
+            sleep 2
+            show_menu
+            ;;
+        *" (connected)")
+            connect_to "${chosen% (connected)}"
+            ;;
+        *)
+            connect_to "$chosen"
+            ;;
+    esac
+}
+
+dir="$HOME/.config/rofi/launchers/type-2"
+theme='style-2'
+rofi_command="rofi -dmenu $* -theme ${dir}/${theme}.rasi -p"
+
+show_menu

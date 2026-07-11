@@ -64,6 +64,13 @@ function _M.get(clientkeys, clientbuttons)
         -- Set Firefox to always map on the tag named "2" on screen 1.
         -- { rule = { class = "Firefox" },
         --   properties = { screen = 1, tag = "2" } },
+
+        -- Firefox remembers its last window state (sizemode) and re-requests
+        -- maximized on launch via EWMH. A maximized client's geometry
+        -- overlaps whatever the tile layout computes for other clients,
+        -- hiding them. Force it back to tiled.
+        { rule_any = { class = { "firefox", "Firefox" } },
+          properties = { maximized = false } },
     }
 
     return rules
