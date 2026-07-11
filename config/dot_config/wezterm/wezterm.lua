@@ -68,6 +68,17 @@ config.window_frame = {
 }
 
 -- Keymaps
+-- Without this, wezterm may send a composed/accented character for ALT+<key>
+-- instead of the ESC-prefixed sequence shells expect, breaking bindings like
+-- fish's alt-t (tmux-sessionizer) and alt-g (lazygit).
+config.send_composed_key_when_left_alt_is_pressed = false
+
+-- Honor fish's (and other apps') request to switch to the Kitty keyboard
+-- protocol. Without this, fish's modern `ctrl-x`/`alt-x` bind syntax (used
+-- internally by fzf.fish etc.) silently never matches real keypresses,
+-- since fish registers those bindings for the enhanced protocol encoding
+-- that wezterm never actually sends.
+config.enable_kitty_keyboard = true
 local act = wezterm.action
 config.leader = { key = 'a', mods = 'ALT', timeout_milliseconds = 1000 }
 config.keys = {
