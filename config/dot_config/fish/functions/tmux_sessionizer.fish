@@ -13,7 +13,7 @@ function tmux_sessionizer --description "Tmux session manager"
     set -l tmux_session_name $(basename $selected_project_dir)
 
     # Create a new session silently if needed
-    if not tmux ls | grep -q $tmux_session_name
+    if not tmux list-sessions -F '#{session_name}' 2>/dev/null | grep -qx $tmux_session_name
         tmux new-session -d -c $selected_project_dir -s $tmux_session_name
     end
 
