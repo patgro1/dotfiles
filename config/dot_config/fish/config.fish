@@ -16,14 +16,7 @@ if status is-interactive
     if test -e $XDG_CONFIG_HOME/emacs/bin
         set -a PATH $XDG_CONFIG_HOME/emacs/bin
     end
-    set -Ux FIRMWARES_API_KEY 32c22d97b46881ab6a0979f910366b4b12c3ee1a
-    set -Ux FIRMWARES_API_URL https://firmwares.enyx.fr/
-    set -Ux FIRMWARES_API_BACKUP_PATH /media/collabwork/temp/redmine_uploads_failure/
-
     set -Ux DEFAULT_SIMULATOR riviera_pro
-
-    set -Ux GOOGLE_CLOUD_PROJECT_ID "mindful-braid-484220-f2"
-    set -Ux GEMINI_API_KEY AIzaSyDSINaglPTQRp2DXUz-9esT21VXDA7YyD8
 
     set -Ux nvm_default_version lts
     

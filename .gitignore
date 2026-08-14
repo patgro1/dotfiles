@@ -11,7 +11,8 @@ config/dot_config/fish/functions/*
 !config/dot_config/fish/functions/fish_prompt.fish
 !config/dot_config/fish/functions/__git.init.fish
 !config/dot_config/fish/functions/git_checkout.fish
-!config/dot_config/fish/conf.d/inspector_tui.fish
+!config/dot_config/fish/functions/refresh_x11.fish
+!config/dot_config/fish/functions/work_via_home.fish
 
 config/dot_config/fish/theme/*
 !config/dot_config/fish/theme/PLACEHOLDER
@@ -26,3 +27,4 @@ config/dot_config/fish/fishd.tmp.*
 /config/tmux/.config/tmux/plugins
 
 config/dot_config/tmux/plugins
+

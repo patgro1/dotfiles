@@ -1,0 +1,8 @@
+default partial alphanumeric_keys
+xkb_symbols "basic" {
+    include "us(basic)"
+    name[Group1] = "Custom - ESC to grave/tilde";
+    
+    // Replace the ESC key mapping
+    key <AC09> { [ grave, asciitilde ] };
+};
